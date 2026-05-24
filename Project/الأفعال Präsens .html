@@ -359,8 +359,10 @@ const allVerbs = [
 const container = document.getElementById('verbsContainer');
 let currentSection = "";
 
+var i=0;
 // دالة لتوليد عناصر واجهة المستخدم ديناميكياً بناءً على البيانات
 allVerbs.forEach(verb => {
+  i++;
   // إضافة عنوان القسم إذا تغير القسم الحالي
   if (verb.sectionTitle && currentSection !== verb.section) {
     currentSection = verb.section;
@@ -389,7 +391,7 @@ allVerbs.forEach(verb => {
 
   card.innerHTML = `
     <div class="title">
-      <span class="infinitiv" onclick="speak('${verb.infinitiv}')">${verb.infinitiv}</span>
+      <span class="infinitiv" onclick="speak('${verb.infinitiv}')">${i} :     ${verb.infinitiv}  </span>
       <span class="arabic">${verb.arabic}</span>
     </div>
     <table>
