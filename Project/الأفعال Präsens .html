@@ -415,12 +415,12 @@ allVerbs.forEach(verb => {
 function speak(text) {
   if ('speechSynthesis' in window) {
     // إلغاء أي نطق مستمر لمنع التداخل
-    window.speechSynthesis.cancel();
-    
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'de-DE'; // تحديد اللغة الألمانية
-    utterance.rate = 0.85;    // إبطاء السرعة قليلاً لتسهيل الاستماع والتعلم
-    window.speechSynthesis.speak(utterance);
+  window.speechSynthesis.cancel();
+  
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'de-DE'; // تعيين اللغة الألمانية
+  utterance.rate = 0.85;    // إبطاء السرعة قليلاً بوضوح لتسهيل التعلم
+  window.speechSynthesis.speak(utterance);
   } else {
     alert("عذراً، متصفحك لا يدعم ميزة النطق الصوتي التلقائي.");
   }
