@@ -365,6 +365,7 @@ allVerbs.forEach(verb => {
   if (verb.sectionTitle && currentSection !== verb.section) {
     currentSection = verb.section;
     const secHeader = document.createElement('h2');
+   
     secHeader.id = verb.section;
     secHeader.style.width = '100%';
     secHeader.style.textAlign = 'center';
@@ -372,7 +373,13 @@ allVerbs.forEach(verb => {
     secHeader.style.marginTop = '40px';
     secHeader.style.borderBottom = '2px solid #0077cc';
     secHeader.style.paddingBottom = '10px';
-    secHeader.innerText = verb.sectionTitle;
+    secHeader.innerHTML = verb.sectionTitle +`<br>
+      <a href="#part1"> 1</a>
+    <a href="#part2"> 2</a>
+     <a href="#part3">  3</a>
+      <a href="#part4">4  </a>
+      `;
+
     container.appendChild(secHeader);
   }
 
