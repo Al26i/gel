@@ -29,21 +29,21 @@
       gap: 25px;
       justify-content: center;
       max-width: 1200px;
-        min-width:800px;
-      margin: 4 auto;
+      margin: 0 auto;
     }
 
     /* تصميم البطاقة الذكي */
     .card {
       background: white;
       width: 100%;
-      max-width: 1150px; 
-       min-width:800px;
-        padding: 9px;
+      max-width: 850px; 
+      min-width: 320px;
+      padding: 15px;
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       border: 1px solid #eef2f5;
+      margin-bottom: 20px;
     }
 
     /* رأس البطاقة (الأزرق) */
@@ -55,11 +55,12 @@
       font-size: 24px;
       font-weight: bold;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
+      border-radius: 10px 10px 0 0;
     }
 
-    /* جعل الفعل الرئيسي قابل للنطق أيضاً عند الضغط المطول */
+    /* جعل الفعل الرئيسي قابل للنطق أيضاً */
     .infinitiv {
       cursor: pointer;
       user-select: none;
@@ -74,11 +75,12 @@
       direction: rtl;
     }
 
-    /* تنسيق الجدول الجديد (أفقي) */
+    /* تنسيق الجدول الأفقي */
     table {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed; 
+      margin-top: 10px;
     }
 
     /* تنسيق صف الضمائر العلوي */
@@ -99,11 +101,11 @@
       color: #2c3e50;
       font-weight: 600;
       cursor: pointer;
-      user-select: none; /* لمنع تحديد النص الأزرق المزعج عند الضغط المطول */
+      user-select: none;
       transition: background 0.2s;
     }
 
-    /* تأثير بصري لتنبيه المستخدم أنه يمكن التفاعل معه */
+    /* تأثير بصري عند التمرير بالماوس */
     td:hover {
       background: #f0f8ff;
     }
@@ -112,1698 +114,276 @@
     td:active, .infinitiv:active {
       opacity: 0.7;
     }
+    
+    .nav-links {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .nav-links a {
+      padding: 10px 15px;
+      font-size: large;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
   </style>
 </head>
 
 <body>
-     <a href="../index.html" class="btn" style="width: 95px;padding: 33px;">home</a>
+  <div class="nav-links">
+     <a href="../index.html" class="btn">Home</a>
+     <a href="#part1">الأفعال الأساسية</a>
+     <a href="#part2">الأفعال المنفصلة</a>
+     <a href="#part3">الأفعال غير المنفصلة</a>
+      <a href="#part4">الأفعال الشاذة والقوية</a>
+  </div>
 
 <h1>تصريف الأفعال الألمانية Präsens</h1>
-<p style="text-align: center; color: #7f8c8d; margin-top: -30px; margin-bottom: 30px;">💡 اضغط ضغطة مطولة على أي فعل ألماني لسماع نطقه الصحيح</p>
+<p style="text-align: center; color: #7f8c8d; margin-top: -30px; margin-bottom: 30px;">💡 اضغط على أي كلمة ألمانية لسماع نطقها الصحيح بالذكاء الاصطناعي</p>
 
 <div class="container" id="verbsContainer"></div>
 
 <script>
-const verbs = [
+// تجميع كل المصفوفات في مصفوفة واحدة مع تحديد نوع القسم للترتيب
+const allVerbs = [
   // ============================================
-  // الجزء الأول: الأفعال الأصلية من A1/A2 (10 أفعال)
+  // الجزء الأول: الأفعال الأصلية من A1/A2
   // ============================================
-  {
-    infinitiv: "lernen",
-    arabic: "يتعلم",
-    forms: { ich: "lerne", du: "lernst", er: "lernt", wir: "lernen", ihr: "lernt", sie: "lernen" }
-  },
-  {
-    infinitiv: "arbeiten",
-    arabic: "يعمل",
-    forms: { ich: "arbeite", du: "arbeitest", er: "arbeitet", wir: "arbeiten", ihr: "arbeitet", sie: "arbeiten" }
-  },
-  {
-    infinitiv: "wohnen",
-    arabic: "يسكن",
-    forms: { ich: "wohne", du: "wohnst", er: "wohnt", wir: "wohnen", ihr: "wohnt", sie: "wohnen" }
-  },
-  {
-    infinitiv: "spielen",
-    arabic: "يلعب",
-    forms: { ich: "spiele", du: "spielst", er: "spielt", wir: "spielen", ihr: "spielt", sie: "spielen" }
-  },
-  {
-    infinitiv: "machen",
-    arabic: "يفعل",
-    forms: { ich: "mache", du: "machst", er: "macht", wir: "machen", ihr: "macht", sie: "machen" }
-  },
-  {
-    infinitiv: "gehen",
-    arabic: "يذهب",
-    forms: { ich: "gehe", du: "gehst", er: "geht", wir: "gehen", ihr: "geht", sie: "gehen" }
-  },
-  {
-    infinitiv: "kommen",
-    arabic: "يأتي",
-    forms: { ich: "komme", du: "kommst", er: "kommt", wir: "kommen", ihr: "kommt", sie: "kommen" }
-  },
-  {
-    infinitiv: "essen",
-    arabic: "يأكل",
-    forms: { ich: "esse", du: "isst", er: "isst", wir: "essen", ihr: "esst", sie: "essen" }
-  },
-  {
-    infinitiv: "trinken",
-    arabic: "يشرب",
-    forms: { ich: "trinke", du: "trinkst", er: "trinkt", wir: "trinken", ihr: "trinkt", sie: "trinken" }
-  },
-  {
-    infinitiv: "sehen",
-    arabic: "يرى",
-    forms: { ich: "sehe", du: "siehst", er: "sieht", wir: "sehen", ihr: "seht", sie: "sehen" }
-  },
+  { section: "part1", sectionTitle: "الجزء الأول: الأفعال الأساسية", infinitiv: "lernen", arabic: "يتعلم", forms: { ich: "lerne", du: "lernst", er: "lernt", wir: "lernen", ihr: "lernt", sie: "lernen" } },
+  { section: "part1", infinitiv: "arbeiten", arabic: "يعمل", forms: { ich: "arbeite", du: "arbeitest", er: "arbeitet", wir: "arbeiten", ihr: "arbeitet", sie: "arbeiten" } },
+  { section: "part1", infinitiv: "wohnen", arabic: "يسكن", forms: { ich: "wohne", du: "wohnst", er: "wohnt", wir: "wohnen", ihr: "wohnt", sie: "wohnen" } },
+  { section: "part1", infinitiv: "spielen", arabic: "يلعب", forms: { ich: "spiele", du: "spielst", er: "spielt", wir: "spielen", ihr: "spielt", sie: "spielen" } },
+  { section: "part1", infinitiv: "machen", arabic: "يفعل", forms: { ich: "mache", du: "machst", er: "macht", wir: "machen", ihr: "macht", sie: "machen" } },
+  { section: "part1", infinitiv: "gehen", arabic: "يذهب", forms: { ich: "gehe", du: "gehst", er: "geht", wir: "gehen", ihr: "geht", sie: "gehen" } },
+  { section: "part1", infinitiv: "kommen", arabic: "يأتي", forms: { ich: "komme", du: "kommst", er: "kommt", wir: "kommen", ihr: "kommt", sie: "kommen" } },
+  { section: "part1", infinitiv: "essen", arabic: "يأكل", forms: { ich: "esse", du: "isst", er: "isst", wir: "essen", ihr: "esst", sie: "essen" } },
+  { section: "part1", infinitiv: "trinken", arabic: "يشرب", forms: { ich: "trinke", du: "trinkst", er: "trinkt", wir: "trinken", ihr: "trinkt", sie: "trinken" } },
+  { section: "part1", infinitiv: "sehen", arabic: "يرى", forms: { ich: "sehe", du: "siehst", er: "sieht", wir: "sehen", ihr: "seht", sie: "sehen" } },
 
   // ============================================
-  // الجزء الثاني: أفعال منفصلة (Trennbare Verben) - 70 فعلًا
+  // الجزء الثاني: أفعال منفصلة (Trennbare Verben)
   // ============================================
-  {
-    infinitiv: "abbiegen",
-    arabic: "ينعطف / يدير",
-    forms: { ich: "biege ab", du: "biegst ab", er: "biegt ab", wir: "biegen ab", ihr: "biegt ab", sie: "biegen ab" }
-  },
-  {
-    infinitiv: "abbrechen",
-    arabic: "يكسر / يقطع / يلغي",
-    forms: { ich: "breche ab", du: "brichst ab", er: "bricht ab", wir: "brechen ab", ihr: "brecht ab", sie: "brechen ab" }
-  },
-  {
-    infinitiv: "abfahren",
-    arabic: "ينطلق / يغادر",
-    forms: { ich: "fahre ab", du: "fährst ab", er: "fährt ab", wir: "fahren ab", ihr: "fahrt ab", sie: "fahren ab" }
-  },
-  {
-    infinitiv: "abgeben",
-    arabic: "يسلم / يقدم",
-    forms: { ich: "gebe ab", du: "gibst ab", er: "gibt ab", wir: "geben ab", ihr: "gebt ab", sie: "geben ab" }
-  },
-  {
-    infinitiv: "abhängen",
-    arabic: "يعتمد على",
-    forms: { ich: "hänge ab", du: "hängst ab", er: "hängt ab", wir: "hängen ab", ihr: "hängt ab", sie: "hängen ab" }
-  },
-  {
-    infinitiv: "abholen",
-    arabic: "يستلم / يلتقط",
-    forms: { ich: "hole ab", du: "holst ab", er: "holt ab", wir: "holen ab", ihr: "holt ab", sie: "holen ab" }
-  },
-  {
-    infinitiv: "abkommen",
-    arabic: "يحيد عن / يخرج عن",
-    forms: { ich: "komme ab", du: "kommst ab", er: "kommt ab", wir: "kommen ab", ihr: "kommt ab", sie: "kommen ab" }
-  },
-  {
-    infinitiv: "abkürzen",
-    arabic: "يختصر",
-    forms: { ich: "kürze ab", du: "kürzt ab", er: "kürzt ab", wir: "kürzen ab", ihr: "kürzt ab", sie: "kürzen ab" }
-  },
-  {
-    infinitiv: "ablehnen",
-    arabic: "يرفض",
-    forms: { ich: "lehne ab", du: "lehnst ab", er: "lehnt ab", wir: "lehnen ab", ihr: "lehnt ab", sie: "lehnen ab" }
-  },
-  {
-    infinitiv: "abnehmen",
-    arabic: "ينقص / يخسر وزناً",
-    forms: { ich: "nehme ab", du: "nimmst ab", er: "nimmt ab", wir: "nehmen ab", ihr: "nehmt ab", sie: "nehmen ab" }
-  },
-  {
-    infinitiv: "abschließen",
-    arabic: "يغلق / يكمل",
-    forms: { ich: "schließe ab", du: "schließt ab", er: "schließt ab", wir: "schließen ab", ihr: "schließt ab", sie: "schließen ab" }
-  },
-  {
-    infinitiv: "abschneiden",
-    arabic: "يقطع / يقص",
-    forms: { ich: "schneide ab", du: "schneidest ab", er: "schneidet ab", wir: "schneiden ab", ihr: "schneidet ab", sie: "schneiden ab" }
-  },
-  {
-    infinitiv: "abschreiben",
-    arabic: "ينسخ",
-    forms: { ich: "schreibe ab", du: "schreibst ab", er: "schreibt ab", wir: "schreiben ab", ihr: "schreibt ab", sie: "schreiben ab" }
-  },
-  {
-    infinitiv: "abschrecken",
-    arabic: "يردع / يثني عن",
-    forms: { ich: "schrecke ab", du: "schreckst ab", er: "schreckt ab", wir: "schrecken ab", ihr: "schreckt ab", sie: "schrecken ab" }
-  },
-  {
-    infinitiv: "abschweifen",
-    arabic: "يخرج عن الموضوع",
-    forms: { ich: "schweife ab", du: "schweifst ab", er: "schweift ab", wir: "schweifen ab", ihr: "schweift ab", sie: "schweifen ab" }
-  },
-  {
-    infinitiv: "absetzen",
-    arabic: "يخلع / يضع / يعزل",
-    forms: { ich: "setze ab", du: "setzt ab", er: "setzt ab", wir: "setzen ab", ihr: "setzt ab", sie: "setzen ab" }
-  },
-  {
-    infinitiv: "absichern",
-    arabic: "يؤمن / يحمي",
-    forms: { ich: "sichere ab", du: "sicherst ab", er: "sichert ab", wir: "sichern ab", ihr: "sichert ab", sie: "sichern ab" }
-  },
-  {
-    infinitiv: "absitzen",
-    arabic: "يقضي فترة (عقوبة)",
-    forms: { ich: "sitze ab", du: "sitzt ab", er: "sitzt ab", wir: "sitzen ab", ihr: "sitzt ab", sie: "sitzen ab" }
-  },
-  {
-    infinitiv: "abstimmen",
-    arabic: "يصوت / ينسق",
-    forms: { ich: "stimme ab", du: "stimmst ab", er: "stimmt ab", wir: "stimmen ab", ihr: "stimmt ab", sie: "stimmen ab" }
-  },
-  {
-    infinitiv: "abstellen",
-    arabic: "يوقف / يضع جانباً",
-    forms: { ich: "stelle ab", du: "stellst ab", er: "stellt ab", wir: "stellen ab", ihr: "stellt ab", sie: "stellen ab" }
-  },
-  {
-    infinitiv: "abstürzen",
-    arabic: "يتحطم / يسقط",
-    forms: { ich: "stürze ab", du: "stürzt ab", er: "stürzt ab", wir: "stürzen ab", ihr: "stürzt ab", sie: "stürzen ab" }
-  },
-  {
-    infinitiv: "absuchen",
-    arabic: "يفتش بدقة",
-    forms: { ich: "suche ab", du: "suchst ab", er: "sucht ab", wir: "suchen ab", ihr: "sucht ab", sie: "suchen ab" }
-  },
-  {
-    infinitiv: "abteilen",
-    arabic: "يقسم / يجزئ",
-    forms: { ich: "teile ab", du: "teilst ab", er: "teilt ab", wir: "teilen ab", ihr: "teilt ab", sie: "teilen ab" }
-  },
-  {
-    infinitiv: "abwarten",
-    arabic: "ينتظر",
-    forms: { ich: "warte ab", du: "wartest ab", er: "wartet ab", wir: "warten ab", ihr: "wartet ab", sie: "warten ab" }
-  },
-  {
-    infinitiv: "abwaschen",
-    arabic: "يغسل (الأطباق)",
-    forms: { ich: "wasche ab", du: "wäschst ab", er: "wäscht ab", wir: "waschen ab", ihr: "wascht ab", sie: "waschen ab" }
-  },
-  {
-    infinitiv: "abwechseln",
-    arabic: "يتبادل / يتناوب",
-    forms: { ich: "wechsle ab", du: "wechselst ab", er: "wechselt ab", wir: "wechseln ab", ihr: "wechselt ab", sie: "wechseln ab" }
-  },
-  {
-    infinitiv: "abwerten",
-    arabic: "يقلل من قيمة",
-    forms: { ich: "werte ab", du: "wertest ab", er: "wertet ab", wir: "werten ab", ihr: "wertet ab", sie: "werten ab" }
-  },
-  {
-    infinitiv: "abwickeln",
-    arabic: "ينهي / ينجز",
-    forms: { ich: "wickle ab", du: "wickelst ab", er: "wickelt ab", wir: "wickeln ab", ihr: "wickelt ab", sie: "wickeln ab" }
-  },
-  {
-    infinitiv: "abziehen",
-    arabic: "يطرح / يخلع",
-    forms: { ich: "ziehe ab", du: "ziehst ab", er: "zieht ab", wir: "ziehen ab", ihr: "zieht ab", sie: "ziehen ab" }
-  },
-  {
-    infinitiv: "anbauen",
-    arabic: "يزرع / يبني ملحقاً",
-    forms: { ich: "baue an", du: "baust an", er: "baut an", wir: "bauen an", ihr: "baut an", sie: "bauen an" }
-  },
-  {
-    infinitiv: "anbieten",
-    arabic: "يعرض",
-    forms: { ich: "biete an", du: "bietest an", er: "bietet an", wir: "bieten an", ihr: "bietet an", sie: "bieten an" }
-  },
-  {
-    infinitiv: "anbringen",
-    arabic: "يثبت / يعلق",
-    forms: { ich: "bringe an", du: "bringst an", er: "bringt an", wir: "bringen an", ihr: "bringt an", sie: "bringen an" }
-  },
-  {
-    infinitiv: "anbrüllen",
-    arabic: "يصيح في وجه",
-    forms: { ich: "brülle an", du: "brüllst an", er: "brüllt an", wir: "brüllen an", ihr: "brüllt an", sie: "brüllen an" }
-  },
-  {
-    infinitiv: "andauern",
-    arabic: "يستمر",
-    forms: { ich: "dauere an", du: "dauerst an", er: "dauert an", wir: "dauern an", ihr: "dauert an", sie: "dauern an" }
-  },
-  {
-    infinitiv: "andeuten",
-    arabic: "يلمح إلى / يوحي",
-    forms: { ich: "deute an", du: "deutest an", er: "deutet an", wir: "deuten an", ihr: "deutet an", sie: "deuten an" }
-  },
-  {
-    infinitiv: "aneignen",
-    arabic: "يكتسب",
-    forms: { ich: "eigne an", du: "eignest an", er: "eignet an", wir: "eignen an", ihr: "eignet an", sie: "eignen an" }
-  },
-  {
-    infinitiv: "anerkennen",
-    arabic: "يعترف بـ / يقدر",
-    forms: { ich: "erkenne an", du: "erkennst an", er: "erkennt an", wir: "erkennen an", ihr: "erkennt an", sie: "erkennen an" }
-  },
-  {
-    infinitiv: "anfachen",
-    arabic: "يشعل / يحرض",
-    forms: { ich: "fache an", du: "fachst an", er: "facht an", wir: "fachen an", ihr: "facht an", sie: "fachen an" }
-  },
-  {
-    infinitiv: "anfangen",
-    arabic: "يبدأ",
-    forms: { ich: "fange an", du: "fängst an", er: "fängt an", wir: "fangen an", ihr: "fangt an", sie: "fangen an" }
-  },
-  {
-    infinitiv: "anfertigen",
-    arabic: "ينتج / يصنع",
-    forms: { ich: "fertige an", du: "fertigst an", er: "fertigt an", wir: "fertigen an", ihr: "fertigt an", sie: "fertigen an" }
-  },
-  {
-    infinitiv: "anführen",
-    arabic: "يقود / يستشهد بـ",
-    forms: { ich: "führe an", du: "führst an", er: "führt an", wir: "führen an", ihr: "führt an", sie: "führen an" }
-  },
-  {
-    infinitiv: "angreifen",
-    arabic: "يهاجم",
-    forms: { ich: "greife an", du: "greifst an", er: "greift an", wir: "greifen an", ihr: "greift an", sie: "greifen an" }
-  },
-  {
-    infinitiv: "anhaften",
-    arabic: "يلتصق بـ",
-    forms: { ich: "hafte an", du: "haftest an", er: "haftet an", wir: "haften an", ihr: "haftet an", sie: "haften an" }
-  },
-  {
-    infinitiv: "anhalten",
-    arabic: "يتوقف / يشجع",
-    forms: { ich: "halte an", du: "hältst an", er: "hält an", wir: "halten an", ihr: "haltet an", sie: "halten an" }
-  },
-  {
-    infinitiv: "anheben",
-    arabic: "يرفع",
-    forms: { ich: "hebe an", du: "hebst an", er: "hebt an", wir: "heben an", ihr: "hebt an", sie: "heben an" }
-  },
-  {
-    infinitiv: "anklagen",
-    arabic: "يتهم",
-    forms: { ich: "klage an", du: "klagst an", er: "klagt an", wir: "klagen an", ihr: "klagt an", sie: "klagen an" }
-  },
-  {
-    infinitiv: "ankommen",
-    arabic: "يصل",
-    forms: { ich: "komme an", du: "kommst an", er: "kommt an", wir: "kommen an", ihr: "kommt an", sie: "kommen an" }
-  },
-  {
-    infinitiv: "ankreuzen",
-    arabic: "يحدد بعلامة صح",
-    forms: { ich: "kreuze an", du: "kreuzt an", er: "kreuzt an", wir: "kreuzen an", ihr: "kreuzt an", sie: "kreuzen an" }
-  },
-  {
-    infinitiv: "ankündigen",
-    arabic: "يعلن عن",
-    forms: { ich: "kündige an", du: "kündigst an", er: "kündigt an", wir: "kündigen an", ihr: "kündigt an", sie: "kündigen an" }
-  },
-  {
-    infinitiv: "anlachen",
-    arabic: "يبتسم في وجه",
-    forms: { ich: "lache an", du: "lachst an", er: "lacht an", wir: "lachen an", ihr: "lacht an", sie: "lachen an" }
-  },
-  {
-    infinitiv: "anlassen",
-    arabic: "يشغل / يترك",
-    forms: { ich: "lasse an", du: "lässt an", er: "lässt an", wir: "lassen an", ihr: "lasst an", sie: "lassen an" }
-  },
-  {
-    infinitiv: "anlernen",
-    arabic: "يدرب (مبتدئ)",
-    forms: { ich: "lerne an", du: "lernst an", er: "lernt an", wir: "lernen an", ihr: "lernt an", sie: "lernen an" }
-  },
-  {
-    infinitiv: "anliefern",
-    arabic: "يوصل / يورد",
-    forms: { ich: "liefere an", du: "lieferst an", er: "liefert an", wir: "liefern an", ihr: "liefert an", sie: "liefern an" }
-  },
-  {
-    infinitiv: "anmachen",
-    arabic: "يشغل / يشعل",
-    forms: { ich: "mache an", du: "machst an", er: "macht an", wir: "machen an", ihr: "macht an", sie: "machen an" }
-  },
-  {
-    infinitiv: "anmelden",
-    arabic: "يسجل",
-    forms: { ich: "melde an", du: "meldest an", er: "meldet an", wir: "melden an", ihr: "meldet an", sie: "melden an" }
-  },
-  {
-    infinitiv: "anmerken",
-    arabic: "يلاحظ / يعلق",
-    forms: { ich: "merke an", du: "merkst an", er: "merkt an", wir: "merken an", ihr: "merkt an", sie: "merken an" }
-  },
-  {
-    infinitiv: "anpassen",
-    arabic: "يكيف / يلائم",
-    forms: { ich: "passe an", du: "passt an", er: "passt an", wir: "passen an", ihr: "passt an", sie: "passen an" }
-  },
-  {
-    infinitiv: "anrechnen",
-    arabic: "يحسب / يعتبر",
-    forms: { ich: "rechne an", du: "rechnest an", er: "rechnet an", wir: "rechnen an", ihr: "rechnet an", sie: "rechnen an" }
-  },
-  {
-    infinitiv: "anregen",
-    arabic: "يحفز / يشجع",
-    forms: { ich: "rege an", du: "regst an", er: "regt an", wir: "regen an", ihr: "regt an", sie: "regen an" }
-  },
-  {
-    infinitiv: "anrichten",
-    arabic: "يسبب / يقدم (طعام)",
-    forms: { ich: "richte an", du: "richtest an", er: "richtet an", wir: "richten an", ihr: "richtet an", sie: "richten an" }
-  },
-  {
-    infinitiv: "anrufen",
-    arabic: "يتصل بـ",
-    forms: { ich: "rufe an", du: "rufst an", er: "ruft an", wir: "rufen an", ihr: "ruft an", sie: "rufen an" }
-  },
-  {
-    infinitiv: "ansagen",
-    arabic: "يعلن (في البث)",
-    forms: { ich: "sage an", du: "sagst an", er: "sagt an", wir: "sagen an", ihr: "sagt an", sie: "sagen an" }
-  },
-  {
-    infinitiv: "ansammeln",
-    arabic: "يجمع / يراكم",
-    forms: { ich: "sammle an", du: "sammelst an", er: "sammelt an", wir: "sammeln an", ihr: "sammelt an", sie: "sammeln an" }
-  },
-  {
-    infinitiv: "ansehen",
-    arabic: "ينظر إلى",
-    forms: { ich: "sehe an", du: "siehst an", er: "sieht an", wir: "sehen an", ihr: "seht an", sie: "sehen an" }
-  },
-  {
-    infinitiv: "ansprechen",
-    arabic: "يخاطب / يتحدث إلى",
-    forms: { ich: "spreche an", du: "sprichst an", er: "spricht an", wir: "sprechen an", ihr: "sprecht an", sie: "sprechen an" }
-  },
-  {
-    infinitiv: "anstellen",
-    arabic: "يوظف / يقوم بـ",
-    forms: { ich: "stelle an", du: "stellst an", er: "stellt an", wir: "stellen an", ihr: "stellt an", sie: "stellen an" }
-  },
-  {
-    infinitiv: "anstreben",
-    arabic: "يسعى لـ",
-    forms: { ich: "strebe an", du: "strebst an", er: "strebt an", wir: "streben an", ihr: "strebt an", sie: "streben an" }
-  },
-  {
-    infinitiv: "anstücken",
-    arabic: "يضيف قطعة",
-    forms: { ich: "stücke an", du: "stückst an", er: "stückt an", wir: "stücken an", ihr: "stückt an", sie: "stücken an" }
-  },
-  {
-    infinitiv: "anstrengen",
-    arabic: "يجهد",
-    forms: { ich: "strenge an", du: "strengst an", er: "strengt an", wir: "anstrengen", ihr: "anstrengt", sie: "anstrengen" }
-  },
-  {
-    infinitiv: "antasten",
-    arabic: "يمس / يتعدى على",
-    forms: { ich: "taste an", du: "tastest an", er: "tastet an", wir: "tasten an", ihr: "tastet an", sie: "tasten an" }
-  },
-  {
-    infinitiv: "antreffen",
-    arabic: "يجد / يصادف",
-    forms: { ich: "treffe an", du: "triffst an", er: "trifft an", wir: "treffen an", ihr: "trefft an", sie: "treffen an" }
-  },
-  {
-    infinitiv: "antworten",
-    arabic: "يجيب",
-    forms: { ich: "antworte", du: "antwortest", er: "antwortet", wir: "antworten", ihr: "antwortet", sie: "antworten" }
-  },
-  {
-    infinitiv: "anvertrauen",
-    arabic: "يأتمن / يعهد بـ",
-    forms: { ich: "vertraue an", du: "vertraust an", er: "vertraut an", wir: "vertrauen an", ihr: "vertraut an", sie: "vertrauen an" }
-  },
-  {
-    infinitiv: "anwachsen",
-    arabic: "ينمو / يزداد",
-    forms: { ich: "wachse an", du: "wächst an", er: "wächst an", wir: "wachsen an", ihr: "wachst an", sie: "wachsen an" }
-  },
-  {
-    infinitiv: "anwenden",
-    arabic: "يطبق / يستخدم",
-    forms: { ich: "wende an", du: "wendest an", er: "wendet an", wir: "wenden an", ihr: "wendet an", sie: "wenden an" }
-  },
-  {
-    infinitiv: "anwerben",
-    arabic: "يجند / يستقطب",
-    forms: { ich: "werbe an", du: "wirbst an", er: "wirbt an", wir: "werben an", ihr: "werbt an", sie: "werben an" }
-  },
-  {
-    infinitiv: "anziehen",
-    arabic: "يرتدي / يجذب",
-    forms: { ich: "ziehe an", du: "ziehst an", er: "zieht an", wir: "ziehen an", ihr: "zieht an", sie: "ziehen an" }
-  },
-  {
-    infinitiv: "anziehen",
-    arabic: "يرتدي / يجذب",
-    forms: { ich: "ziehe an", du: "ziehst an", er: "zieht an", wir: "ziehen an", ihr: "zieht an", sie: "ziehen an" }
-  },
-  {
-    infinitiv: "anziehen",
-    arabic: "يرتدي / يجذب",
-    forms: { ich: "ziehe an", du: "ziehst an", er: "zieht an", wir: "ziehen an", ihr: "zieht an", sie: "ziehen an" }
-  },
-  {
-    infinitiv: "anziehen",
-    arabic: "يرتدي / يجذب",
-    forms: { ich: "ziehe an", du: "ziehst an", er: "zieht an", wir: "ziehen an", ihr: "zieht an", sie: "ziehen an" }
-  },
-  {
-    infinitiv: "anziehen",
-    arabic: "يرتدي / يجذب",
-    forms: { ich: "ziehe an", du: "ziehst an", er: "zieht an", wir: "ziehen an", ihr: "zieht an", sie: "ziehen an" }
-  },
+  { section: "part2", sectionTitle: "الجزء الثاني: الأفعال المنفصلة (Trennbare Verben)", infinitiv: "abbiegen", arabic: "ينعطف / يدير", forms: { ich: "biege ab", du: "biegst ab", er: "biegt ab", wir: "biegen ab", ihr: "biegt ab", sie: "biegen ab" } },
+  { section: "part2", infinitiv: "abbrechen", arabic: "يكسر / يقطع / يلغي", forms: { ich: "breche ab", du: "brichst ab", er: "bricht ab", wir: "brechen ab", ihr: "brecht ab", sie: "brechen ab" } },
+  { section: "part2", infinitiv: "abfahren", arabic: "ينطلق / يغادر", forms: { ich: "fahre ab", du: "fährst ab", er: "fährt ab", wir: "fahren ab", ihr: "fahrt ab", sie: "fahren ab" } },
+  { section: "part2", infinitiv: "abgeben", arabic: "يسلم / يقدم", forms: { ich: "gebe ab", du: "gibst ab", er: "gibt ab", wir: "geben ab", ihr: "gebt ab", sie: "geben ab" } },
+  { section: "part2", infinitiv: "abhängen", arabic: "يعتمد على", forms: { ich: "hänge ab", du: "hängst ab", er: "hängt ab", wir: "hängen ab", ihr: "hängt ab", sie: "hängen ab" } },
+  { section: "part2", infinitiv: "abholen", arabic: "يستلم / يلتقط", forms: { ich: "hole ab", du: "holst ab", er: "holt ab", wir: "holen ab", ihr: "holt ab", sie: "holen ab" } },
+  { section: "part2", infinitiv: "abkommen", arabic: "يحيد عن / يخرج عن", forms: { ich: "komme ab", du: "kommst ab", er: "kommt ab", wir: "kommen ab", ihr: "kommt ab", sie: "kommen ab" } },
+  { section: "part2", infinitiv: "abkürzen", arabic: "يختصر", forms: { ich: "kürze ab", du: "kürzt ab", er: "kürzt ab", wir: "kürzen ab", ihr: "kürzt ab", sie: "kürzen ab" } },
+  { section: "part2", infinitiv: "ablehnen", arabic: "يرفض", forms: { ich: "lehne ab", du: "lehnst ab", er: "lehnt ab", wir: "lehnen ab", ihr: "lehnt ab", sie: "lehnen ab" } },
+  { section: "part2", infinitiv: "abnehmen", arabic: "ينقص / يخسر وزناً", forms: { ich: "nehme ab", du: "nimmst ab", er: "nimmt ab", wir: "nehmen ab", ihr: "nehmt ab", sie: "nehmen ab" } },
+  { section: "part2", infinitiv: "abschließen", arabic: "يغلق / يكمل", forms: { ich: "schließe ab", du: "schließt ab", er: "schließt ab", wir: "schließen ab", ihr: "schließt ab", sie: "schließen ab" } },
+  { section: "part2", infinitiv: "abschneiden", arabic: "يقطع / يقص", forms: { ich: "schneide ab", du: "schneidest ab", er: "schneidet ab", wir: "schneiden ab", ihr: "schneidet ab", sie: "schneiden ab" } },
+  { section: "part2", infinitiv: "abschreiben", arabic: "ينسخ", forms: { ich: "schreibe ab", du: "schreibst ab", er: "schreibt ab", wir: "schreiben ab", ihr: "schreibt ab", sie: "schreiben ab" } },
+  { section: "part2", infinitiv: "abschrecken", arabic: "يردع / يثني عن", forms: { ich: "schrecke ab", du: "schreckst ab", er: "schreckt ab", wir: "schrecken ab", ihr: "schreckt ab", sie: "schrecken ab" } },
+  { section: "part2", infinitiv: "abschweifen", arabic: "يخرج عن الموضوع", forms: { ich: "schweife ab", du: "schweifst ab", er: "schweift ab", wir: "schweifen ab", ihr: "schweift ab", sie: "schweifen ab" } },
+  { section: "part2", infinitiv: "absetzen", arabic: "يخلع / يضع / يعزل", forms: { ich: "setze ab", du: "setzt ab", er: "setzt ab", wir: "setzen ab", ihr: "setzt ab", sie: "setzen ab" } },
+  { section: "part2", infinitiv: "absichern", arabic: "يؤمن / يحمي", forms: { ich: "sichere ab", du: "sicherst ab", er: "sichert ab", wir: "sichern ab", ihr: "sichert ab", sie: "sichern ab" } },
+  { section: "part2", infinitiv: "absitzen", arabic: "يقضي فترة (عقوبة)", forms: { ich: "sitze ab", du: "sitzt ab", er: "sitzt ab", wir: "sitzen ab", ihr: "sitzt ab", sie: "sitzen ab" } },
+  { section: "part2", infinitiv: "abstimmen", arabic: "يصوت / ينسق", forms: { ich: "stimme ab", du: "stimmst ab", er: "stimmt ab", wir: "stimmen ab", ihr: "stimmt ab", sie: "stimmen ab" } },
+  { section: "part2", infinitiv: "abstellen", arabic: "يوقف / يضع جانباً", forms: { ich: "stelle ab", du: "stellst ab", er: "stellt ab", wir: "stellen ab", ihr: "stellt ab", sie: "stellen ab" } },
+  { section: "part2", infinitiv: "abstürzen", arabic: "يتحطم / يسقط", forms: { ich: "stürze ab", du: "stürzt ab", er: "stürzt ab", wir: "stürzen ab", ihr: "stürzt ab", sie: "stürzen ab" } },
+  { section: "part2", infinitiv: "absuchen", arabic: "يفتش بدقة", forms: { ich: "suche ab", du: "suchst ab", er: "sucht ab", wir: "suchen ab", ihr: "sucht ab", sie: "suchen ab" } },
+  { section: "part2", infinitiv: "abteilen", arabic: "يقسم / يجزئ", forms: { ich: "teile ab", du: "teilst ab", er: "teilt ab", wir: "teilen ab", ihr: "teilt ab", sie: "teilen ab" } },
+  { section: "part2", infinitiv: "abwarten", arabic: "ينتظر", forms: { ich: "warte ab", du: "wartest ab", er: "wartet ab", wir: "warten ab", ihr: "wartet ab", sie: "warten ab" } },
+  { section: "part2", infinitiv: "abwaschen", arabic: "يغسل (الأطباق)", forms: { ich: "wasche ab", du: "wäschst ab", er: "wäscht ab", wir: "waschen ab", ihr: "wascht ab", sie: "waschen ab" } },
+  { section: "part2", infinitiv: "abwechseln", arabic: "يتبادل / يتناوب", forms: { ich: "wechsle ab", du: "wechselst ab", er: "wechselt ab", wir: "wechseln ab", ihr: "wechselt ab", sie: "wechseln ab" } },
+  { section: "part2", infinitiv: "abwerten", arabic: "يقلل من قيمة", forms: { ich: "werte ab", du: "wertest ab", er: "wertet ab", wir: "werten ab", ihr: "wertet ab", sie: "werten ab" } },
+  { section: "part2", infinitiv: "abwickeln", arabic: "ينهي / ينجز", forms: { ich: "wickle ab", du: "wickelst ab", er: "wickelt ab", wir: "wickeln ab", ihr: "wickelt ab", sie: "wickeln ab" } },
+  { section: "part2", infinitiv: "abziehen", arabic: "يطرح / يخلع", forms: { ich: "ziehe ab", du: "ziehst ab", er: "zieht ab", wir: "ziehen ab", ihr: "zieht ab", sie: "ziehen ab" } },
+  { section: "part2", infinitiv: "anbauen", arabic: "يزرع / يبني ملحقاً", forms: { ich: "baue an", du: "baust an", er: "baut an", wir: "bauen an", ihr: "baut an", sie: "bauen an" } },
+  { section: "part2", infinitiv: "anbieten", arabic: "يعرض", forms: { ich: "biete an", du: "bietest an", er: "bietet an", wir: "bieten an", ihr: "bietet an", sie: "bieten an" } },
+  { section: "part2", infinitiv: "anbringen", arabic: "يثبت / يعلق", forms: { ich: "bringe an", du: "bringst an", er: "bringt an", wir: "bringen an", ihr: "bringt an", sie: "bringen an" } },
+  { section: "part2", infinitiv: "anbrüllen", arabic: "يصيح في وجه", forms: { ich: "brülle an", du: "brüllst an", er: "brüllt an", wir: "brüllen an", ihr: "brüllt an", sie: "brüllen an" } },
+  { section: "part2", infinitiv: "andauern", arabic: "يستمر", forms: { ich: "dauere an", du: "dauerst an", er: "dauert an", wir: "dauern an", ihr: "dauert an", sie: "dauern an" } },
+  { section: "part2", infinitiv: "andeuten", arabic: "يلمح إلى / يوحي", forms: { ich: "deute an", du: "deutest an", er: "deutet an", wir: "deuten an", ihr: "deutet an", sie: "deuten an" } },
+  { section: "part2", infinitiv: "aneignen", arabic: "يكتسب", forms: { ich: "eigne an", du: "eignest an", er: "eignet an", wir: "eignen an", ihr: "eignet an", sie: "eignen an" } },
+  { section: "part2", infinitiv: "anerkennen", arabic: "يعترف بـ / يقدر", forms: { ich: "erkenne an", du: "erkennst an", er: "erkennt an", wir: "erkennen an", ihr: "erkennt an", sie: "erkennen an" } },
+  { section: "part2", infinitiv: "anfachen", arabic: "يشعل / يحرض", forms: { ich: "fache an", du: "fachst an", er: "facht an", wir: "fachen an", ihr: "facht an", sie: "fachen an" } },
+  { section: "part2", infinitiv: "anfangen", arabic: "يبدأ", forms: { ich: "fange an", du: "fängst an", er: "fängt an", wir: "fangen an", ihr: "fangt an", sie: "fangen an" } },
+  { section: "part2", infinitiv: "anfertigen", arabic: "ينتج / يصنع", forms: { ich: "fertige an", du: "fertigst an", er: "fertigt an", wir: "fertigen an", ihr: "fertigt an", sie: "fertigen an" } },
+  { section: "part2", infinitiv: "anführen", arabic: "يقود / يستشهد بـ", forms: { ich: "führe an", du: "führst an", er: "führt an", wir: "führen an", ihr: "führt an", sie: "führen an" } },
+  { section: "part2", infinitiv: "angreifen", arabic: "يهاجم", forms: { ich: "greife an", du: "greifst an", er: "greift an", wir: "greifen an", ihr: "greift an", sie: "greifen an" } },
+  { section: "part2", infinitiv: "anhaften", arabic: "يلتصق بـ", forms: { ich: "hafte an", du: "haftest an", er: "haftet an", wir: "haften an", ihr: "haftet an", sie: "haften an" } },
+  { section: "part2", infinitiv: "anhalten", arabic: "يتوقف / يشجع", forms: { ich: "halte an", du: "hältst an", er: "hält an", wir: "halten an", ihr: "haltet an", sie: "halten an" } },
+  { section: "part2", infinitiv: "anheben", arabic: "يرفع", forms: { ich: "hebe an", du: "hebst an", er: "hebt an", wir: "heben an", ihr: "hebt an", sie: "heben an" } },
+  { section: "part2", infinitiv: "anklagen", arabic: "يتهم", forms: { ich: "klage an", du: "klagst an", er: "klagt an", wir: "klagen an", ihr: "klagt an", sie: "klagen an" } },
+  { section: "part2", infinitiv: "ankommen", arabic: "يصل", forms: { ich: "komme an", du: "kommst an", er: "kommt an", wir: "kommen an", ihr: "kommt an", sie: "kommen an" } },
+  { section: "part2", infinitiv: "ankreuzen", arabic: "يحدد بعلامة صح", forms: { ich: "kreuze an", du: "kreuzt an", er: "kreuzt an", wir: "kreuzen an", ihr: "kreuzt an", sie: "kreuzen an" } },
+  { section: "part2", infinitiv: "ankündigen", arabic: "يعلن عن", forms: { ich: "kündige an", du: "kündigst an", er: "kündigt an", wir: "kündigen an", ihr: "kündigt an", sie: "kündigen an" } },
+  { section: "part2", infinitiv: "anlachen", arabic: "يبتسم في وجه", forms: { ich: "lache an", du: "lachst an", er: "lacht an", wir: "lachen an", ihr: "lacht an", sie: "lachen an" } },
+  { section: "part2", infinitiv: "anlassen", arabic: "يشغل / يترك", forms: { ich: "lasse an", du: "lässt an", er: "lässt an", wir: "lassen an", ihr: "lasst an", sie: "lassen an" } },
+  { section: "part2", infinitiv: "anlernen", arabic: "يدرب (مبتدئ)", forms: { ich: "lerne an", du: "lernst an", er: "lernt an", wir: "lernen an", ihr: "lernt an", sie: "lernen an" } },
+  { section: "part2", infinitiv: "anliefern", arabic: "يوصل / يورد", forms: { ich: "liefere an", du: "lieferst an", er: "liefert an", wir: "liefern an", ihr: "liefert an", sie: "liefern an" } },
+  { section: "part2", infinitiv: "anmachen", arabic: "يشغل / يشعل", forms: { ich: "mache an", du: "machst an", er: "macht an", wir: "machen an", ihr: "macht an", sie: "machen an" } },
+  { section: "part2", infinitiv: "anmelden", arabic: "يسجل", forms: { ich: "melde an", du: "meldest an", er: "meldet an", wir: "melden an", ihr: "meldet an", sie: "melden an" } },
+  { section: "part2", infinitiv: "anmerken", arabic: "يلاحظ / يعلق", forms: { ich: "merke an", du: "merkst an", er: "merkt an", wir: "merken an", ihr: "merkt an", sie: "merken an" } },
+  { section: "part2", infinitiv: "anpassen", arabic: "يكيف / يلائم", forms: { ich: "passe an", du: "passt an", er: "passt an", wir: "passen an", ihr: "passt an", sie: "passen an" } },
+  { section: "part2", infinitiv: "anrechnen", arabic: "يحسب / يعتبر", forms: { ich: "rechne an", du: "rechnest an", er: "rechnet an", wir: "rechnen an", ihr: "rechnet an", sie: "rechnen an" } },
+  { section: "part2", infinitiv: "anregen", arabic: "يحفز / يشجع", forms: { ich: "rege an", du: "regst an", er: "regt an", wir: "regen an", ihr: "regt an", sie: "regen an" } },
+  { section: "part2", infinitiv: "anrichten", arabic: "يسبب / يقدم (طعام)", forms: { ich: "richte an", du: "richtest an", er: "richtet an", wir: "richten an", ihr: "richtet an", sie: "richten an" } },
+  { section: "part2", infinitiv: "anrufen", arabic: "يتصل بـ", forms: { ich: "rufe an", du: "rufst an", er: "ruft an", wir: "rufen an", ihr: "ruft an", sie: "rufen an" } },
+  { section: "part2", infinitiv: "ansagen", arabic: "يعلن (في البث)", forms: { ich: "sage an", du: "sagst an", er: "sagt an", wir: "sagen an", ihr: "sagt an", sie: "sagen an" } },
+  { section: "part2", infinitiv: "ansammeln", arabic: "يجمع / يراكم", forms: { ich: "sammle an", du: "sammelst an", er: "sammelt an", wir: "sammeln an", ihr: "sammelt an", sie: "sammeln an" } },
+  { section: "part2", infinitiv: "ansehen", arabic: "ينظر إلى", forms: { ich: "sehe an", du: "siehst an", er: "sieht an", wir: "sehen an", ihr: "seht an", sie: "sehen an" } },
+  { section: "part2", infinitiv: "ansprechen", arabic: "يخاطب / يتحدث إلى", forms: { ich: "spreche an", du: "sprichst an", er: "spricht an", wir: "sprechen an", ihr: "sprecht an", sie: "sprechen an" } },
+  { section: "part2", infinitiv: "anstellen", arabic: "يوظف / يقوم بـ", forms: { ich: "stelle an", du: "stellst an", er: "stellt an", wir: "stellen an", ihr: "stellt an", sie: "stellen an" } },
+  { section: "part2", infinitiv: "anstreben", arabic: "يسعى لـ", forms: { ich: "strebe an", du: "strebst an", er: "strebt an", wir: "streben an", ihr: "strebt an", sie: "streben an" } },
+  { section: "part2", infinitiv: "anstücken", arabic: "يضيف قطعة", forms: { ich: "stücke an", du: "stückst an", er: "stückt an", wir: "stücken an", ihr: "stückt an", sie: "stücken an" } },
+  { section: "part2", infinitiv: "anstrengen", arabic: "يجهد", forms: { ich: "strenge an", du: "strengst an", er: "strengt an", wir: "anstrengen", ihr: "anstrengt", sie: "anstrengen" } },
+  { section: "part2", infinitiv: "antasten", arabic: "يمس / يتعدى على", forms: { ich: "taste an", du: "tastest an", er: "tastet an", wir: "tasten an", ihr: "tastet an", sie: "tasten an" } },
+  { section: "part2", infinitiv: "antreffen", arabic: "يجد / يصادف", forms: { ich: "treffe an", du: "triffst an", er: "trifft an", wir: "treffen an", ihr: "trefft an", sie: "treffen an" } },
+  { section: "part2", infinitiv: "antworten", arabic: "يجيب", forms: { ich: "antworte", du: "antwortest", er: "antwortet", wir: "antworten", ihr: "antwortet", sie: "antworten" } },
+  { section: "part2", infinitiv: "anvertrauen", arabic: "يأتمن / يعهد بـ", forms: { ich: "vertraue an", du: "vertraust an", er: "vertraut an", wir: "vertrauen an", ihr: "vertraut an", sie: "vertrauen an" } },
+  { section: "part2", infinitiv: "anwachsen", arabic: "ينمو / يزداد", forms: { ich: "wachse an", du: "wächst an", er: "wächst an", wir: "wachsen an", ihr: "wachst an", sie: "wachsen an" } },
+  { section: "part2", infinitiv: "anwenden", arabic: "يطبق / يستخدم", forms: { ich: "wende an", du: "wendest an", er: "wendet an", wir: "wenden an", ihr: "wendet an", sie: "wenden an" } },
+  { section: "part2", infinitiv: "anwerben", arabic: "يجند / يستقطب", forms: { ich: "werbe an", du: "wirbst an", er: "wirbt an", wir: "werben an", ihr: "werbt an", sie: "werben an" } },
+  { section: "part2", infinitiv: "anziehen", arabic: "يرتدي / يجذب", forms: { ich: "ziehe an", du: "ziehst an", er: "zieht an", wir: "ziehen an", ihr: "zieht an", sie: "ziehen an" } },
 
   // ============================================
-  // الجزء الثالث: أفعال غير منفصلة (Inseparable) - 70 فعلًا
+  // الجزء الثالث: أفعال غير منفصلة (Inseparable)
+  // إصلاح الأخطاء الإملائية في التصريفات هنا (مثل: baue be -> bebaue)
   // ============================================
-  {
-    infinitiv: "beachten",
-    arabic: "ينتبه إلى / يراعي",
-    forms: { ich: "beachte", du: "beachtest", er: "beachtet", wir: "beachten", ihr: "beachtet", sie: "beachten" }
-  },
-  {
-    infinitiv: "beantragen",
-    arabic: "يتقدم بطلب",
-    forms: { ich: "beantrage", du: "beantragst", er: "beantragt", wir: "beantragen", ihr: "beantragt", sie: "beantragen" }
-  },
-  {
-    infinitiv: "bearbeiten",
-    arabic: "يعالج / يحرر",
-    forms: { ich: "bearbeite", du: "bearbeitest", er: "bearbeitet", wir: "bearbeiten", ihr: "bearbeitet", sie: "bearbeiten" }
-  },
-  {
-    infinitiv: "beauftragen",
-    arabic: "يكلف بمهمة",
-    forms: { ich: "beauftrage", du: "beauftragst", er: "beauftragt", wir: "beauftragen", ihr: "beauftragt", sie: "beauftragen" }
-  },
-  {
-    infinitiv: "bebauen",
-    arabic: "يزرع / يبني على",
-    forms: { ich: "baue be", du: "baust be", er: "baut be", wir: "bauen be", ihr: "baut be", sie: "bauen be" }
-  },
-  {
-    infinitiv: "bedanken",
-    arabic: "يشكر",
-    forms: { ich: "bedanke", du: "bedankst", er: "bedankt", wir: "bedanken", ihr: "bedankt", sie: "bedanken" }
-  },
-  {
-    infinitiv: "bedeuten",
-    arabic: "يعني",
-    forms: { ich: "bedeute", du: "bedeutest", er: "bedeutet", wir: "bedeuten", ihr: "bedeutet", sie: "bedeuten" }
-  },
-  {
-    infinitiv: "bedienen",
-    arabic: "يخدم / يشغل",
-    forms: { ich: "bediene", du: "bedienst", er: "bedient", wir: "bedienen", ihr: "bedient", sie: "bedienen" }
-  },
-  {
-    infinitiv: "bedrohen",
-    arabic: "يهدد",
-    forms: { ich: "bedrohe", du: "bedrohst", er: "bedroht", wir: "bedrohen", ihr: "bedroht", sie: "bedrohen" }
-  },
-  {
-    infinitiv: "beeilen",
-    arabic: "يسرع",
-    forms: { ich: "beeile", du: "beeilst", er: "beeilt", wir: "beeilen", ihr: "beeilt", sie: "beeilen" }
-  },
-  {
-    infinitiv: "beeindrucken",
-    arabic: "يؤثر / يثير إعجاب",
-    forms: { ich: "beeindrucke", du: "beeindruckst", er: "beeindruckt", wir: "beeindrucken", ihr: "beeindruckt", sie: "beeindrucken" }
-  },
-  {
-    infinitiv: "beeinflussen",
-    arabic: "يؤثر في",
-    forms: { ich: "beeinflusse", du: "beeinflusst", er: "beeinflusst", wir: "beeinflussen", ihr: "beeinflusst", sie: "beeinflussen" }
-  },
-  {
-    infinitiv: "beenden",
-    arabic: "ينهي",
-    forms: { ich: "beende", du: "beendest", er: "beendet", wir: "beenden", ihr: "beendet", sie: "beenden" }
-  },
-  {
-    infinitiv: "befallen",
-    arabic: "يصيب",
-    forms: { ich: "befalle", du: "befällst", er: "befällt", wir: "befallen", ihr: "befallt", sie: "befallen" }
-  },
-  {
-    infinitiv: "befassen",
-    arabic: "يتعامل مع / يهتم بـ",
-    forms: { ich: "befasse", du: "befasst", er: "befasst", wir: "befassen", ihr: "befasst", sie: "befassen" }
-  },
-  {
-    infinitiv: "befehlen",
-    arabic: "يأمر",
-    forms: { ich: "befehle", du: "befiehlst", er: "befiehlt", wir: "befehlen", ihr: "befehlt", sie: "befehlen" }
-  },
-  {
-    infinitiv: "befinden",
-    arabic: "يوجد / يكون موجوداً",
-    forms: { ich: "befinde", du: "befindest", er: "befindet", wir: "befinden", ihr: "befindet", sie: "befinden" }
-  },
-  {
-    infinitiv: "befolgen",
-    arabic: "ينفذ / يتبع",
-    forms: { ich: "befolge", du: "befolgst", er: "befolgt", wir: "befolgen", ihr: "befolgt", sie: "befolgen" }
-  },
-  {
-    infinitiv: "befördern",
-    arabic: "ينقل / يرقى في العمل",
-    forms: { ich: "befördere", du: "beförderst", er: "befördert", wir: "befördern", ihr: "befördert", sie: "befördern" }
-  },
-  {
-    infinitiv: "befragen",
-    arabic: "يستجوب / يسأل",
-    forms: { ich: "befrage", du: "befragst", er: "befragt", wir: "befragen", ihr: "befragt", sie: "befragen" }
-  },
-  {
-    infinitiv: "befreien",
-    arabic: "يحرر",
-    forms: { ich: "befreie", du: "befreist", er: "befreit", wir: "befreien", ihr: "befreit", sie: "befreien" }
-  },
-  {
-    infinitiv: "befremden",
-    arabic: "يستغرب / يزعج",
-    forms: { ich: "befremde", du: "befremdest", er: "befremdet", wir: "befremden", ihr: "befremdet", sie: "befremden" }
-  },
-  {
-    infinitiv: "befrieden",
-    arabic: "يسلم / يهدئ",
-    forms: { ich: "befriede", du: "befriedest", er: "befriedet", wir: "befrieden", ihr: "befriedet", sie: "befrieden" }
-  },
-  {
-    infinitiv: "befriedigen",
-    arabic: "يشبع / يرضي",
-    forms: { ich: "befriedige", du: "befriedigst", er: "befriedigt", wir: "befriedigen", ihr: "befriedigt", sie: "befriedigen" }
-  },
-  {
-    infinitiv: "befürchten",
-    arabic: "يخشى / يخاف",
-    forms: { ich: "befürchte", du: "befürchtest", er: "befürchtet", wir: "befürchten", ihr: "befürchtet", sie: "befürchten" }
-  },
-  {
-    infinitiv: "befürworten",
-    arabic: "يؤيد",
-    forms: { ich: "befürworte", du: "befürwortest", er: "befürwortet", wir: "befürworten", ihr: "befürwortet", sie: "befürworten" }
-  },
-  {
-    infinitiv: "begatten",
-    arabic: "يتزاوج",
-    forms: { ich: "begatte", du: "begattest", er: "begattet", wir: "begatten", ihr: "begattet", sie: "begatten" }
-  },
-  {
-    infinitiv: "begeben",
-    arabic: "يذهب إلى / يحدث",
-    forms: { ich: "begebe", du: "begibst", er: "begibt", wir: "begeben", ihr: "begebt", sie: "begeben" }
-  },
-  {
-    infinitiv: "begegnen",
-    arabic: "يقابل (بشكل غير متوقع)",
-    forms: { ich: "begegne", du: "begegnest", er: "begegnet", wir: "begegnen", ihr: "begegnet", sie: "begegnen" }
-  },
-  {
-    infinitiv: "begehen",
-    arabic: "يرتكب (جريمة)",
-    forms: { ich: "begehe", du: "begehst", er: "begeht", wir: "begehen", ihr: "begeht", sie: "begehen" }
-  },
-  {
-    infinitiv: "begeistern",
-    arabic: "يحمس",
-    forms: { ich: "begeistere", du: "begeisterst", er: "begeistert", wir: "begeistern", ihr: "begeistert", sie: "begeistern" }
-  },
-  {
-    infinitiv: "beginnen",
-    arabic: "يبدأ",
-    forms: { ich: "beginne", du: "beginnst", er: "beginnt", wir: "beginnen", ihr: "beginnt", sie: "beginnen" }
-  },
-  {
-    infinitiv: "begleiten",
-    arabic: "يرافق",
-    forms: { ich: "begleite", du: "begleitest", er: "begleitet", wir: "begleiten", ihr: "begleitet", sie: "begleiten" }
-  },
-  {
-    infinitiv: "begraben",
-    arabic: "يدفن",
-    forms: { ich: "begrabe", du: "begräbst", er: "begräbt", wir: "begraben", ihr: "begrabt", sie: "begraben" }
-  },
-  {
-    infinitiv: "begreifen",
-    arabic: "يفهم / يستوعب",
-    forms: { ich: "begreife", du: "begreifst", er: "begreift", wir: "begreifen", ihr: "begreift", sie: "begreifen" }
-  },
-  {
-    infinitiv: "begründen",
-    arabic: "يبرر / يؤسس",
-    forms: { ich: "begründe", du: "begründest", er: "begründet", wir: "begründen", ihr: "begründet", sie: "begründen" }
-  },
-  {
-    infinitiv: "begrüßen",
-    arabic: "يرحب بـ",
-    forms: { ich: "begrüße", du: "begrüßt", er: "begrüßt", wir: "begrüßen", ihr: "begrüßt", sie: "begrüßen" }
-  },
-  {
-    infinitiv: "behaften",
-    arabic: "يلتصق بـ",
-    forms: { ich: "behafte", du: "behaftest", er: "behaftet", wir: "behaften", ihr: "behaftet", sie: "behaften" }
-  },
-  {
-    infinitiv: "behalten",
-    arabic: "يحتفظ",
-    forms: { ich: "behalte", du: "behältst", er: "behält", wir: "behalten", ihr: "behaltet", sie: "behalten" }
-  },
-  {
-    infinitiv: "behandeln",
-    arabic: "يعالج (طبيباً)",
-    forms: { ich: "behandle", du: "behandelst", er: "behandelt", wir: "behandeln", ihr: "behandelt", sie: "behandeln" }
-  },
-  {
-    infinitiv: "beherrschen",
-    arabic: "يتقن / يسيطر على",
-    forms: { ich: "beherrsche", du: "beherrschst", er: "beherrscht", wir: "beherrschen", ihr: "beherrscht", sie: "beherrschen" }
-  },
-  {
-    infinitiv: "behindern",
-    arabic: "يعيق",
-    forms: { ich: "behindere", du: "behinderst", er: "behindert", wir: "behindern", ihr: "behindert", sie: "behindern" }
-  },
-  {
-    infinitiv: "behüten",
-    arabic: "يحمي",
-    forms: { ich: "behüte", du: "behütest", er: "behütet", wir: "behüten", ihr: "behütet", sie: "behüten" }
-  },
-  {
-    infinitiv: "beirren",
-    arabic: "يشتت / يربك",
-    forms: { ich: "beirre", du: "beirrst", er: "beirrt", wir: "beirren", ihr: "beirrt", sie: "beirren" }
-  },
-  {
-    infinitiv: "bekämpfen",
-    arabic: "يحارب",
-    forms: { ich: "bekämpfe", du: "bekämpfst", er: "bekämpft", wir: "bekämpfen", ihr: "bekämpft", sie: "bekämpfen" }
-  },
-  {
-    infinitiv: "bekennen",
-    arabic: "يعترف",
-    forms: { ich: "bekennt", du: "bekennst", er: "bekennt", wir: "bekennen", ihr: "bekennt", sie: "bekennen" }
-  },
-  {
-    infinitiv: "beklagen",
-    arabic: "يشكو / يندب",
-    forms: { ich: "beklage", du: "beklagst", er: "beklagt", wir: "beklagen", ihr: "beklagt", sie: "beklagen" }
-  },
-  {
-    infinitiv: "bekommen",
-    arabic: "يحصل على / يتلقى",
-    forms: { ich: "bekomme", du: "bekommst", er: "bekommt", wir: "bekommen", ihr: "bekommt", sie: "bekommen" }
-  },
-  {
-    infinitiv: "bekränzen",
-    arabic: "يزين بإكليل",
-    forms: { ich: "bekränze", du: "bekränzt", er: "bekränzt", wir: "bekränzen", ihr: "bekränzt", sie: "bekränzen" }
-  },
-  {
-    infinitiv: "belasten",
-    arabic: "يثقل / يرهق",
-    forms: { ich: "belaste", du: "belastest", er: "belastet", wir: "belasten", ihr: "belastet", sie: "belasten" }
-  },
-  {
-    infinitiv: "belaufen",
-    arabic: "يصل إلى (مبلغ)",
-    forms: { ich: "belaufe", du: "beläufst", er: "beläuft", wir: "belaufen", ihr: "belauft", sie: "belaufen" }
-  },
-  {
-    infinitiv: "beleben",
-    arabic: "ينشط / يحيي",
-    forms: { ich: "belebte", du: "belebst", er: "belebt", wir: "beleben", ihr: "belebt", sie: "beleben" }
-  },
-  {
-    infinitiv: "belegen",
-    arabic: "يغطي / يثبت",
-    forms: { ich: "belege", du: "belegst", er: "belegt", wir: "belegen", ihr: "belegt", sie: "belegen" }
-  },
-  {
-    infinitiv: "belehren",
-    arabic: "يعلم / ينصح",
-    forms: { ich: "belehre", du: "belehrest", er: "belehrt", wir: "belehren", ihr: "belehrt", sie: "belehren" }
-  },
-  {
-    infinitiv: "beleihen",
-    arabic: "يرهن",
-    forms: { ich: "beleihe", du: "beleihst", er: "beleiht", wir: "beleihen", ihr: "beleiht", sie: "beleihen" }
-  },
-  {
-    infinitiv: "belohnen",
-    arabic: "يكافئ",
-    forms: { ich: "belohne", du: "belohnst", er: "belohnt", wir: "belohnen", ihr: "belohnt", sie: "belohnen" }
-  },
-  {
-    infinitiv: "belügen",
-    arabic: "يكذب على",
-    forms: { ich: "belüge", du: "belügst", er: "belügt", wir: "belügen", ihr: "belügt", sie: "belügen" }
-  },
-  {
-    infinitiv: "bemalen",
-    arabic: "يرسم على",
-    forms: { ich: "bemale", du: "bemalst", er: "bemalt", wir: "bemalen", ihr: "bemalt", sie: "bemalen" }
-  },
-  {
-    infinitiv: "bemängeln",
-    arabic: "ينتقد",
-    forms: { ich: "bemängele", du: "bemängelst", er: "bemängelt", wir: "bemängeln", ihr: "bemängelt", sie: "bemängeln" }
-  },
-  {
-    infinitiv: "bemerken",
-    arabic: "يلاحظ",
-    forms: { ich: "bemerke", du: "bemerkst", er: "bemerkt", wir: "bemerken", ihr: "bemerkt", sie: "bemerken" }
-  },
-  {
-    infinitiv: "bemessen",
-    arabic: "يقيس / يحدد",
-    forms: { ich: "bemesse", du: "bemisst", er: "bemisst", wir: "bemessen", ihr: "bemesst", sie: "bemessen" }
-  },
-  {
-    infinitiv: "bemitleiden",
-    arabic: "يشفق على",
-    forms: { ich: "bemitleide", du: "bemitleidest", er: "bemitleidet", wir: "bemitleiden", ihr: "bemitleidet", sie: "bemitleiden" }
-  },
-  {
-    infinitiv: "bemühen",
-    arabic: "يسعى / يكلف نفسه",
-    forms: { ich: "bemühe", du: "bemühst", er: "bemüht", wir: "bemühen", ihr: "bemüht", sie: "bemühen" }
-  },
-  {
-    infinitiv: "benachrichtigen",
-    arabic: "يخطر / يبلغ",
-    forms: { ich: "benachrichtige", du: "benachrichtigst", er: "benachrichtigt", wir: "benachrichtigen", ihr: "benachrichtigt", sie: "benachrichtigen" }
-  },
-  {
-    infinitiv: "benässen",
-    arabic: "يبلل",
-    forms: { ich: "benässe", du: "benässt", er: "benässt", wir: "benässen", ihr: "benässt", sie: "benässen" }
-  },
-  {
-    infinitiv: "beneiden",
-    arabic: "يحسد",
-    forms: { ich: "beneide", du: "beneidest", er: "beneidet", wir: "beneiden", ihr: "beneidet", sie: "beneiden" }
-  },
-  {
-    infinitiv: "benennen",
-    arabic: "يسمي",
-    forms: { ich: "benenne", du: "benennst", er: "benennt", wir: "benennen", ihr: "benennt", sie: "benennen" }
-  },
-  {
-    infinitiv: "benötigen",
-    arabic: "يحتاج",
-    forms: { ich: "benötige", du: "benötigst", er: "benötigt", wir: "benötigen", ihr: "benötigt", sie: "benötigen" }
-  },
-  {
-    infinitiv: "benutzen",
-    arabic: "يستخدم",
-    forms: { ich: "benutze", du: "benutzt", er: "benutzt", wir: "benutzen", ihr: "benutzt", sie: "benutzen" }
-  },
-  {
-    infinitiv: "benützen",
-    arabic: "يستخدم (بديل benutzen)",
-    forms: { ich: "benütze", du: "benützt", er: "benützt", wir: "benützen", ihr: "benützt", sie: "benützen" }
-  },
-  {
-    infinitiv: "beobachten",
-    arabic: "يراقب",
-    forms: { ich: "beobachte", du: "beobachtest", er: "beobachtet", wir: "beobachten", ihr: "beobachtet", sie: "beobachten" }
-  },
-  {
-    infinitiv: "beordern",
-    arabic: "يأمر / يكلف",
-    forms: { ich: "beordere", du: "beorderst", er: "beordert", wir: "beordern", ihr: "beordert", sie: "beordern" }
-  },
+  { section: "part3", sectionTitle: "الجزء الثالث: الأفعال غير المنفصلة (Inseparable)", infinitiv: "beachten", arabic: "ينتبه إلى / يراعي", forms: { ich: "beachte", du: "beachtest", er: "beachtet", wir: "beachten", ihr: "beachtet", sie: "beachten" } },
+  { section: "part3", infinitiv: "beantragen", arabic: "يتقدم بطلب", forms: { ich: "beantrage", du: "beantragst", er: "beantragt", wir: "beantragen", ihr: "beantragt", sie: "beantragen" } },
+  { section: "part3", infinitiv: "bearbeiten", arabic: "يعالج / يحرر", forms: { ich: "bearbeite", du: "bearbeitest", er: "bearbeitet", wir: "bearbeiten", ihr: "bearbeitet", sie: "bearbeiten" } },
+  { section: "part3", infinitiv: "beauftragen", arabic: "يكلف بمهمة", forms: { ich: "beauftrage", du: "beauftragst", er: "beauftragt", wir: "beauftragen", ihr: "beantragt", sie: "beauftragen" } },
+  { section: "part3", infinitiv: "bebauen", arabic: "يزرع / يبني على", forms: { ich: "bebaue", du: "bebaust", er: "bebaut", wir: "bebauen", ihr: "bebaut", sie: "bebauen" } },
+  { section: "part3", infinitiv: "bedanken", arabic: "يشكر", forms: { ich: "bedanke", du: "bedankst", er: "bedankt", wir: "bedanken", ihr: "bedankt", sie: "bedanken" } },
+  { section: "part3", infinitiv: "bedeuten", arabic: "يعني", forms: { ich: "bedeute", du: "bedeutest", er: "bedeutet", wir: "bedeuten", ihr: "bedeutet", sie: "bedeuten" } },
+  { section: "part3", infinitiv: "bedienen", arabic: "يخدم / يشغل", forms: { ich: "bediene", du: "bedienst", er: "bedient", wir: "bedienen", ihr: "bedient", sie: "bedienen" } },
+  { section: "part3", infinitiv: "bedrohen", arabic: "يهدد", forms: { ich: "bedrohe", du: "bedrohst", er: "bedroht", wir: "bedrohen", ihr: "bedroht", sie: "bedrohen" } },
+  { section: "part3", infinitiv: "beeilen", arabic: "يسرع", forms: { ich: "beeile", du: "beeilst", er: "beeilt", wir: "beeilen", ihr: "beeilt", sie: "beeilen" } },
+  { section: "part3", infinitiv: "beeindrucken", arabic: "يؤثر / يثير إعجاب", forms: { ich: "beeindrucke", du: "beeindruckst", er: "beeindruckt", wir: "beeindrucken", ihr: "beeindruckt", sie: "beeindrucken" } },
+  { section: "part3", infinitiv: "beeinflussen", arabic: "يؤثر في", forms: { ich: "beeinflusse", du: "beeinflusst", er: "beeinflusst", wir: "beeinflussen", ihr: "beeinflusst", sie: "beeinflussen" } },
+  { section: "part3", infinitiv: "beenden", arabic: "ينهي", forms: { ich: "beende", du: "beendest", er: "beendet", wir: "beenden", ihr: "beendet", sie: "beenden" } },
+  { section: "part3", infinitiv: "befallen", arabic: "يصيب", forms: { ich: "befalle", du: "befällst", er: "befällt", wir: "befallen", ihr: "befallt", sie: "befallen" } },
+  { section: "part3", infinitiv: "befassen", arabic: "يتعامل مع / يهتم بـ", forms: { ich: "befasse", du: "befasst", er: "befasst", wir: "befassen", ihr: "befasst", sie: "befassen" } },
+  { section: "part3", infinitiv: "befehlen", arabic: "يأمر", forms: { ich: "befehle", du: "befiehlst", er: "befiehlt", wir: "befehlen", ihr: "befehlt", sie: "befehlen" } },
+  { section: "part3", infinitiv: "befinden", arabic: "يوجد / يكون موجوداً", forms: { ich: "befinde", du: "befindest", er: "befindet", wir: "befinden", ihr: "befindet", sie: "befinden" } },
+  { section: "part3", infinitiv: "befolgen", arabic: "ينفذ / يتبع", forms: { ich: "befolge", du: "befolgst", er: "befolgt", wir: "befolgen", ihr: "befolgt", sie: "befolgen" } },
+  { section: "part3", infinitiv: "befördern", arabic: "ينقل / يرقى في العمل", forms: { ich: "befördere", du: "beförderst", er: "befördert", wir: "befördern", ihr: "befördert", sie: "befördern" } },
+  { section: "part3", infinitiv: "befragen", arabic: "يستجوب / يسأل", forms: { ich: "befrage", du: "befragst", er: "befragt", wir: "befragen", ihr: "befragt", sie: "befragen" } },
+  { section: "part3", infinitiv: "befreien", arabic: "يحرر", forms: { ich: "befreie", du: "befreist", er: "befreit", wir: "befreien", ihr: "befreit", sie: "befreien" } },
+  { section: "part3", infinitiv: "befremden", arabic: "يستغرب / يزعج", forms: { ich: "befremde", du: "befremdest", er: "befremdet", wir: "befremden", ihr: "befremdet", sie: "befremden" } },
+  { section: "part3", infinitiv: "befrieden", arabic: "يسلم / يهدئ", forms: { ich: "befriede", du: "befriedest", er: "befriedet", wir: "befrieden", ihr: "befriedet", sie: "befrieden" } },
+  { section: "part3", infinitiv: "befriedigen", arabic: "يشبع / يرضي", forms: { ich: "befriedige", du: "befriedigst", er: "befriedigt", wir: "befriedigen", ihr: "befriedigt", sie: "befriedigen" } },
+  { section: "part3", infinitiv: "befürchten", arabic: "يخشى / يخاف", forms: { ich: "befürchte", du: "befürchtest", er: "befürchtet", wir: "befürchten", ihr: "befürchtet", sie: "befürchten" } },
+  { section: "part3", infinitiv: "befürworten", arabic: "يؤيد", forms: { ich: "befürworte", du: "befürwortest", er: "befürwortet", wir: "befürworten", ihr: "befürwortet", sie: "befürworten" } },
+  { section: "part3", infinitiv: "begatten", arabic: "يتزاوج", forms: { ich: "begatte", du: "begattest", er: "begattet", wir: "begatten", ihr: "begattet", sie: "begatten" } },
+  { section: "part3", infinitiv: "begeben", arabic: "يذهب إلى / يحدث", forms: { ich: "begebe", du: "begibst", er: "begibt", wir: "begeben", ihr: "begebt", sie: "begeben" } },
+  { section: "part3", infinitiv: "begegnen", arabic: "يقابل (بشكل غير متوقع)", forms: { ich: "begegne", du: "begegnest", er: "begegnet", wir: "begegnen", ihr: "begegnet", sie: "begegnen" } },
+  { section: "part3", infinitiv: "begehen", arabic: "يرتكب (جريمة)", forms: { ich: "begehe", du: "begehst", er: "begeht", wir: "begehen", ihr: "begeht", sie: "begehen" } },
+  { section: "part3", infinitiv: "begeistern", arabic: "يحمس", forms: { ich: "begestere", du: "begeisterst", er: "begeistert", wir: "begeistern", ihr: "begeistert", sie: "begeistern" } },
+  { section: "part3", infinitiv: "beginnen", arabic: "يبدأ", forms: { ich: "beginne", du: "beginnst", er: "beginnt", wir: "beginnen", ihr: "beginnt", sie: "beginnen" } },
+  { section: "part3", infinitiv: "begleiten", arabic: "يرافق", forms: { ich: "begleite", du: "begleitest", er: "begleitet", wir: "begleiten", ihr: "begleitest", sie: "begleiten" } },
+  { section: "part3", infinitiv: "begraben", arabic: "يدفن", forms: { ich: "begrabe", du: "begräbst", er: "begräbt", wir: "begraben", ihr: "begrabt", sie: "begraben" } },
+  { section: "part3", infinitiv: "begreifen", arabic: "يفهم / يستوعب", forms: { ich: "begreife", du: "begreifst", er: "begreift", wir: "begreifen", ihr: "begreift", sie: "begreifen" } },
+  { section: "part3", infinitiv: "begründen", arabic: "يبرر / يؤسس", forms: { ich: "begründe", du: "begründest", er: "begründet", wir: "begründen", ihr: "begründet", sie: "begründen" } },
+  { section: "part3", infinitiv: "begrüßen", arabic: "يرحب بـ", forms: { ich: "begrüße", du: "begrüßt", er: "begrüßt", wir: "begrüßen", ihr: "begrüßt", sie: "begrüßen" } },
+  { section: "part3", infinitiv: "behaften", arabic: "يلتصق بـ", forms: { ich: "behafte", du: "behaftest", er: "behaftet", wir: "behaften", ihr: "behaftet", sie: "behaften" } },
+  { section: "part3", infinitiv: "behalten", arabic: "يحتفظ", forms: { ich: "behalte", du: "behältst", er: "behält", wir: "behalten", ihr: "behaltet", sie: "behalten" } },
+  { section: "part3", infinitiv: "behandeln", arabic: "يعالج (طبيباً)", forms: { ich: "behandle", du: "behandelst", er: "behandelt", wir: "behandeln", ihr: "behandelt", sie: "behandeln" } },
+  { section: "part3", infinitiv: "beherrschen", arabic: "يتقن / يسيطر على", forms: { ich: "beherrsche", du: "beherrschst", er: "beherrscht", wir: "beherrschen", ihr: "beherrscht", sie: "beherrschen" } },
+  { section: "part3", infinitiv: "behindern", arabic: "يعيق", forms: { ich: "behindere", du: "behinderst", er: "behindert", wir: "behindern", ihr: "behindert", sie: "behindern" } },
+  { section: "part3", infinitiv: "behüten", arabic: "يحمي", forms: { ich: "behüte", du: "behütest", er: "behütet", wir: "behüten", ihr: "behütet", sie: "behüten" } },
+  { section: "part3", infinitiv: "beirren", arabic: "يشتت / يربك", forms: { ich: "beirre", du: "beirrst", er: "beirrt", wir: "beirren", ihr: "beirrt", sie: "beirren" } },
+  { section: "part3", infinitiv: "bekämpfen", arabic: "يحارب", forms: { ich: "bekämpfe", du: "bekämpfst", er: "bekämpft", wir: "bekämpfen", ihr: "bekämpft", sie: "bekämpfen" } },
+  { section: "part3", infinitiv: "bekennen", arabic: "يعترف", forms: { ich: "bekenne", du: "bekennst", er: "bekennt", wir: "bekennen", ihr: "bekennt", sie: "bekennen" } },
+  { section: "part3", infinitiv: "beklagen", arabic: "يشكو / يندب", forms: { ich: "beklage", du: "beklagst", er: "beklagt", wir: "beklagen", ihr: "beklagt", sie: "beklagen" } },
+  { section: "part3", infinitiv: "bekommen", arabic: "يحصل على / يتلقى", forms: { ich: "bekomme", du: "bekommst", er: "bekommt", wir: "bekommen", ihr: "bekommt", sie: "bekommen" } },
+  { section: "part3", infinitiv: "bekränzen", arabic: "يزين بإكليل", forms: { ich: "bekränze", du: "bekränzt", er: "bekränzt", wir: "bekränzen", ihr: "bekränzt", sie: "bekränzen" } },
+  { section: "part3", infinitiv: "belasten", arabic: "يثقل / يرهق", forms: { ich: "belaste", du: "belastest", er: "belastet", wir: "belasten", ihr: "belastet", sie: "belasten" } },
+  { section: "part3", infinitiv: "belaufen", arabic: "يصل إلى (مبلغ)", forms: { ich: "belaufe", du: "beläufst", er: "beläuft", wir: "belaufen", ihr: "belauft", sie: "belaufen" } },
+  { section: "part3", infinitiv: "beleben", arabic: "ينشط / يحيي", forms: { ich: "belebe", du: "belebst", er: "belebt", wir: "beleben", ihr: "belebt", sie: "beleben" } },
+  { section: "part3", infinitiv: "belegen", arabic: "يغطي / يثبت", forms: { ich: "belege", du: "belegst", er: "belegt", wir: "belegen", ihr: "belegt", sie: "belegen" } },
+  { section: "part3", infinitiv: "belehren", arabic: "يعلم / ينصح", forms: { ich: "belehre", du: "belehrest", er: "belehrt", wir: "belehren", ihr: "belehrt", sie: "belegen" } },
+  { section: "part3", infinitiv: "beleihen", arabic: "يرهن", forms: { ich: "beleihe", du: "beleihst", er: "beleiht", wir: "beleihen", ihr: "beleiht", sie: "beleihen" } },
+  { section: "part3", infinitiv: "belohnen", arabic: "يكافئ", forms: { ich: "belohne", du: "belohnst", er: "belohnt", wir: "belohnen", ihr: "belohnt", sie: "belohnen" } },
+  { section: "part3", infinitiv: "belügen", arabic: "يكذب على", forms: { ich: "belüge", du: "belügst", er: "belügt", wir: "belügen", ihr: "belügt", sie: "belügen" } },
+  { section: "part3", infinitiv: "bemalen", arabic: "يرسم على", forms: { ich: "bemale", du: "bemalst", er: "bemalt", wir: "bemalen", ihr: "bemalt", sie: "bemalen" } },
+  { section: "part3", infinitiv: "bemängeln", arabic: "ينتقد", forms: { ich: "bemängele", du: "bemängelst", er: "bemängelt", wir: "bemängeln", ihr: "bemängelt", sie: "bemängeln" } },
+  { section: "part3", infinitiv: "bemerken", arabic: "يلاحظ", forms: { ich: "bemerke", du: "bemerkst", er: "bemerkt", wir: "bemerken", ihr: "bemerkt", sie: "bemerken" } },
+  { section: "part3", infinitiv: "bemessen", arabic: "يقيس / يحدد", forms: { ich: "bemesse", du: "bemisst", er: "bemisst", wir: "bemessen", ihr: "bemesst", sie: "bemessen" } },
+  { section: "part3", infinitiv: "bemitleiden", arabic: "يشفق على", forms: { ich: "bemitleide", du: "bemitleidest", er: "bemitleidet", wir: "bemitleiden", ihr: "bemitleidet", sie: "bemitleiden" } },
+  { section: "part3", infinitiv: "bemühen", arabic: "يسعى / يكلف نفسه", forms: { ich: "bemühe", du: "bemühst", er: "bemüht", wir: "bemühen", ihr: "bemüht", sie: "bemühen" } },
+  { section: "part3", infinitiv: "benachrichtigen", arabic: "يخطر / يبلغ", forms: { ich: "benachrichtige", du: "benachrichtigst", er: "benachrichtigt", wir: "benachrichtigen", ihr: "benachrichtigt", sie: "benachrichtigen" } },
+  { section: "part3", infinitiv: "benässen", arabic: "يبلل", forms: { ich: "benässe", du: "benässt", er: "benässt", wir: "benässen", ihr: "benässt", sie: "benässen" } },
+  { section: "part3", infinitiv: "beneiden", arabic: "يحسد", forms: { ich: "beneide", du: "beneidest", er: "beneidet", wir: "beneiden", ihr: "beneidet", sie: "beneiden" } },
+  { section: "part3", infinitiv: "benennen", arabic: "يسمي", forms: { ich: "benenne", du: "benennst", er: "benennt", wir: "benennen", ihr: "benennt", sie: "benennen" } },
+  { section: "part3", infinitiv: "benötigen", arabic: "يحتاج", forms: { ich: "benötige", du: "benötigst", er: "benötigt", wir: "benötigen", ihr: "benötigt", sie: "benötigen" } },
 
-  // ============================================
-  // الجزء الرابع: أفعال قوية وشاذة (Strong/Irregular) - 80 فعلًا
-  // ============================================
-  {
-    infinitiv: "backen",
-    arabic: "يخبز",
-    forms: { ich: "backe", du: "bäckst", er: "bäckt", wir: "backen", ihr: "backt", sie: "backen" }
-  },
-  {
-    infinitiv: "befehlen",
-    arabic: "يأمر",
-    forms: { ich: "befehle", du: "befiehlst", er: "befiehlt", wir: "befehlen", ihr: "befehlt", sie: "befehlen" }
-  },
-  {
-    infinitiv: "beginnen",
-    arabic: "يبدأ",
-    forms: { ich: "beginne", du: "beginnst", er: "beginnt", wir: "beginnen", ihr: "beginnt", sie: "beginnen" }
-  },
-  {
-    infinitiv: "beißen",
-    arabic: "يعض",
-    forms: { ich: "beiße", du: "beißt", er: "beißt", wir: "beißen", ihr: "beißt", sie: "beißen" }
-  },
-  {
-    infinitiv: "bergen",
-    arabic: "ينقذ / يستخرج",
-    forms: { ich: "berge", du: "birgst", er: "birgt", wir: "bergen", ihr: "bergt", sie: "bergen" }
-  },
-  {
-    infinitiv: "bersten",
-    arabic: "ينفجر / يتشقق",
-    forms: { ich: "berste", du: "berstest", er: "berstet", wir: "bersten", ihr: "berstet", sie: "bersten" }
-  },
-  {
-    infinitiv: "betrügen",
-    arabic: "يخدع / يغش",
-    forms: { ich: "betrüge", du: "betrügst", er: "betrügt", wir: "betrügen", ihr: "betrügt", sie: "betrügen" }
-  },
-  {
-    infinitiv: "bewegen",
-    arabic: "يحرك",
-    forms: { ich: "bewege", du: "bewegst", er: "bewegt", wir: "bewegen", ihr: "bewegt", sie: "bewegen" }
-  },
-  {
-    infinitiv: "biegen",
-    arabic: "يثني / ينعطف",
-    forms: { ich: "biege", du: "biegst", er: "biegt", wir: "biegen", ihr: "biegt", sie: "biegen" }
-  },
-  {
-    infinitiv: "bieten",
-    arabic: "يقدم / يعرض",
-    forms: { ich: "biete", du: "bietest", er: "bietet", wir: "bieten", ihr: "bietet", sie: "bieten" }
-  },
-  {
-    infinitiv: "binden",
-    arabic: "يربط",
-    forms: { ich: "binde", du: "bindest", er: "bindet", wir: "binden", ihr: "bindet", sie: "binden" }
-  },
-  {
-    infinitiv: "bitten",
-    arabic: "يرجو / يطلب",
-    forms: { ich: "bitte", du: "bittest", er: "bittet", wir: "bitten", ihr: "bittet", sie: "bitten" }
-  },
-  {
-    infinitiv: "blasen",
-    arabic: "ينفخ",
-    forms: { ich: "blase", du: "bläst", er: "bläst", wir: "blasen", ihr: "blast", sie: "blasen" }
-  },
-  {
-    infinitiv: "bleiben",
-    arabic: "يبقى",
-    forms: { ich: "bleibe", du: "bleibst", er: "bleibt", wir: "bleiben", ihr: "bleibt", sie: "bleiben" }
-  },
-  {
-    infinitiv: "braten",
-    arabic: "يشوي / يقلي",
-    forms: { ich: "brate", du: "brätst", er: "brät", wir: "braten", ihr: "bratet", sie: "braten" }
-  },
-  {
-    infinitiv: "brechen",
-    arabic: "يكسر",
-    forms: { ich: "breche", du: "brichst", er: "bricht", wir: "brechen", ihr: "brecht", sie: "brechen" }
-  },
-  {
-    infinitiv: "brennen",
-    arabic: "يحترق / يشعل",
-    forms: { ich: "brenne", du: "brennst", er: "brennt", wir: "brennen", ihr: "brennt", sie: "brennen" }
-  },
-  {
-    infinitiv: "bringen",
-    arabic: "يجلب",
-    forms: { ich: "bringe", du: "bringst", er: "bringt", wir: "bringen", ihr: "bringt", sie: "bringen" }
-  },
-  {
-    infinitiv: "denken",
-    arabic: "يفكر",
-    forms: { ich: "denke", du: "denkst", er: "denkt", wir: "denken", ihr: "denkt", sie: "denken" }
-  },
-  {
-    infinitiv: "dingen",
-    arabic: "يستأجر",
-    forms: { ich: "dinge", du: "dingst", er: "dingt", wir: "dingen", ihr: "dingt", sie: "dingen" }
-  },
-  {
-    infinitiv: "dreschen",
-    arabic: "يدرس (زرع)",
-    forms: { ich: "dresche", du: "drishst", er: "drisht", wir: "dreschen", ihr: "drescht", sie: "dreschen" }
-  },
-  {
-    infinitiv: "dringen",
-    arabic: "يتسلل / يضغط",
-    forms: { ich: "dringe", du: "dringst", er: "dringt", wir: "dringen", ihr: "dringt", sie: "dringen" }
-  },
-  {
-    infinitiv: "dürfen",
-    arabic: "يسمح له",
-    forms: { ich: "darf", du: "darfst", er: "darf", wir: "dürfen", ihr: "dürft", sie: "dürfen" }
-  },
-  {
-    infinitiv: "empfangen",
-    arabic: "يستقبل",
-    forms: { ich: "empfange", du: "empfängst", er: "empfängt", wir: "empfangen", ihr: "empfangt", sie: "empfangen" }
-  },
-  {
-    infinitiv: "empfehlen",
-    arabic: "يوصي",
-    forms: { ich: "empfehle", du: "empfiehlst", er: "empfiehlt", wir: "empfehlen", ihr: "empfehlt", sie: "empfehlen" }
-  },
-  {
-    infinitiv: "erlöschen",
-    arabic: "ينطفئ",
-    forms: { ich: "erlösche", du: "erlischst", er: "erlischt", wir: "erlöschen", ihr: "erlischt", sie: "erlöschen" }
-  },
-  {
-    infinitiv: "erschrecken",
-    arabic: "يخاف / يفزع",
-    forms: { ich: "erschrecke", du: "erschrickst", er: "erschrickt", wir: "erschrecken", ihr: "erschreckt", sie: "erschrecken" }
-  },
-  {
-    infinitiv: "essen",
-    arabic: "يأكل",
-    forms: { ich: "esse", du: "isst", er: "isst", wir: "essen", ihr: "esst", sie: "essen" }
-  },
-  {
-    infinitiv: "fahren",
-    arabic: "يقود / يسافر",
-    forms: { ich: "fahre", du: "fährst", er: "fährt", wir: "fahren", ihr: "fahrt", sie: "fahren" }
-  },
-  {
-    infinitiv: "fallen",
-    arabic: "يسقط",
-    forms: { ich: "falle", du: "fällst", er: "fällt", wir: "fallen", ihr: "fallt", sie: "fallen" }
-  },
-  {
-    infinitiv: "fangen",
-    arabic: "يمسك / يصطاد",
-    forms: { ich: "fange", du: "fängst", er: "fängt", wir: "fangen", ihr: "fangt", sie: "fangen" }
-  },
-  {
-    infinitiv: "fechten",
-    arabic: "يبارز",
-    forms: { ich: "fechte", du: "fichst", er: "ficht", wir: "fechten", ihr: "fechtet", sie: "fechten" }
-  },
-  {
-    infinitiv: "finden",
-    arabic: "يجد",
-    forms: { ich: "finde", du: "findest", er: "findet", wir: "finden", ihr: "findet", sie: "finden" }
-  },
-  {
-    infinitiv: "flechten",
-    arabic: "يضفر",
-    forms: { ich: "flechte", du: "flichst", er: "flicht", wir: "flechten", ihr: "flechtet", sie: "flechten" }
-  },
-  {
-    infinitiv: "fliegen",
-    arabic: "يطير",
-    forms: { ich: "fliege", du: "fliegst", er: "fliegt", wir: "fliegen", ihr: "fliegt", sie: "fliegen" }
-  },
-  {
-    infinitiv: "fliehen",
-    arabic: "يهرب",
-    forms: { ich: "fliehe", du: "fliehst", er: "flieht", wir: "fliehen", ihr: "flieht", sie: "fliehen" }
-  },
-  {
-    infinitiv: "fließen",
-    arabic: "يتدفق",
-    forms: { ich: "fließe", du: "fließt", er: "fließt", wir: "fließen", ihr: "fließt", sie: "fließen" }
-  },
-  {
-    infinitiv: "fressen",
-    arabic: "يأكل (حيوان)",
-    forms: { ich: "fresse", du: "frisst", er: "frisst", wir: "fressen", ihr: "fresst", sie: "fressen" }
-  },
-  {
-    infinitiv: "frieren",
-    arabic: "يتجمد / يشعر بالبرد",
-    forms: { ich: "friere", du: "frierst", er: "friert", wir: "frieren", ihr: "friert", sie: "frieren" }
-  },
-  {
-    infinitiv: "gären",
-    arabic: "يتخمر",
-    forms: { ich: "gäre", du: "gärst", er: "gärt", wir: "gären", ihr: "gärt", sie: "gären" }
-  },
-  {
-    infinitiv: "gebären",
-    arabic: "تلد",
-    forms: { ich: "gebiere", du: "gebierst", er: "gebiert", wir: "gebären", ihr: "gebärt", sie: "gebären" }
-  },
-  {
-    infinitiv: "geben",
-    arabic: "يعطي",
-    forms: { ich: "gebe", du: "gibst", er: "gibt", wir: "geben", ihr: "gebt", sie: "geben" }
-  },
-  {
-    infinitiv: "gedeihen",
-    arabic: "ينمو / يزدهر",
-    forms: { ich: "gedeihe", du: "gedeihst", er: "gedeiht", wir: "gedeihen", ihr: "gedeiht", sie: "gedeihen" }
-  },
-  {
-    infinitiv: "gehen",
-    arabic: "يذهب",
-    forms: { ich: "gehe", du: "gehst", er: "geht", wir: "gehen", ihr: "geht", sie: "gehen" }
-  },
-  {
-    infinitiv: "gelingen",
-    arabic: "ينجح (عمل ما)",
-    forms: { ich: "gelinge", du: "gelingst", er: "gelingt", wir: "gelingen", ihr: "gelingt", sie: "gelingen" }
-  },
-  {
-    infinitiv: "gelten",
-    arabic: "يسري / يكون صالحاً",
-    forms: { ich: "gelte", du: "giltst", er: "gilt", wir: "gelten", ihr: "geltet", sie: "gelten" }
-  },
-  {
-    infinitiv: "genesen",
-    arabic: "يتعافى",
-    forms: { ich: "genese", du: "genesst", er: "genest", wir: "genesen", ihr: "genest", sie: "genesen" }
-  },
-  {
-    infinitiv: "genießen",
-    arabic: "يستمتع بـ",
-    forms: { ich: "genieße", du: "genießt", er: "genießt", wir: "genießen", ihr: "genießt", sie: "genießen" }
-  },
-  {
-    infinitiv: "geschehen",
-    arabic: "يحدث",
-    forms: { ich: "geschehe", du: "geschiehst", er: "geschieht", wir: "geschehen", ihr: "gescheht", sie: "geschehen" }
-  },
-  {
-    infinitiv: "gewinnen",
-    arabic: "يفوز / يكسب",
-    forms: { ich: "gewinne", du: "gewinnst", er: "gewinnt", wir: "gewinnen", ihr: "gewinnt", sie: "gewinnen" }
-  },
-  {
-    infinitiv: "gießen",
-    arabic: "يسكب / يصب",
-    forms: { ich: "gieße", du: "gießt", er: "gießt", wir: "gießen", ihr: "gießt", sie: "gießen" }
-  },
-  {
-    infinitiv: "gleichen",
-    arabic: "يشبه",
-    forms: { ich: "gleiche", du: "gleichst", er: "gleicht", wir: "gleichen", ihr: "gleicht", sie: "gleichen" }
-  },
-  {
-    infinitiv: "gleiten",
-    arabic: "ينزلق",
-    forms: { ich: "gleite", du: "gleitest", er: "gleitet", wir: "gleiten", ihr: "gleitet", sie: "gleiten" }
-  },
-  {
-    infinitiv: "glimmen",
-    arabic: "يشتعل بصعوبة",
-    forms: { ich: "glimme", du: "glimmst", er: "glimmt", wir: "glimmen", ihr: "glimmt", sie: "glimmen" }
-  },
-  {
-    infinitiv: "graben",
-    arabic: "يحفر",
-    forms: { ich: "grabe", du: "gräbst", er: "gräbt", wir: "graben", ihr: "grabt", sie: "graben" }
-  },
-  {
-    infinitiv: "greifen",
-    arabic: "يمسك",
-    forms: { ich: "greife", du: "greifst", er: "greift", wir: "greifen", ihr: "greift", sie: "greifen" }
-  },
-  {
-    infinitiv: "haben",
-    arabic: "يملك",
-    forms: { ich: "habe", du: "hast", er: "hat", wir: "haben", ihr: "habt", sie: "haben" }
-  },
-  {
-    infinitiv: "halten",
-    arabic: "يمسك / يتوقف",
-    forms: { ich: "halte", du: "hältst", er: "hält", wir: "halten", ihr: "haltet", sie: "halten" }
-  },
-  {
-    infinitiv: "hängen",
-    arabic: "يعلق",
-    forms: { ich: "hänge", du: "hängst", er: "hängt", wir: "hängen", ihr: "hängt", sie: "hängen" }
-  },
-  {
-    infinitiv: "hauen",
-    arabic: "يضرب (بشدة)",
-    forms: { ich: "haue", du: "haust", er: "haut", wir: "hauen", ihr: "haut", sie: "hauen" }
-  },
-  {
-    infinitiv: "heben",
-    arabic: "يرفع",
-    forms: { ich: "hebe", du: "hebst", er: "hebt", wir: "heben", ihr: "hebt", sie: "heben" }
-  },
-  {
-    infinitiv: "heißen",
-    arabic: "يسمى",
-    forms: { ich: "heiße", du: "heißt", er: "heißt", wir: "heißen", ihr: "heißt", sie: "heißen" }
-  },
-  {
-    infinitiv: "helfen",
-    arabic: "يساعد",
-    forms: { ich: "helfe", du: "hilfst", er: "hilft", wir: "helfen", ihr: "helft", sie: "helfen" }
-  },
-  {
-    infinitiv: "kennen",
-    arabic: "يعرف",
-    forms: { ich: "kenne", du: "kennst", er: "kennt", wir: "kennen", ihr: "kennt", sie: "kennen" }
-  },
-  {
-    infinitiv: "klimmen",
-    arabic: "يتسلق (قديمة)",
-    forms: { ich: "klimme", du: "klimmst", er: "klimmt", wir: "klimmen", ihr: "klimmt", sie: "klimmen" }
-  },
-  {
-    infinitiv: "klingen",
-    arabic: "يرن / يبدو",
-    forms: { ich: "klinge", du: "klingst", er: "klingt", wir: "klingen", ihr: "klingt", sie: "klingen" }
-  },
-  {
-    infinitiv: "kneifen",
-    arabic: "يقرص",
-    forms: { ich: "kneife", du: "kneifst", er: "kneift", wir: "kneifen", ihr: "kneift", sie: "kneifen" }
-  },
-  {
-    infinitiv: "kommen",
-    arabic: "يأتي",
-    forms: { ich: "komme", du: "kommst", er: "kommt", wir: "kommen", ihr: "kommt", sie: "kommen" }
-  },
-  {
-    infinitiv: "können",
-    arabic: "يستطيع",
-    forms: { ich: "kann", du: "kannst", er: "kann", wir: "können", ihr: "könnt", sie: "können" }
-  },
-  {
-    infinitiv: "kriechen",
-    arabic: "يزحف",
-    forms: { ich: "krieche", du: "kriechst", er: "kriecht", wir: "kriechen", ihr: "kriecht", sie: "kriechen" }
-  },
-  {
-    infinitiv: "laden",
-    arabic: "يحمل / يشحن",
-    forms: { ich: "lade", du: "lädst", er: "lädt", wir: "laden", ihr: "ladet", sie: "laden" }
-  },
-  {
-    infinitiv: "lassen",
-    arabic: "يترك / يدع",
-    forms: { ich: "lasse", du: "lässt", er: "lässt", wir: "lassen", ihr: "lasst", sie: "lassen" }
-  },
-  {
-    infinitiv: "laufen",
-    arabic: "يجري / يمشي",
-    forms: { ich: "laufe", du: "läufst", er: "läuft", wir: "laufen", ihr: "lauft", sie: "laufen" }
-  },
-  {
-    infinitiv: "leiden",
-    arabic: "يعاني",
-    forms: { ich: "leide", du: "leidest", er: "leidet", wir: "leiden", ihr: "leidet", sie: "leiden" }
-  },
-  {
-    infinitiv: "leihen",
-    arabic: "يستعير / يقرض",
-    forms: { ich: "leihe", du: "leihst", er: "leiht", wir: "leihen", ihr: "leiht", sie: "leihen" }
-  },
-  {
-    infinitiv: "lesen",
-    arabic: "يقرأ",
-    forms: { ich: "lese", du: "liest", er: "liest", wir: "lesen", ihr: "lest", sie: "lesen" }
-  },
-  {
-    infinitiv: "liegen",
-    arabic: "يقع (مكان)",
-    forms: { ich: "liege", du: "liegst", er: "liegt", wir: "liegen", ihr: "liegt", sie: "liegen" }
-  },
-  {
-    infinitiv: "lügen",
-    arabic: "يكذب",
-    forms: { ich: "lüge", du: "lügst", er: "lügt", wir: "lügen", ihr: "lügt", sie: "lügen" }
-  },
-  {
-    infinitiv: "mahlen",
-    arabic: "يطحن",
-    forms: { ich: "mahle", du: "mahlst", er: "mahlt", wir: "mahlen", ihr: "mahlt", sie: "mahlen" }
-  },
-  {
-    infinitiv: "meiden",
-    arabic: "يتجنب",
-    forms: { ich: "meide", du: "meidest", er: "meidet", wir: "meiden", ihr: "meidet", sie: "meiden" }
-  },
-  {
-    infinitiv: "messen",
-    arabic: "يقيس",
-    forms: { ich: "messe", du: "misst", er: "misst", wir: "messen", ihr: "messt", sie: "messen" }
-  },
-  {
-    infinitiv: "misslingen",
-    arabic: "يفشل",
-    forms: { ich: "misslinge", du: "misslingst", er: "misslingt", wir: "misslingen", ihr: "misslingt", sie: "misslingen" }
-  },
-  {
-    infinitiv: "mögen",
-    arabic: "يحب",
-    forms: { ich: "mag", du: "magst", er: "mag", wir: "mögen", ihr: "mögt", sie: "mögen" }
-  },
-  {
-    infinitiv: "müssen",
-    arabic: "يضطر / يجب عليه",
-    forms: { ich: "muss", du: "musst", er: "muss", wir: "müssen", ihr: "müsst", sie: "müssen" }
-  },
+  // الجزء الرابع: الأفعال المساعدة والشاذة
+  { section: "part4", sectionTitle: "الجزء 4: الأفعال الشاذة والقوية (Irregular & Starke Verben)" ,
+  
+  // الأفعال المساعدة الأساسية (التي تتغير كلياً)
+   infinitiv: "sein", arabic: "يكون", forms: { ich: "bin", du: "bist", er: "ist", wir: "sind", ihr: "seid", sie: "sind" } },
+  { section: "part4", infinitiv: "haben", arabic: "يملك", forms: { ich: "habe", du: "hast", er: "hat", wir: "haben", ihr: "habt", sie: "haben" } },
+  { section: "part4", infinitiv: "werden", arabic: "يصبح", forms: { ich: "werde", du: "wirst", er: "wird", wir: "werden", ihr: "werdet", sie: "werden" } },
 
-  // ============================================
-  // الجزء الخامس: أفعال مساعدة وهامة إضافية - 70 فعلًا
-  // ============================================
-  {
-    infinitiv: "nehmen",
-    arabic: "يأخذ",
-    forms: { ich: "nehme", du: "nimmst", er: "nimmt", wir: "nehmen", ihr: "nehmt", sie: "nehmen" }
-  },
-  {
-    infinitiv: "nennen",
-    arabic: "يسمي",
-    forms: { ich: "nenne", du: "nennst", er: "nennt", wir: "nennen", ihr: "nennt", sie: "nennen" }
-  },
-  {
-    infinitiv: "pfeifen",
-    arabic: "يصفر",
-    forms: { ich: "pfeife", du: "pfeifst", er: "pfeift", wir: "pfeifen", ihr: "pfeift", sie: "pfeifen" }
-  },
-  {
-    infinitiv: "preisen",
-    arabic: "يمدح",
-    forms: { ich: "preise", du: "preist", er: "preist", wir: "preisen", ihr: "preist", sie: "preisen" }
-  },
-  {
-    infinitiv: "quellen",
-    arabic: "ينبع",
-    forms: { ich: "quelle", du: "quillst", er: "quillt", wir: "quellen", ihr: "quellt", sie: "quellen" }
-  },
-  {
-    infinitiv: "raten",
-    arabic: "ينصح / يخمن",
-    forms: { ich: "rate", du: "rätst", er: "rät", wir: "raten", ihr: "ratet", sie: "raten" }
-  },
-  {
-    infinitiv: "reiben",
-    arabic: "يفرك / يبشر",
-    forms: { ich: "reibe", du: "reibst", er: "reibt", wir: "reiben", ihr: "reibt", sie: "reiben" }
-  },
-  {
-    infinitiv: "reißen",
-    arabic: "يمزق",
-    forms: { ich: "reiße", du: "reißt", er: "reißt", wir: "reißen", ihr: "reißt", sie: "reißen" }
-  },
-  {
-    infinitiv: "rennen",
-    arabic: "يركض",
-    forms: { ich: "renne", du: "rennst", er: "rennt", wir: "rennen", ihr: "rennt", sie: "rennen" }
-  },
-  {
-    infinitiv: "riechen",
-    arabic: "يشم",
-    forms: { ich: "rieche", du: "riechst", er: "riecht", wir: "riechen", ihr: "riecht", sie: "riechen" }
-  },
-  {
-    infinitiv: "ringen",
-    arabic: "يصارع",
-    forms: { ich: "ringe", du: "ringst", er: "ringt", wir: "ringen", ihr: "ringt", sie: "ringen" }
-  },
-  {
-    infinitiv: "rinnen",
-    arabic: "يسيل",
-    forms: { ich: "rinne", du: "rinnst", er: "rinnt", wir: "rinnen", ihr: "rinnt", sie: "rinnen" }
-  },
-  {
-    infinitiv: "rufen",
-    arabic: "ينادي",
-    forms: { ich: "rufe", du: "rufst", er: "ruft", wir: "rufen", ihr: "ruft", sie: "rufen" }
-  },
-  {
-    infinitiv: "salzen",
-    arabic: "يملح",
-    forms: { ich: "salze", du: "salzt", er: "salzt", wir: "salzen", ihr: "salzt", sie: "salzen" }
-  },
-  {
-    infinitiv: "saufen",
-    arabic: "يشرب (بكثرة/حيوان)",
-    forms: { ich: "saufe", du: "säufst", er: "säuft", wir: "saufen", ihr: "sauft", sie: "saufen" }
-  },
-  {
-    infinitiv: "saugen",
-    arabic: "يمتص",
-    forms: { ich: "sauge", du: "saugst", er: "saugt", wir: "saugen", ihr: "saugt", sie: "saugen" }
-  },
-  {
-    infinitiv: "schaffen",
-    arabic: "ينجز / يخلق",
-    forms: { ich: "schaffe", du: "schaffst", er: "schafft", wir: "schaffen", ihr: "schafft", sie: "schaffen" }
-  },
-  {
-    infinitiv: "scheiden",
-    arabic: "يفصل / يطلق",
-    forms: { ich: "scheide", du: "scheidest", er: "scheidet", wir: "scheiden", ihr: "scheidet", sie: "scheiden" }
-  },
-  {
-    infinitiv: "scheinen",
-    arabic: "يبدو / يشرق",
-    forms: { ich: "scheine", du: "scheinst", er: "scheint", wir: "scheinen", ihr: "scheint", sie: "scheinen" }
-  },
-  {
-    infinitiv: "schieben",
-    arabic: "يدفع",
-    forms: { ich: "schiebe", du: "schiebst", er: "schiebt", wir: "schieben", ihr: "schiebt", sie: "schieben" }
-  },
-  {
-    infinitiv: "schießen",
-    arabic: "يطلق النار",
-    forms: { ich: "schieße", du: "schießt", er: "schießt", wir: "schießen", ihr: "schießt", sie: "schießen" }
-  },
-  {
-    infinitiv: "schlafen",
-    arabic: "ينام",
-    forms: { ich: "schlafe", du: "schläfst", er: "schläft", wir: "schlafen", ihr: "schlaft", sie: "schlafen" }
-  },
-  {
-    infinitiv: "schlagen",
-    arabic: "يضرب",
-    forms: { ich: "schlage", du: "schlägst", er: "schlägt", wir: "schlagen", ihr: "schlagt", sie: "schlagen" }
-  },
-  {
-    infinitiv: "schleichen",
-    arabic: "يتسلل",
-    forms: { ich: "schleiche", du: "schleichst", er: "schleicht", wir: "schleichen", ihr: "schleicht", sie: "schleichen" }
-  },
-  {
-    infinitiv: "schleifen",
-    arabic: "يصقل / يجر",
-    forms: { ich: "schleife", du: "schleifst", er: "schleift", wir: "schleifen", ihr: "schleift", sie: "schleifen" }
-  },
-  {
-    infinitiv: "schließen",
-    arabic: "يغلق",
-    forms: { ich: "schließe", du: "schließt", er: "schließt", wir: "schließen", ihr: "schließt", sie: "schließen" }
-  },
-  {
-    infinitiv: "schlingen",
-    arabic: "يلف / يلتهم",
-    forms: { ich: "schlinge", du: "schlingst", er: "schlingt", wir: "schlingen", ihr: "schlingt", sie: "schlingen" }
-  },
-  {
-    infinitiv: "schmeißen",
-    arabic: "يقذف",
-    forms: { ich: "schmeiße", du: "schmeißt", er: "schmeißt", wir: "schmeißen", ihr: "schmeißt", sie: "schmeißen" }
-  },
-  {
-    infinitiv: "schmelzen",
-    arabic: "يذوب",
-    forms: { ich: "schmelze", du: "schmilzt", er: "schmilzt", wir: "schmelzen", ihr: "schmelzt", sie: "schmelzen" }
-  },
-  {
-    infinitiv: "schneiden",
-    arabic: "يقطع",
-    forms: { ich: "schneide", du: "schneidest", er: "schneidet", wir: "schneiden", ihr: "schneidet", sie: "schneiden" }
-  },
-  {
-    infinitiv: "schreiben",
-    arabic: "يكتب",
-    forms: { ich: "schreibe", du: "schreibst", er: "schreibt", wir: "schreiben", ihr: "schreibt", sie: "schreiben" }
-  },
-  {
-    infinitiv: "schreien",
-    arabic: "يصرخ",
-    forms: { ich: "schreie", du: "schreist", er: "schreit", wir: "schreien", ihr: "schreit", sie: "schreien" }
-  },
-  {
-    infinitiv: "schreiten",
-    arabic: "يخطو",
-    forms: { ich: "schreite", du: "schreitest", er: "schreitet", wir: "schreiten", ihr: "schreitet", sie: "schreiten" }
-  },
-  {
-    infinitiv: "schweigen",
-    arabic: "يصمت",
-    forms: { ich: "schweige", du: "schweigst", er: "schweigt", wir: "schweigen", ihr: "schweigt", sie: "schweigen" }
-  },
-  {
-    infinitiv: "schwellen",
-    arabic: "ينتفخ",
-    forms: { ich: "schwelle", du: "schwillst", er: "schwillt", wir: "schwellen", ihr: "schwellt", sie: "schwellen" }
-  },
-  {
-    infinitiv: "schwimmen",
-    arabic: "يسبح",
-    forms: { ich: "schwimme", du: "schwimmst", er: "schwimmt", wir: "schwimmen", ihr: "schwimmt", sie: "schwimmen" }
-  },
-  {
-    infinitiv: "schwinden",
-    arabic: "يتلاشى",
-    forms: { ich: "schwinde", du: "schwindest", er: "schwindet", wir: "schwinden", ihr: "schwindet", sie: "schwinden" }
-  },
-  {
-    infinitiv: "schwingen",
-    arabic: "يتأرجح",
-    forms: { ich: "schwinge", du: "schwingst", er: "schwingt", wir: "schwingen", ihr: "schwingt", sie: "schwingen" }
-  },
-  {
-    infinitiv: "schwören",
-    arabic: "يقسم",
-    forms: { ich: "schwöre", du: "schwörst", er: "schwört", wir: "schwören", ihr: "schwört", sie: "schwören" }
-  },
-  {
-    infinitiv: "sehen",
-    arabic: "يرى",
-    forms: { ich: "sehe", du: "siehst", er: "sieht", wir: "sehen", ihr: "seht", sie: "sehen" }
-  },
-  {
-    infinitiv: "sein",
-    arabic: "يكون",
-    forms: { ich: "bin", du: "bist", er: "ist", wir: "sind", ihr: "seid", sie: "sind" }
-  },
-  {
-    infinitiv: "senden",
-    arabic: "يرسل",
-    forms: { ich: "sende", du: "sendest", er: "sendet", wir: "senden", ihr: "sendet", sie: "senden" }
-  },
-  {
-    infinitiv: "singen",
-    arabic: "يغني",
-    forms: { ich: "singe", du: "singst", er: "singt", wir: "singen", ihr: "singt", sie: "singen" }
-  },
-  {
-    infinitiv: "sinken",
-    arabic: "يغرق / يهبط",
-    forms: { ich: "sinke", du: "sinkst", er: "sinkt", wir: "sinken", ihr: "sinkt", sie: "sinken" }
-  },
-  {
-    infinitiv: "sinnen",
-    arabic: "يتأمل",
-    forms: { ich: "sinne", du: "sinnst", er: "sinnt", wir: "sinnen", ihr: "sinnt", sie: "sinnen" }
-  },
-  {
-    infinitiv: "sitzen",
-    arabic: "يجلس",
-    forms: { ich: "sitze", du: "sitzt", er: "sitzt", wir: "sitzen", ihr: "sitzt", sie: "sitzen" }
-  },
-  {
-    infinitiv: "sollen",
-    arabic: "يجب / ينبغي",
-    forms: { ich: "soll", du: "sollst", er: "soll", wir: "sollen", ihr: "sollt", sie: "sollen" }
-  },
-  {
-    infinitiv: "spalten",
-    arabic: "يشطر",
-    forms: { ich: "spalte", du: "spaltest", er: "spaltet", wir: "spalten", ihr: "spaltet", sie: "spalten" }
-  },
-  {
-    infinitiv: "speien",
-    arabic: "يبصق",
-    forms: { ich: "speie", du: "speist", er: "speit", wir: "speien", ihr: "speit", sie: "speien" }
-  },
-  {
-    infinitiv: "spinnen",
-    arabic: "يغزل",
-    forms: { ich: "spinne", du: "spinnst", er: "spinnt", wir: "spinnen", ihr: "spinnt", sie: "spinnen" }
-  },
-  {
-    infinitiv: "sprechen",
-    arabic: "يتحدث",
-    forms: { ich: "spreche", du: "sprichst", er: "spricht", wir: "sprechen", ihr: "sprecht", sie: "sprechen" }
-  },
-  {
-    infinitiv: "sprießen",
-    arabic: "ينبت",
-    forms: { ich: "sprieße", du: "sprießt", er: "sprießt", wir: "sprießen", ihr: "sprießt", sie: "sprießen" }
-  },
-  {
-    infinitiv: "springen",
-    arabic: "يقفز",
-    forms: { ich: "springe", du: "springst", er: "springt", wir: "springen", ihr: "springt", sie: "springen" }
-  },
-  {
-    infinitiv: "stechen",
-    arabic: "يلسع",
-    forms: { ich: "steche", du: "stichst", er: "sticht", wir: "stechen", ihr: "stecht", sie: "stechen" }
-  },
-  {
-    infinitiv: "stehen",
-    arabic: "يقف",
-    forms: { ich: "stehe", du: "stehst", er: "steht", wir: "stehen", ihr: "steht", sie: "stehen" }
-  },
-  {
-    infinitiv: "stehlen",
-    arabic: "يسرق",
-    forms: { ich: "stehle", du: "stiehlst", er: "stiehlt", wir: "stehlen", ihr: "stehlt", sie: "stehlen" }
-  },
-  {
-    infinitiv: "steigen",
-    arabic: "يصعد",
-    forms: { ich: "steige", du: "steigst", er: "steigt", wir: "steigen", ihr: "steigt", sie: "steigen" }
-  },
-  {
-    infinitiv: "sterben",
-    arabic: "يموت",
-    forms: { ich: "sterbe", du: "stirbst", er: "stirbt", wir: "sterben", ihr: "sterbt", sie: "sterben" }
-  },
-  {
-    infinitiv: "stinken",
-    arabic: "ينتن",
-    forms: { ich: "stinke", du: "stinkst", er: "stinkt", wir: "stinken", ihr: "stinkt", sie: "stinken" }
-  },
-  {
-    infinitiv: "stoßen",
-    arabic: "يدفع / يصطدم",
-    forms: { ich: "stoße", du: "stößt", er: "stößt", wir: "stoßen", ihr: "stoßt", sie: "stoßen" }
-  },
-  {
-    infinitiv: "streichen",
-    arabic: "يمسح / يدهن",
-    forms: { ich: "streiche", du: "streichst", er: "streicht", wir: "streichen", ihr: "streicht", sie: "streichen" }
-  },
-  {
-    infinitiv: "streiten",
-    arabic: "يتشاجر",
-    forms: { ich: "streite", du: "streitest", er: "streitet", wir: "streiten", ihr: "streitet", sie: "streiten" }
-  },
-  {
-    infinitiv: "tragen",
-    arabic: "يحمل / يرتدي",
-    forms: { ich: "trage", du: "trägst", er: "trägt", wir: "tragen", ihr: "tragt", sie: "tragen" }
-  },
-  {
-    infinitiv: "treffen",
-    arabic: "يقابل / يصيب",
-    forms: { ich: "treffe", du: "triffst", er: "trifft", wir: "treffen", ihr: "trefft", sie: "treffen" }
-  },
-  {
-    infinitiv: "treiben",
-    arabic: "يدفع / يمارس",
-    forms: { ich: "treibe", du: "treibst", er: "treibt", wir: "treiben", ihr: "treibt", sie: "treiben" }
-  },
-  {
-    infinitiv: "treten",
-    arabic: "يركل",
-    forms: { ich: "trete", du: "trittst", er: "tritt", wir: "treten", ihr: "tretet", sie: "treten" }
-  },
-  {
-    infinitiv: "trinken",
-    arabic: "يشرب",
-    forms: { ich: "trinke", du: "trinkst", er: "trinkt", wir: "trinken", ihr: "trinkt", sie: "trinken" }
-  },
-  {
-    infinitiv: "tun",
-    arabic: "يفعل",
-    forms: { ich: "tue", du: "tust", er: "tut", wir: "tun", ihr: "tut", sie: "tun" }
-  },
-  {
-    infinitiv: "verbergen",
-    arabic: "يخفي",
-    forms: { ich: "verberge", du: "verbirgst", er: "verbirgt", wir: "verbergen", ihr: "verbergt", sie: "verbergen" }
-  },
-  {
-    infinitiv: "verbieten",
-    arabic: "يمنع",
-    forms: { ich: "verbiete", du: "verbietest", er: "verbietet", wir: "verbieten", ihr: "verbietet", sie: "verbieten" }
-  },
-  {
-    infinitiv: "verdienen",
-    arabic: "يكسب",
-    forms: { ich: "verdiene", du: "verdienst", er: "verdient", wir: "verdienen", ihr: "verdient", sie: "verdienen" }
-  },
-  {
-    infinitiv: "vergessen",
-    arabic: "ينسى",
-    forms: { ich: "vergesse", du: "vergisst", er: "vergisst", wir: "vergessen", ihr: "vergesst", sie: "vergessen" }
-  },
-  {
-    infinitiv: "verlassen",
-    arabic: "يغادر",
-    forms: { ich: "verlasse", du: "verlässt", er: "verlässt", wir: "verlassen", ihr: "verlasst", sie: "verlassen" }
-  },
-  {
-    infinitiv: "verlieren",
-    arabic: "يفقد",
-    forms: { ich: "verliere", du: "verlierst", er: "verliert", wir: "verlieren", ihr: "verliert", sie: "verlieren" }
-  },
-  {
-    infinitiv: "verstehen",
-    arabic: "يفهم",
-    forms: { ich: "verstehe", du: "verstehst", er: "versteht", wir: "verstehen", ihr: "versteht", sie: "verstehen" }
-  },
-  {
-    infinitiv: "waschen",
-    arabic: "يغسل",
-    forms: { ich: "wasche", du: "wäschst", er: "wäscht", wir: "waschen", ihr: "wascht", sie: "waschen" }
-  },
-  {
-    infinitiv: "werden",
-    arabic: "يصبح / سوف",
-    forms: { ich: "werde", du: "wirst", er: "wird", wir: "werden", ihr: "werdet", sie: "werden" }
-  },
-  {
-    infinitiv: "werfen",
-    arabic: "يرمي",
-    forms: { ich: "werfe", du: "wirfst", er: "wirft", wir: "werfen", ihr: "werft", sie: "werfen" }
-  },
-  {
-    infinitiv: "wissen",
-    arabic: "يعرف (شيئاً)",
-    forms: { ich: "weiß", du: "weißt", er: "weiß", wir: "wissen", ihr: "wisst", sie: "wissen" }
-  },
-  {
-    infinitiv: "wollen",
-    arabic: "يريد",
-    forms: { ich: "will", du: "willst", er: "will", wir: "wollen", ihr: "wollt", sie: "wollen" }
-  },
-  {
-    infinitiv: "ziehen",
-    arabic: "يسحب / يتحرك",
-    forms: { ich: "ziehe", du: "ziehst", er: "zieht", wir: "ziehen", ihr: "zieht", sie: "ziehen" }
-  }
+  // أفعال قوية يتغير فيها الحرف الصوتي مع du و er/sie/es (A -> Ä)
+  { section: "part4", infinitiv: "fahren", arabic: "يسافر / يقود", forms: { ich: "fahre", du: "fährst", er: "fährt", wir: "fahren", ihr: "fahrt", sie: "fahren" } },
+  { section: "part4", infinitiv: "schlafen", arabic: "ينام", forms: { ich: "schlafe", du: "schläfst", er: "schläft", wir: "schlafen", ihr: "schlaft", sie: "schlafen" } },
+  { section: "part4", infinitiv: "laufen", arabic: "يجري / يمشي", forms: { ich: "laufe", du: "läufst", er: "läuft", wir: "laufen", ihr: "lauft", sie: "laufen" } },
+  { section: "part4", infinitiv: "waschen", arabic: "يغسل", forms: { ich: "wasche", du: "wäschst", er: "wäscht", wir: "waschen", ihr: "wascht", sie: "waschen" } },
+  { section: "part4", infinitiv: "tragen", arabic: "يرتدي / يحمل", forms: { ich: "trage", du: "trägst", er: "trägt", wir: "tragen", ihr: "tragt", sie: "tragen" } },
+  { section: "part4", infinitiv: "einladen", arabic: "يدعو (منفصل)", forms: { ich: "lade ein", du: "lädst ein", er: "lädt ein", wir: "laden ein", ihr: "ladet ein", sie: "laden ein" } },
+
+  // أفعال قوية يتغير فيها الحرف الصوتي (E -> I)
+  { section: "part4", infinitiv: "sprechen", arabic: "يتحدث", forms: { ich: "spreche", du: "sprichst", er: "spricht", wir: "sprechen", ihr: "sprecht", sie: "sprechen" } },
+  { section: "part4", infinitiv: "geben", arabic: "يعطي", forms: { ich: "gebe", du: "gibst", er: "gibt", wir: "geben", ihr: "gebt", sie: "geben" } },
+  { section: "part4", infinitiv: "essen", arabic: "يأكل", forms: { ich: "esse", du: "isst", er: "isst", wir: "essen", ihr: "esst", sie: "essen" } },
+  { section: "part4", infinitiv: "helfen", arabic: "يساعد", forms: { ich: "helfe", du: "hilfst", er: "hilft", wir: "helfen", ihr: "helft", sie: "helfen" } },
+  { section: "part4", infinitiv: "treffen", arabic: "يقابل", forms: { ich: "treffe", du: "triffst", er: "trifft", wir: "treffen", ihr: "trefft", sie: "treffen" } },
+  { section: "part4", infinitiv: "nehmen", arabic: "يأخذ", forms: { ich: "nehme", du: "nimmst", er: "nimmt", wir: "nehmen", ihr: "nehmt", sie: "nehmen" } },
+  { section: "part4", infinitiv: "sterben", arabic: "يموت", forms: { ich: "sterbe", du: "stirbst", er: "stirbt", wir: "sterben", ihr: "sterbt", sie: "sterben" } },
+  { section: "part4", infinitiv: "vergessen", arabic: "ينسى", forms: { ich: "vergesse", du: "vergisst", er: "vergisst", wir: "vergessen", ihr: "vergesst", sie: "vergessen" } },
+
+  // أفعال قوية يتغير فيها الحرف الصوتي (E -> IE)
+  { section: "part4", infinitiv: "sehen", arabic: "يرى", forms: { ich: "sehe", du: "siehst", er: "sieht", wir: "sehen", ihr: "seht", sie: "sehen" } },
+  { section: "part4", infinitiv: "lesen", arabic: "يقرأ", forms: { ich: "lese", du: "liest", er: "liest", wir: "lesen", ihr: "lest", sie: "lesen" } },
+  { section: "part4", infinitiv: "empfehlen", arabic: "يوصي / ينصح بـ", forms: { ich: "empfehle", du: "empfiehlst", er: "empfiehlt", wir: "empfehlen", ihr: "empfehlt", sie: "empfehlen" } },
+  { section: "part4", infinitiv: "stehlen", arabic: "يسرق", forms: { ich: "stehle", du: "stiehlst", er: "stiehlt", wir: "stehlen", ihr: "stehlt", sie: "stehlen" } },
+
+  // أفعال الكيف المساعدة (Modalverben) التي يتغير تصريفها تماماً في المفرد
+  { section: "part4", infinitiv: "können", arabic: "يستطيع", forms: { ich: "kann", du: "kannst", er: "kann", wir: "können", ihr: "könnt", sie: "können" } },
+  { section: "part4", infinitiv: "müssen", arabic: "يجب", forms: { ich: "muss", du: "musst", er: "muss", wir: "müssen", ihr: "müsst", sie: "müssen" } },
+  { section: "part4", infinitiv: "wollen", arabic: "يريد", forms: { ich: "will", du: "willst", er: "will", wir: "wollen", ihr: "wollt", sie: "wollen" } },
+  { section: "part4", infinitiv: "dürfen", arabic: "يسمح له", forms: { ich: "darf", du: "darfst", er: "darf", wir: "dürfen", ihr: "dürft", sie: "dürfen" } },
+  { section: "part4", infinitiv: "sollen", arabic: "ينبغي", forms: { ich: "soll", du: "sollst", er: "soll", wir: "sollen", ihr: "sollt", sie: "sollen" } },
+  { section: "part4", infinitiv: "wissen", arabic: "يعلم / يعرف", forms: { ich: "weiß", du: "weißt", er: "weiß", wir: "wissen", ihr: "wisst", sie: "wissen" } }
 ];
+const container = document.getElementById('verbsContainer');
+let currentSection = "";
 
-// إجمالي عدد الأفعال: 370 (10 + 360 جديدة فعل)
-console.log(`Total verbs: ${verbs.length}`);
+// دالة لتوليد عناصر واجهة المستخدم ديناميكياً بناءً على البيانات
+allVerbs.forEach(verb => {
+  // إضافة عنوان القسم إذا تغير القسم الحالي
+  if (verb.sectionTitle && currentSection !== verb.section) {
+    currentSection = verb.section;
+    const secHeader = document.createElement('h2');
+    secHeader.id = verb.section;
+    secHeader.style.width = '100%';
+    secHeader.style.textAlign = 'center';
+    secHeader.style.color = '#0077cc';
+    secHeader.style.marginTop = '40px';
+    secHeader.style.borderBottom = '2px solid #0077cc';
+    secHeader.style.paddingBottom = '10px';
+    secHeader.innerText = verb.sectionTitle;
+    container.appendChild(secHeader);
+  }
 
-// إجمالي عدد الأفعال
-
-
-const container = document.getElementById("verbsContainer");
-
-verbs.forEach(verb => {
-  const card = document.createElement("div");
-  card.className = "card";
+  // إنشاء الكارت الخاص بكل فعل
+  const card = document.createElement('div');
+  card.className = 'card';
 
   card.innerHTML = `
     <div class="title">
-      <span class="infinitiv speakable">${verb.infinitiv}</span>
+      <span class="infinitiv" onclick="speak('${verb.infinitiv}')">${verb.infinitiv}</span>
       <span class="arabic">${verb.arabic}</span>
     </div>
-
     <table>
       <thead>
         <tr>
@@ -1817,12 +397,12 @@ verbs.forEach(verb => {
       </thead>
       <tbody>
         <tr>
-          <td class="speakable">${verb.forms.ich}</td>
-          <td class="speakable">${verb.forms.du}</td>
-          <td class="speakable">${verb.forms.er}</td>
-          <td class="speakable">${verb.forms.wir}</td>
-          <td class="speakable">${verb.forms.ihr}</td>
-          <td class="speakable">${verb.forms.sie}</td>
+          <td onclick="speak('${verb.forms.ich}')">${verb.forms.ich}</td>
+          <td onclick="speak('${verb.forms.du}')">${verb.forms.du}</td>
+          <td onclick="speak('${verb.forms.er}')">${verb.forms.er}</td>
+          <td onclick="speak('${verb.forms.wir}')">${verb.forms.wir}</td>
+          <td onclick="speak('${verb.forms.ihr}')">${verb.forms.ihr}</td>
+          <td onclick="speak('${verb.forms.sie}')">${verb.forms.sie}</td>
         </tr>
       </tbody>
     </table>
@@ -1830,49 +410,20 @@ verbs.forEach(verb => {
   container.appendChild(card);
 });
 
-// --- إضافة منطق الضغط المطول والنطق الذكي ---
-
-// دالة لنطق النص باللغة الألمانية
-function speakGerman(text) {
-  // إلغاء أي نطق مستمر حالياً لمنع التداخل
-  window.speechSynthesis.cancel();
-  
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'de-DE'; // تعيين اللغة الألمانية
-  utterance.rate = 0.85;    // إبطاء السرعة قليلاً بوضوح لتسهيل التعلم
-  window.speechSynthesis.speak(utterance);
+// دالة نطق الكلمات بالألمانية باستخدام ميزة توليد الأصوات في المتصفح Web Speech API
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    // إلغاء أي نطق مستمر لمنع التداخل
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE'; // تحديد اللغة الألمانية
+    utterance.rate = 0.85;    // إبطاء السرعة قليلاً لتسهيل الاستماع والتعلم
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert("عذراً، متصفحك لا يدعم ميزة النطق الصوتي التلقائي.");
+  }
 }
-
-let pressTimer;
-
-// دالة بدء التوقيت للضغط المطول
-function startPress(e) {
-  const textToSpeak = e.target.innerText;
-  
-  // تحديد مدة الضغط المطول (500 مللي ثانية = نصف ثانية)
-  pressTimer = setTimeout(() => {
-    speakGerman(textToSpeak);
-  }, 500);
-}
-
-// دالة إلغاء التوقيت إذا رفع المستخدم إصبعه أو الماوس مبكراً
-function cancelPress() {
-  clearTimeout(pressTimer);
-}
-
-// تطبيق الأحداث على جميع العناصر التي تحتوي على كلاس "speakable"
-document.querySelectorAll('.speakable').forEach(element => {
-  // للكمبيوتر (الماوس)
-  element.addEventListener('mousedown', startPress);
-  element.addEventListener('mouseup', cancelPress);
-  element.addEventListener('mouseleave', cancelPress);
-
-  // للهواتف والشاشات اللمسية
-  element.addEventListener('touchstart', startPress);
-  element.addEventListener('touchend', cancelPress);
-  element.addEventListener('touchmove', cancelPress);
-});
 </script>
-
 </body>
 </html>
