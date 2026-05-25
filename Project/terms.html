@@ -1,147 +1,748 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>شروط الاستخدام - أبو نزار</title>
+  <title>Präsens Verben - نظام متطور لتعلم الأفعال الألمانية</title>
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      padding: 40px 20px;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 30px;
-      padding: 40px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      direction: rtl;
-    }
-    h1 {
-      color: #2563eb;
-      margin-bottom: 10px;
-      font-size: 2rem;
-    }
-    .date {
-      color: #666;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-      margin-bottom: 25px;
-    }
-    h2 {
-      color: #1e40af;
-      margin-top: 25px;
-      margin-bottom: 10px;
-      font-size: 1.5rem;
-    }
-    p {
-      line-height: 1.7;
-      color: #444;
-      margin-bottom: 15px;
-    }
-    ul {
-      margin-right: 25px;
-      margin-bottom: 15px;
-    }
-    li {
-      line-height: 1.7;
-      color: #444;
-      margin-bottom: 5px;
-    }
-    .contact-box {
-      background: #f0f7ff;
       padding: 20px;
-      border-radius: 20px;
-      margin: 25px 0;
-      text-align: center;
-      border-right: 4px solid #2563eb;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
     }
-    .contact-box a {
-      color: #2563eb;
-      text-decoration: none;
+
+    /* الوضع الليلي */
+    body.dark-mode {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #eee;
+    }
+
+    body.dark-mode .card {
+      background: #2d2d44;
+      color: #eee;
+      border-color: #444;
+    }
+
+    body.dark-mode .title {
+      background: #1a1a2e;
+    }
+
+    body.dark-mode td:hover {
+      background: #3d3d5c;
+    }
+
+    body.dark-mode .control-bar,
+    body.dark-mode .search-box input,
+    body.dark-mode .filter-select select {
+      background: #2d2d44;
+      color: #eee;
+      border-color: #555;
+    }
+
+    body.dark-mode th {
+      background: #3d3d5c;
+      color: #ddd;
+    }
+
+    body.dark-mode td {
+      border-bottom-color: #444;
+    }
+
+    body.dark-mode .speed-control {
+      background: #3d3d5c;
+    }
+
+    /* الحاوية الرئيسية */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* شريط التحكم العلوي */
+    .control-bar {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    /* أزرار التحكم */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.3s;
+      background: #667eea;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn-danger {
+      background: #e74c3c;
+    }
+
+    .btn-success {
+      background: #27ae60;
+    }
+
+    .btn-warning {
+      background: #f39c12;
+    }
+
+    /* مربع البحث والفلاتر */
+    .search-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      padding: 12px 20px;
+      width: 300px;
+      border: 2px solid #ddd;
+      border-radius: 25px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .filter-select select {
+      padding: 12px 20px;
+      border: 2px solid #ddd;
+      border-radius: 25px;
+      font-size: 16px;
+      background: white;
+      cursor: pointer;
+    }
+
+    /* الإحصائيات */
+    .stats {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 15px;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .stat-number {
+      font-size: 32px;
       font-weight: bold;
     }
-    .contact-box a:hover {
-      text-decoration: underline;
+
+    .stat-label {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-top: 5px;
     }
-    footer {
-      margin-top: 40px;
+
+    /* بطاقة التحدي */
+    .challenge-card {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
       text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .challenge-card:hover {
+      transform: scale(1.02);
+    }
+
+    /* تنسيق البطاقات */
+    .card {
+      background: white;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .title {
+      background: #0077cc;
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    /* ألوان مميزة لكل قسم */
+    .card[data-section="basic"] .title { background: #3498db; }
+    .card[data-section="trennbar"] .title { background: #27ae60; }
+    .card[data-section="inseparabel"] .title { background: #e74c3c; }
+    .card[data-section="modal"] .title { background: #f39c12; }
+    .card[data-section="extra"] .title { background: #9b59b6; }
+
+    .infinitiv {
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .arabic {
+      background: rgba(255,255,255,0.2);
+      padding: 5px 15px;
+      border-radius: 20px;
+      direction: rtl;
+      font-size: 16px;
+    }
+
+    .studied-badge {
+      background: #27ae60;
+      border-radius: 20px;
+      padding: 2px 8px;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      padding: 12px 5px;
+      background: #f8f9fa;
+      color: #555;
       font-size: 14px;
-      color: #888;
-      border-top: 1px solid #eee;
-      padding-top: 20px;
     }
-    footer a {
-      color: #2563eb;
+
+    td {
+      text-align: center;
+      padding: 15px 5px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-bottom: 1px solid #eee;
+    }
+
+    td:hover {
+      background: #e3f2fd;
+    }
+
+    /* سرعة النطق */
+    .speed-control {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: #f0f0f0;
+      padding: 5px 15px;
+      border-radius: 25px;
+    }
+
+    .speed-btn {
+      padding: 5px 12px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      background: #ddd;
+      transition: all 0.3s;
+    }
+
+    .speed-btn.active {
+      background: #667eea;
+      color: white;
+    }
+
+    /* وضع التحدي المصغر */
+    .mini-challenge {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .mini-challenge {
+      background: #2d2d44;
+    }
+
+    .challenge-question {
+      font-size: 24px;
+      margin: 15px 0;
+    }
+
+    .challenge-options {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .challenge-option {
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .challenge-option:hover {
+      background: #764ba2;
+      transform: scale(1.05);
+    }
+
+    .challenge-feedback {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+
+    /* زر الوضع الليلي */
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+
+    .dark-mode-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* متجاوب */
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      
+      th {
+        display: none;
+      }
+      
+      td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        width: 100px;
+      }
+      
+      .card {
+        min-width: auto;
+      }
+    }
+    .btn-home {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
       text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+      border: 2px solid rgba(255,255,255,0.3);
     }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 600px) {
-      .container { padding: 25px; }
-      h1 { font-size: 1.6rem; }
+
+    .btn-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(238, 90, 36, 0.5);
+      background: linear-gradient(135deg, #ff8c5a, #ff4757);
     }
   </style>
 </head>
+
 <body>
-<div class="container">
-  <h1>📜 شروط الاستخدام</h1>
-  <div class="date">آخر تحديث: مايو 2026</div>
-  
-  <p>مرحباً بك في منصة <strong>تعلم اللغة الألمانية (B1.2)</strong> – تم الإنشاء بواسطة <strong>أبو نزار</strong>. باستخدامك لهذا الموقع، فإنك توافق على الالتزام بالشروط التالية. إذا كنت لا توافق على هذه الشروط، يرجى عدم استخدام الموقع.</p>
+<a href="../index.html" class="btn-home">🏠 Home 🔙</a>
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
-  <h2>1. الغرض من الموقع</h2>
-  <ul>
-    <li>المنصة مخصصة <strong>لأغراض تعليمية مجانية</strong> لتعلم قواعد اللغة الألمانية بمستوى B1.</li>
-    <li>جميع الدروس، الأمثلة، والاختبارات معدة للاستخدام الشخصي فقط.</li>
-  </ul>
+  <div class="container">
+    <h1 style="text-align: center; color: white; margin-bottom: 10px;">📚 تصريف الأفعال الألمانية - Präsens</h1>
+    <p style="text-align: center; color: rgba(255,255,255,0.9); margin-bottom: 30px;">🎯 اضغط على أي كلمة لسماع النطق | 🌟 تحدى نفسك في وضع الاختبار</p>
 
-  <h2>2. التخزين المحلي وعدم وجود حساب مستخدم</h2>
-  <p>لا يتطلب الموقع إنشاء حساب. يتم حفظ تقدمك الدراسي (المشاريع المكتملة، الوضع الليلي) <strong>محلياً في متصفحك عبر localStorage</strong>. إذا قمت بمسح بيانات التصفح أو استخدمت وضع التصفح المتخفي (Incognito)، فسوف تفقد تقدمك. نوصي بعدم استخدام الوضع الخاص للحفاظ على تقدمك.</p>
+    <div class="control-bar">
+      <div class="controls">
+        <a href="../index.html" class="btn">Home 🔙</a>
+        <button class="btn" onclick="resetProgress()">🔄 إعادة تعيين التقدم</button>
+        <button class="btn btn-success" onclick="showRandomChallenge()">🎯 تحدٍ عشوائي</button>
+        <div class="speed-control">
+          <span>⚡ سرعة النطق:</span>
+          <button class="speed-btn" onclick="setSpeechSpeed(0.6)">بطيء</button>
+          <button class="speed-btn active" onclick="setSpeechSpeed(0.85)">عادي</button>
+          <button class="speed-btn" onclick="setSpeechSpeed(1.1)">سريع</button>
+        </div>
+      </div>
 
-  <h2>3. حقوق الملكية الفكرية</h2>
-  <p>جميع محتويات الموقع (نصوص، جداول، أكواد، تصاميم، تمارين) هي ملك لمنصة <strong>أبو نزار</strong> ما لم يُذكر خلاف ذلك. يُمنع نسخ أو إعادة توزيع أي جزء من المحتوى لأغراض تجارية دون إذن خطي مسبق من المالك.</p>
+      <div class="search-section">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="🔍 بحث عن فعل... (بالعربية أو الألمانية)" onkeyup="filterVerbs()">
+        </div>
+        <div class="filter-select">
+          <select id="filterSelect" onchange="filterVerbs()">
+            <option value="all">📋 جميع الأقسام</option>
+            <option value="basic">🔵 القسم 1: الأفعال الأساسية</option>
+            <option value="trennbar">🟢 القسم 2: الأفعال المنفصلة</option>
+            <option value="inseparabel">🔴 القسم 3: الأفعال غير المنفصلة</option>
+            <option value="modal">🟡 القسم 4: الأفعال الشاذة والمساعدة</option>
+            <option value="extra">🟣 القسم 5: أفعال إضافية متنوعة</option>
+          </select>
+        </div>
+      </div>
 
-  <h2>4. الروابط الخارجية وإخلاء المسؤولية</h2>
-  <ul>
-    <li>قد يحتوي الموقع على روابط لمواقع خارجية (مثل يوتيوب، DW، Lingolia). نحن غير مسؤولين عن محتوى أو توفر تلك المواقع.</li>
-    <li>تم إعداد المحتوى التعليمي بدقة، لكنه لا يخلو من احتمال الخطأ. ننصح بالاعتماد أيضاً على مصادر رسمية إضافية للاستعداد للامتحانات.</li>
-  </ul>
+      <div class="stats" id="stats">
+        <div class="stat-card">
+          <div class="stat-number" id="totalCount">0</div>
+          <div class="stat-label">إجمالي الأفعال</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="studiedCount">0</div>
+          <div class="stat-label">تمت دراستها</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="progressPercent">0%</div>
+          <div class="stat-label">نسبة التقدم</div>
+        </div>
+      </div>
+    </div>
 
-  <h2>5. حدود المسؤولية</h2>
-  <ul>
-    <li>الموقع يُقدم <strong>"كما هو" (AS IS)</strong> دون أي ضمانات. لا نضمن أن الموقع سيكون خالياً من الأخطاء أو متاحاً طوال الوقت.</li>
-    <li>نحن غير مسؤولين عن فقدان بيانات التقدم الدراسي بسبب تحديث المتصفح، حذف المستخدم للملفات المحلية، أو أي عطل تقني من جهة المستخدم.</li>
-    <li>المسؤولية النهائية عن فهم وتطبيق القواعد تقع على عاتق المستخدم نفسه.</li>
-  </ul>
+    <div class="mini-challenge" id="miniChallenge" style="display: none;">
+      <h3>🎯 تحدي سريع - اختبر معلوماتك</h3>
+      <div id="challengeContent"></div>
+    </div>
 
-  <h2>6. تعديل شروط الاستخدام</h2>
-  <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سيتم نشر النسخة المحدثة على هذه الصفحة. استمرارك في استخدام الموقع بعد التعديل يعني قبولك للشروط الجديدة.</p>
-
-  <h2>7. الإبلاغ عن الأخطاء والتواصل</h2>
-  <div class="contact-box">
-    <strong>📧 للإبلاغ عن أخطاء أو استفسارات:</strong><br>
-    البريد الإلكتروني: <a href="mailto:sport.all.apps@gmail.com">sport.all.apps@gmail.com</a><br>
-    <span style="color: #d9534f;">⚠️ إذا وجدت أخطاء (لغوية أو تقنية)، رجاء إبلاغي – وسنقوم بتصحيحها في أقرب وقت.</span>
+    <div id="verbsContainer"></div>
   </div>
 
-  <h2>8. القانون المُطبق</h2>
-  <p>تخضع هذه الشروط للقوانين المحلية. نوصي بالالتزام بالأخلاقيات الرقمية عند استخدام المحتوى.</p>
+  <script>
+    // سرعة النطق الافتراضية
+    let speechRate = 0.85;
+    
+    // تجميع كل الأفعال
+    const allVerbs = [
+      // ==================== الجزء الأول: الأفعال الأساسية (1-20) ====================
+      { id: 1, section: "basic", infinitiv: "machen", arabic: "يفعل / يصنع", forms: { ich: "mache", du: "machst", er: "macht", wir: "machen", ihr: "macht", sie: "machen" } },
+      { id: 2, section: "basic", infinitiv: "gehen", arabic: "يذهب", forms: { ich: "gehe", du: "gehst", er: "geht", wir: "gehen", ihr: "geht", sie: "gehen" } },
+      { id: 3, section: "basic", infinitiv: "kommen", arabic: "يأتي", forms: { ich: "komme", du: "kommst", er: "kommt", wir: "kommen", ihr: "kommt", sie: "kommen" } },
+      { id: 4, section: "basic", infinitiv: "sehen", arabic: "يرى", forms: { ich: "sehe", du: "siehst", er: "sieht", wir: "sehen", ihr: "seht", sie: "sehen" } },
+      { id: 5, section: "basic", infinitiv: "essen", arabic: "يأكل", forms: { ich: "esse", du: "isst", er: "isst", wir: "essen", ihr: "esst", sie: "essen" } },
+      { id: 6, section: "basic", infinitiv: "trinken", arabic: "يشرب", forms: { ich: "trinke", du: "trinkst", er: "trinkt", wir: "trinken", ihr: "trinkt", sie: "trinken" } },
+      { id: 7, section: "basic", infinitiv: "schlafen", arabic: "ينام", forms: { ich: "schlafe", du: "schläfst", er: "schläft", wir: "schlafen", ihr: "schlaft", sie: "schlafen" } },
+      { id: 8, section: "basic", infinitiv: "sprechen", arabic: "يتحدث", forms: { ich: "spreche", du: "sprichst", er: "spricht", wir: "sprechen", ihr: "sprecht", sie: "sprechen" } },
+      { id: 9, section: "basic", infinitiv: "nehmen", arabic: "يأخذ", forms: { ich: "nehme", du: "nimmst", er: "nimmt", wir: "nehmen", ihr: "nehmt", sie: "nehmen" } },
+      { id: 10, section: "basic", infinitiv: "geben", arabic: "يعطي", forms: { ich: "gebe", du: "gibst", er: "gibt", wir: "geben", ihr: "gebt", sie: "geben" } },
+      { id: 11, section: "basic", infinitiv: "helfen", arabic: "يساعد", forms: { ich: "helfe", du: "hilfst", er: "hilft", wir: "helfen", ihr: "helft", sie: "helfen" } },
+      { id: 12, section: "basic", infinitiv: "fahren", arabic: "يسافر / يقود", forms: { ich: "fahre", du: "fährst", er: "fährt", wir: "fahren", ihr: "fahrt", sie: "fahren" } },
+      { id: 13, section: "basic", infinitiv: "laufen", arabic: "يركض", forms: { ich: "laufe", du: "läufst", er: "läuft", wir: "laufen", ihr: "lauft", sie: "laufen" } },
+      { id: 14, section: "basic", infinitiv: "lesen", arabic: "يقرأ", forms: { ich: "lese", du: "liest", er: "liest", wir: "lesen", ihr: "lest", sie: "lesen" } },
+      { id: 15, section: "basic", infinitiv: "schreiben", arabic: "يكتب", forms: { ich: "schreibe", du: "schreibst", er: "schreibt", wir: "schreiben", ihr: "schreibt", sie: "schreiben" } },
+      { id: 16, section: "basic", infinitiv: "lernen", arabic: "يتعلم", forms: { ich: "lerne", du: "lernst", er: "lernt", wir: "lernen", ihr: "lernt", sie: "lernen" } },
+      { id: 17, section: "basic", infinitiv: "arbeiten", arabic: "يعمل", forms: { ich: "arbeite", du: "arbeitest", er: "arbeitet", wir: "arbeiten", ihr: "arbeitet", sie: "arbeiten" } },
+      { id: 18, section: "basic", infinitiv: "wohnen", arabic: "يسكن", forms: { ich: "wohne", du: "wohnst", er: "wohnt", wir: "wohnen", ihr: "wohnt", sie: "wohnen" } },
+      { id: 19, section: "basic", infinitiv: "spielen", arabic: "يلعب", forms: { ich: "spiele", du: "spielst", er: "spielt", wir: "spielen", ihr: "spielt", sie: "spielen" } },
+      { id: 20, section: "basic", infinitiv: "hören", arabic: "يسمع", forms: { ich: "höre", du: "hörst", er: "hört", wir: "hören", ihr: "hört", sie: "hören" } },
 
-  <footer>
-    © 2026 <strong>أبو نزار</strong> – جميع الحقوق محفوظة | تعلم اللغة الألمانية B1.2<br>
-    <a href="privacy.html">🔒 سياسة الخصوصية</a> | <a href="../index.html">🏠 العودة إلى الصفحة الرئيسية</a>
-  </footer>
-</div>
+      // ==================== الجزء الثاني: الأفعال المنفصلة (21-40) ====================
+      { id: 21, section: "trennbar", infinitiv: "anfangen", arabic: "يبدأ", forms: { ich: "fange an", du: "fängst an", er: "fängt an", wir: "fangen an", ihr: "fangt an", sie: "fangen an" } },
+      { id: 22, section: "trennbar", infinitiv: "aufstehen", arabic: "يستيقظ", forms: { ich: "stehe auf", du: "stehst auf", er: "steht auf", wir: "stehen auf", ihr: "steht auf", sie: "stehen auf" } },
+      { id: 23, section: "trennbar", infinitiv: "anrufen", arabic: "يتصل بـ", forms: { ich: "rufe an", du: "rufst an", er: "ruft an", wir: "rufen an", ihr: "ruft an", sie: "rufen an" } },
+      { id: 24, section: "trennbar", infinitiv: "einladen", arabic: "يدعو", forms: { ich: "lade ein", du: "lädst ein", er: "lädt ein", wir: "laden ein", ihr: "ladet ein", sie: "laden ein" } },
+      { id: 25, section: "trennbar", infinitiv: "mitkommen", arabic: "يرافق", forms: { ich: "komme mit", du: "kommst mit", er: "kommt mit", wir: "kommen mit", ihr: "kommt mit", sie: "kommen mit" } },
+      { id: 26, section: "trennbar", infinitiv: "weggehen", arabic: "يغادر", forms: { ich: "gehe weg", du: "gehst weg", er: "geht weg", wir: "gehen weg", ihr: "geht weg", sie: "gehen weg" } },
+      { id: 27, section: "trennbar", infinitiv: "zurückkommen", arabic: "يعود", forms: { ich: "komme zurück", du: "kommst zurück", er: "kommt zurück", wir: "kommen zurück", ihr: "kommt zurück", sie: "kommen zurück" } },
+      { id: 28, section: "trennbar", infinitiv: "abholen", arabic: "يستلم", forms: { ich: "hole ab", du: "holst ab", er: "holt ab", wir: "holen ab", ihr: "holt ab", sie: "holen ab" } },
+      { id: 29, section: "trennbar", infinitiv: "aufräumen", arabic: "يرتب", forms: { ich: "räume auf", du: "räumst auf", er: "räumt auf", wir: "räumen auf", ihr: "räumt auf", sie: "räumen auf" } },
+      { id: 30, section: "trennbar", infinitiv: "einkaufen", arabic: "يتسوق", forms: { ich: "kaufe ein", du: "kaufst ein", er: "kauft ein", wir: "kaufen ein", ihr: "kauft ein", sie: "kaufen ein" } },
+      { id: 31, section: "trennbar", infinitiv: "fernsehen", arabic: "يتفرج على التلفاز", forms: { ich: "sehe fern", du: "siehst fern", er: "sieht fern", wir: "sehen fern", ihr: "seht fern", sie: "sehen fern" } },
+      { id: 32, section: "trennbar", infinitiv: "mitbringen", arabic: "يحضر معه", forms: { ich: "bringe mit", du: "bringst mit", er: "bringt mit", wir: "bringen mit", ihr: "bringt mit", sie: "bringen mit" } },
+      { id: 33, section: "trennbar", infinitiv: "stattfinden", arabic: "يحدث / يقام", forms: { ich: "finde statt", du: "findest statt", er: "findet statt", wir: "finden statt", ihr: "findet statt", sie: "finden statt" } },
+      { id: 34, section: "trennbar", infinitiv: "teilnehmen", arabic: "يشارك", forms: { ich: "nehme teil", du: "nimmst teil", er: "nimmt teil", wir: "nehmen teil", ihr: "nehmt teil", sie: "nehmen teil" } },
+      { id: 35, section: "trennbar", infinitiv: "vorstellen", arabic: "يقدم / يتخيل", forms: { ich: "stelle vor", du: "stellst vor", er: "stellt vor", wir: "stellen vor", ihr: "stellt vor", sie: "stellen vor" } },
+      { id: 36, section: "trennbar", infinitiv: "zumachen", arabic: "يغلق", forms: { ich: "mache zu", du: "machst zu", er: "macht zu", wir: "machen zu", ihr: "macht zu", sie: "machen zu" } },
+      { id: 37, section: "trennbar", infinitiv: "aufmachen", arabic: "يفتح", forms: { ich: "mache auf", du: "machst auf", er: "macht auf", wir: "machen auf", ihr: "macht auf", sie: "machen auf" } },
+      { id: 38, section: "trennbar", infinitiv: "abgeben", arabic: "يسلم", forms: { ich: "gebe ab", du: "gibst ab", er: "gibt ab", wir: "geben ab", ihr: "gebt ab", sie: "geben ab" } },
+      { id: 39, section: "trennbar", infinitiv: "anziehen", arabic: "يرتدي", forms: { ich: "ziehe an", du: "ziehst an", er: "zieht an", wir: "ziehen an", ihr: "zieht an", sie: "ziehen an" } },
+      { id: 40, section: "trennbar", infinitiv: "aufpassen", arabic: "ينتبه", forms: { ich: "passe auf", du: "passt auf", er: "passt auf", wir: "passen auf", ihr: "passt auf", sie: "passen auf" } },
+
+      // ==================== الجزء الثالث: الأفعال غير المنفصلة (41-60) ====================
+      { id: 41, section: "inseparabel", infinitiv: "bekommen", arabic: "يحصل على", forms: { ich: "bekomme", du: "bekommst", er: "bekommt", wir: "bekommen", ihr: "bekommt", sie: "bekommen" } },
+      { id: 42, section: "inseparabel", infinitiv: "verstehen", arabic: "يفهم", forms: { ich: "verstehe", du: "verstehst", er: "versteht", wir: "verstehen", ihr: "versteht", sie: "verstehen" } },
+      { id: 43, section: "inseparabel", infinitiv: "erzählen", arabic: "يحكي", forms: { ich: "erzähle", du: "erzählst", er: "erzählt", wir: "erzählen", ihr: "erzählt", sie: "erzählen" } },
+      { id: 44, section: "inseparabel", infinitiv: "bezahlen", arabic: "يدفع", forms: { ich: "bezahle", du: "bezahlst", er: "bezahlt", wir: "bezahlen", ihr: "bezahlt", sie: "bezahlen" } },
+      { id: 45, section: "inseparabel", infinitiv: "gebrauchen", arabic: "يستخدم", forms: { ich: "gebrauche", du: "gebrauchst", er: "gebraucht", wir: "gebrauchen", ihr: "gebraucht", sie: "gebrauchen" } },
+      { id: 46, section: "inseparabel", infinitiv: "verlieren", arabic: "يفقد", forms: { ich: "verliere", du: "verlierst", er: "verliert", wir: "verlieren", ihr: "verliert", sie: "verlieren" } },
+      { id: 47, section: "inseparabel", infinitiv: "vergessen", arabic: "ينسى", forms: { ich: "vergesse", du: "vergisst", er: "vergisst", wir: "vergessen", ihr: "vergesst", sie: "vergessen" } },
+      { id: 48, section: "inseparabel", infinitiv: "besuchen", arabic: "يزور", forms: { ich: "besuche", du: "besuchst", er: "besucht", wir: "besuchen", ihr: "besucht", sie: "besuchen" } },
+      { id: 49, section: "inseparabel", infinitiv: "erklären", arabic: "يشرح", forms: { ich: "erkläre", du: "erklärst", er: "erklärt", wir: "erklären", ihr: "erklärt", sie: "erklären" } },
+      { id: 50, section: "inseparabel", infinitiv: "gefallen", arabic: "يعجب", forms: { ich: "gefall", du: "gefällst", er: "gefällt", wir: "gefallen", ihr: "gefallt", sie: "gefallen" } },
+      { id: 51, section: "inseparabel", infinitiv: "gelingen", arabic: "ينجح", forms: { ich: "gelinge", du: "gelingst", er: "gelingt", wir: "gelingen", ihr: "gelingt", sie: "gelingen" } },
+      { id: 52, section: "inseparabel", infinitiv: "misslingen", arabic: "يفشل", forms: { ich: "misslinge", du: "misslingst", er: "misslingt", wir: "misslingen", ihr: "misslingt", sie: "misslingen" } },
+      { id: 53, section: "inseparabel", infinitiv: "empfehlen", arabic: "يوصي", forms: { ich: "empfehle", du: "empfiehlst", er: "empfiehlt", wir: "empfehlen", ihr: "empfehlt", sie: "empfehlen" } },
+      { id: 54, section: "inseparabel", infinitiv: "entdecken", arabic: "يكتشف", forms: { ich: "entdecke", du: "entdeckst", er: "entdeckt", wir: "entdecken", ihr: "entdeckt", sie: "entdecken" } },
+      { id: 55, section: "inseparabel", infinitiv: "entschuldigen", arabic: "يعتذر", forms: { ich: "entschuldige", du: "entschuldigst", er: "entschuldigt", wir: "entschuldigen", ihr: "entschuldigt", sie: "entschuldigen" } },
+      { id: 56, section: "inseparabel", infinitiv: "erleben", arabic: "يعيش تجربة", forms: { ich: "erlebe", du: "erlebst", er: "erlebt", wir: "erleben", ihr: "erlebt", sie: "erleben" } },
+      { id: 57, section: "inseparabel", infinitiv: "erreichen", arabic: "يحقق / يصل إلى", forms: { ich: "erreiche", du: "erreichst", er: "erreicht", wir: "erreichen", ihr: "erreicht", sie: "erreichen" } },
+      { id: 58, section: "inseparabel", infinitiv: "verändern", arabic: "يغير", forms: { ich: "verändere", du: "veränderst", er: "verändert", wir: "verändern", ihr: "verändert", sie: "verändern" } },
+      { id: 59, section: "inseparabel", infinitiv: "verbessern", arabic: "يحسن", forms: { ich: "verbessere", du: "verbesserst", er: "verbessert", wir: "verbessern", ihr: "verbessert", sie: "verbessern" } },
+      { id: 60, section: "inseparabel", infinitiv: "zerstören", arabic: "يدمر", forms: { ich: "zerstöre", du: "zerstörst", er: "zerstört", wir: "zerstören", ihr: "zerstört", sie: "zerstören" } },
+
+      // ==================== الجزء الرابع: الأفعال المساعدة والشاذة (61-80) ====================
+      { id: 61, section: "modal", infinitiv: "sein", arabic: "يكون", forms: { ich: "bin", du: "bist", er: "ist", wir: "sind", ihr: "seid", sie: "sind" } },
+      { id: 62, section: "modal", infinitiv: "haben", arabic: "يملك", forms: { ich: "habe", du: "hast", er: "hat", wir: "haben", ihr: "habt", sie: "haben" } },
+      { id: 63, section: "modal", infinitiv: "werden", arabic: "يصبح", forms: { ich: "werde", du: "wirst", er: "wird", wir: "werden", ihr: "werdet", sie: "werden" } },
+      { id: 64, section: "modal", infinitiv: "können", arabic: "يستطيع", forms: { ich: "kann", du: "kannst", er: "kann", wir: "können", ihr: "könnt", sie: "können" } },
+      { id: 65, section: "modal", infinitiv: "müssen", arabic: "يجب", forms: { ich: "muss", du: "musst", er: "muss", wir: "müssen", ihr: "müsst", sie: "müssen" } },
+      { id: 66, section: "modal", infinitiv: "wollen", arabic: "يريد", forms: { ich: "will", du: "willst", er: "will", wir: "wollen", ihr: "wollt", sie: "wollen" } },
+      { id: 67, section: "modal", infinitiv: "dürfen", arabic: "يسمح له", forms: { ich: "darf", du: "darfst", er: "darf", wir: "dürfen", ihr: "dürft", sie: "dürfen" } },
+      { id: 68, section: "modal", infinitiv: "sollen", arabic: "ينبغي", forms: { ich: "soll", du: "sollst", er: "soll", wir: "sollen", ihr: "sollt", sie: "sollen" } },
+      { id: 69, section: "modal", infinitiv: "mögen", arabic: "يحب", forms: { ich: "mag", du: "magst", er: "mag", wir: "mögen", ihr: "mögt", sie: "mögen" } },
+      { id: 70, section: "modal", infinitiv: "wissen", arabic: "يعرف", forms: { ich: "weiß", du: "weißt", er: "weiß", wir: "wissen", ihr: "wisst", sie: "wissen" } },
+      { id: 71, section: "modal", infinitiv: "möchten", arabic: "يرغب", forms: { ich: "möchte", du: "möchtest", er: "möchte", wir: "möchten", ihr: "möchtet", sie: "möchten" } },
+      { id: 72, section: "modal", infinitiv: "brauchen", arabic: "يحتاج", forms: { ich: "brauche", du: "brauchst", er: "braucht", wir: "brauchen", ihr: "braucht", sie: "brauchen" } },
+      { id: 73, section: "modal", infinitiv: "heißen", arabic: "يسمى", forms: { ich: "heiße", du: "heißt", er: "heißt", wir: "heißen", ihr: "heißt", sie: "heißen" } },
+      { id: 74, section: "modal", infinitiv: "lassen", arabic: "يترك / يدع", forms: { ich: "lasse", du: "lässt", er: "lässt", wir: "lassen", ihr: "lasst", sie: "lassen" } },
+      { id: 75, section: "modal", infinitiv: "tun", arabic: "يفعل", forms: { ich: "tue", du: "tust", er: "tut", wir: "tun", ihr: "tut", sie: "tun" } },
+      { id: 76, section: "modal", infinitiv: "schmecken", arabic: "يكون طعمه", forms: { ich: "schmecke", du: "schmeckst", er: "schmeckt", wir: "schmecken", ihr: "schmeckt", sie: "schmecken" } },
+      { id: 77, section: "modal", infinitiv: "riechen", arabic: "يشم", forms: { ich: "rieche", du: "riechst", er: "riecht", wir: "riechen", ihr: "riecht", sie: "riechen" } },
+      { id: 78, section: "modal", infinitiv: "stimmen", arabic: "يكون صحيحاً", forms: { ich: "stimme", du: "stimmst", er: "stimmt", wir: "stimmen", ihr: "stimmt", sie: "stimmen" } },
+      { id: 79, section: "modal", infinitiv: "zugehen", arabic: "يحدث", forms: { ich: "gehe zu", du: "gehst zu", er: "geht zu", wir: "gehen zu", ihr: "geht zu", sie: "gehen zu" } },
+      { id: 80, section: "modal", infinitiv: "aufhören", arabic: "يتوقف", forms: { ich: "höre auf", du: "hörst auf", er: "hört auf", wir: "hören auf", ihr: "hört auf", sie: "hören auf" } },
+
+      // ==================== الجزء الخامس: أفعال إضافية متنوعة (81-100) ====================
+      { id: 81, section: "extra", infinitiv: "bauen", arabic: "يبني", forms: { ich: "baue", du: "baust", er: "baut", wir: "bauen", ihr: "baut", sie: "bauen" } },
+      { id: 82, section: "extra", infinitiv: "glauben", arabic: "يعتقد", forms: { ich: "glaube", du: "glaubst", er: "glaubt", wir: "glauben", ihr: "glaubt", sie: "glauben" } },
+      { id: 83, section: "extra", infinitiv: "hoffen", arabic: "يأمل", forms: { ich: "hoffe", du: "hoffst", er: "hofft", wir: "hoffen", ihr: "hofft", sie: "hoffen" } },
+      { id: 84, section: "extra", infinitiv: "kaufen", arabic: "يشتري", forms: { ich: "kaufe", du: "kaufst", er: "kauft", wir: "kaufen", ihr: "kauft", sie: "kaufen" } },
+      { id: 85, section: "extra", infinitiv: "verkaufen", arabic: "يبيع", forms: { ich: "verkaufe", du: "verkaufst", er: "verkauft", wir: "verkaufen", ihr: "verkauft", sie: "verkaufen" } },
+      { id: 86, section: "extra", infinitiv: "finden", arabic: "يجد", forms: { ich: "finde", du: "findest", er: "findet", wir: "finden", ihr: "findet", sie: "finden" } },
+      { id: 87, section: "extra", infinitiv: "suchen", arabic: "يبحث", forms: { ich: "suche", du: "suchst", er: "sucht", wir: "suchen", ihr: "sucht", sie: "suchen" } },
+      { id: 88, section: "extra", infinitiv: "zeigen", arabic: "يري", forms: { ich: "zeige", du: "zeigst", er: "zeigt", wir: "zeigen", ihr: "zeigt", sie: "zeigen" } },
+      { id: 89, section: "extra", infinitiv: "warten", arabic: "ينتظر", forms: { ich: "warte", du: "wartest", er: "wartet", wir: "warten", ihr: "wartet", sie: "warten" } },
+      { id: 90, section: "extra", infinitiv: "tanzen", arabic: "يرقص", forms: { ich: "tanze", du: "tanzt", er: "tanzt", wir: "tanzen", ihr: "tanzt", sie: "tanzen" } },
+      { id: 91, section: "extra", infinitiv: "singen", arabic: "يغني", forms: { ich: "singe", du: "singst", er: "singt", wir: "singen", ihr: "singt", sie: "singen" } },
+      { id: 92, section: "extra", infinitiv: "schwimmen", arabic: "يسبح", forms: { ich: "schwimme", du: "schwimmst", er: "schwimmt", wir: "schwimmen", ihr: "schwimmt", sie: "schwimmen" } },
+      { id: 93, section: "extra", infinitiv: "reisen", arabic: "يسافر", forms: { ich: "reise", du: "reist", er: "reist", wir: "reisen", ihr: "reist", sie: "reisen" } },
+      { id: 94, section: "extra", infinitiv: "besichtigen", arabic: "يزور (سياحياً)", forms: { ich: "besichtige", du: "besichtigst", er: "besichtigt", wir: "besichtigen", ihr: "besichtigt", sie: "besichtigen" } },
+      { id: 95, section: "extra", infinitiv: "buchen", arabic: "يحجز", forms: { ich: "buche", du: "buchst", er: "bucht", wir: "buchen", ihr: "bucht", sie: "buchen" } },
+      { id: 96, section: "extra", infinitiv: "feiern", arabic: "يحتفل", forms: { ich: "feiere", du: "feierst", er: "feiert", wir: "feiern", ihr: "feiert", sie: "feiern" } },
+      { id: 97, section: "extra", infinitiv: "putzen", arabic: "ينظف", forms: { ich: "putze", du: "putzt", er: "putzt", wir: "putzen", ihr: "putzt", sie: "putzen" } },
+      { id: 98, section: "extra", infinitiv: "kochen", arabic: "يطبخ", forms: { ich: "koche", du: "kochst", er: "kocht", wir: "kochen", ihr: "kocht", sie: "kochen" } },
+      { id: 99, section: "extra", infinitiv: "backen", arabic: "يخبز", forms: { ich: "backe", du: "bäckst", er: "bäckt", wir: "backen", ihr: "backt", sie: "backen" } },
+      { id: 100, section: "extra", infinitiv: "schneiden", arabic: "يقطع", forms: { ich: "schneide", du: "schneidest", er: "schneidet", wir: "schneiden", ihr: "schneidet", sie: "schneiden" } }
+    ];
+
+    // تخزين تقدم التعلم
+    let studiedVerbs = JSON.parse(localStorage.getItem('studiedVerbs_praesens')) || [];
+    
+    // تحديث الإحصائيات
+    function updateStats() {
+      document.getElementById('totalCount').innerText = allVerbs.length;
+      document.getElementById('studiedCount').innerText = studiedVerbs.length;
+      const percent = Math.round((studiedVerbs.length / allVerbs.length) * 100);
+      document.getElementById('progressPercent').innerText = percent + '%';
+    }
+    
+    // تسجيل دراسة فعل
+    function markAsStudied(verbId) {
+      if (!studiedVerbs.includes(verbId)) {
+        studiedVerbs.push(verbId);
+        localStorage.setItem('studiedVerbs_praesens', JSON.stringify(studiedVerbs));
+        updateStats();
+        filterVerbs();
+      }
+    }
+    
+    // إعادة تعيين التقدم
+    function resetProgress() {
+      if (confirm('هل أنت متأكد من إعادة تعيين تقدم التعلم؟')) {
+        studiedVerbs = [];
+        localStorage.setItem('studiedVerbs_praesens', JSON.stringify(studiedVerbs));
+        updateStats();
+        filterVerbs();
+        alert('✓ تم إعادة تعيين التقدم بنجاح');
+      }
+    }
+    
+    // نطق النص
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = speechRate;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+    
+    // تعيين سرعة النطق
+    function setSpeechSpeed(rate) {
+      speechRate = rate;
+      document.querySelectorAll('.speed-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+    
+    // تبديل الوضع الليلي
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const btn = document.querySelector('.dark-mode-toggle');
+      btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+    
+    // فلترة الأفعال
+    function filterVerbs() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const filterSection = document.getElementById('filterSelect').value;
+      
+      const filtered = allVerbs.filter(verb => {
+        const matchSearch = verb.infinitiv.toLowerCase().includes(searchTerm) || 
+                           verb.arabic.toLowerCase().includes(searchTerm);
+        const matchSection = filterSection === 'all' || verb.section === filterSection;
+        return matchSearch && matchSection;
+      });
+      
+      renderVerbs(filtered);
+    }
+    
+    // عرض التحدي العشوائي
+    function showRandomChallenge() {
+      const randomVerb = allVerbs[Math.floor(Math.random() * allVerbs.length)];
+      const wrongAnswers = allVerbs.filter(v => v.id !== randomVerb.id).sort(() => 0.5 - Math.random()).slice(0, 3);
+      const options = [randomVerb, ...wrongAnswers].sort(() => 0.5 - Math.random());
+      
+      const challengeDiv = document.getElementById('miniChallenge');
+      const contentDiv = document.getElementById('challengeContent');
+      
+      challengeDiv.style.display = 'block';
+      contentDiv.innerHTML = `
+        <div class="challenge-question">❓ ما هو معنى الفعل <strong>${randomVerb.infinitiv}</strong>؟</div>
+        <div class="challenge-options">
+          ${options.map(opt => `<button class="challenge-option" onclick="checkAnswer('${opt.arabic}', '${randomVerb.arabic}', this)">${opt.arabic}</button>`).join('')}
+        </div>
+        <div class="challenge-feedback" id="challengeFeedback"></div>
+      `;
+      
+      setTimeout(() => {
+        challengeDiv.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+    
+    // التحقق من الإجابة
+    function checkAnswer(selected, correct, element) {
+      const feedback = document.getElementById('challengeFeedback');
+      if (selected === correct) {
+        feedback.innerHTML = '✅ إجابة صحيحة! أحسنت! 🎉';
+        feedback.style.color = '#27ae60';
+        element.style.background = '#27ae60';
+      } else {
+        feedback.innerHTML = `❌ إجابة خاطئة! الإجابة الصحيحة هي: "${correct}"`;
+        feedback.style.color = '#e74c3c';
+        element.style.background = '#e74c3c';
+      }
+      
+      setTimeout(() => {
+        document.getElementById('miniChallenge').style.display = 'none';
+      }, 3000);
+    }
+    
+    // عرض الأفعال
+    function renderVerbs(verbs) {
+      const container = document.getElementById('verbsContainer');
+      container.innerHTML = '';
+      
+      verbs.forEach((verb) => {
+        const isStudied = studiedVerbs.includes(verb.id);
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.setAttribute('data-section', verb.section);
+        
+        card.innerHTML = `
+          <div class="title" onclick="markAsStudied(${verb.id});">
+            <span class="infinitiv" onclick="speak('${verb.infinitiv.replace(/'/g, "\\'")}'); event.stopPropagation();">📖 ${verb.id}. ${verb.infinitiv} ${isStudied ? '<span class="studied-badge">✓ تمت</span>' : ''}</span>
+            <span class="arabic">${verb.arabic}</span>
+          </div>
+          <table>
+            <thead>
+              <tr><th>ich</th><th>du</th><th>er/sie/es</th><th>wir</th><th>ihr</th><th>sie/Sie</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                ${['ich', 'du', 'er', 'wir', 'ihr', 'sie'].map(p => `<td data-label="${p}" onclick="speak('${verb.forms[p].replace(/'/g, "\\'")}'); event.stopPropagation();">${verb.forms[p]}</td>`).join('')}
+              </tr>
+            </tbody>
+          </table>
+        `;
+        container.appendChild(card);
+      });
+    }
+    
+    // تهيئة الصفحة
+    updateStats();
+    renderVerbs(allVerbs);
+  </script>
 </body>
 </html>
