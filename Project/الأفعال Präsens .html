@@ -35,6 +35,7 @@
 
     /* تصميم البطاقة الذكي */
     .card {
+    
       background: white;
       width: 100%;
       max-width: 1050px; 
@@ -86,7 +87,7 @@
 
     /* تنسيق صف الضمائر العلوي */
     th {
-      background: #fafafa;
+   
       color: #555;
       font-weight: bold;
       font-size: 15px;
@@ -358,18 +359,19 @@ const allVerbs = [
   { section: "part4", infinitiv: "wollen", arabic: "يريد", forms: { ich: "will", du: "willst", er: "will", wir: "wollen", ihr: "wollt", sie: "wollen" } },
   { section: "part4", infinitiv: "dürfen", arabic: "يسمح له", forms: { ich: "darf", du: "darfst", er: "darf", wir: "dürfen", ihr: "dürft", sie: "dürfen" } },
   { section: "part4", infinitiv: "sollen", arabic: "ينبغي", forms: { ich: "soll", du: "sollst", er: "soll", wir: "sollen", ihr: "sollt", sie: "sollen" } },
-  { section: "part4", infinitiv: "wissen", arabic: "يعلم / يعرف", forms: { ich: "weiß", du: "weißt", er: "weiß", wir: "wissen", ihr: "wisst", sie: "wissen" }و
+  { section: "part4", infinitiv: "wissen", arabic: "يعلم / يعرف", forms: { ich: "weiß", du: "weißt", er: "weiß", wir: "wissen", ihr: "wisst", sie: "wissen" }},
   // ============================================
   // أفعال الكيف المساعدة (Modalverben) - المجموعة الكاملة
   // ============================================
-   { section: "part5", sectionTitle: "الجزء 4: الأفعال الشاذة والقوية (Irregular & Starke Verben)" 
-, infinitiv: "können", arabic: "يستطيع", forms: { ich: "kann", du: "kannst", er: "kann", wir: "können", ihr: "könnt", sie: "können" } },
+
+   { section: "part5", sectionTitle: "الجزء الخامس: أفعال الكيف المساعدة (Modalverben) " ,
+    infinitiv: "können", arabic: "يستطيع", forms: { ich: "kann", du: "kannst", er: "kann", wir: "können", ihr: "könnt", sie: "können" } },
   { section: "part5", infinitiv: "müssen", arabic: "يجب / يضطر", forms: { ich: "muss", du: "musst", er: "muss", wir: "müssen", ihr: "müsst", sie: "müssen" } },
   { section: "part5", infinitiv: "wollen", arabic: "يريد", forms: { ich: "will", du: "willst", er: "will", wir: "wollen", ihr: "wollt", sie: "wollen" } },
   { section: "part5", infinitiv: "dürfen", arabic: "يسمح له", forms: { ich: "darf", du: "darfst", er: "darf", wir: "dürfen", ihr: "dürft", sie: "dürfen" } },
   { section: "part5", infinitiv: "sollen", arabic: "ينبغي", forms: { ich: "soll", du: "sollst", er: "soll", wir: "sollen", ihr: "sollt", sie: "sollen" } },
   { section: "part5", infinitiv: "möchten", arabic: "يرغب", forms: { ich: "möchte", du: "möchtest", er: "möchte", wir: "möchten", ihr: "möchtet", sie: "möchten" } },
-  { section: "part5", infinitiv: "mögen", arabic: "يحب", forms: { ich: "mag", du: "magst", er: "mag", wir: "mögen", ihr: "mögt", sie: "mögen" } }
+  { section: "part5", infinitiv: "mögen", arabic: "يحب", forms: { ich: "mag", du: "magst", er: "mag", wir: "mögen", ihr: "mögt", sie: "mögen" } 
   
   }];
 const container = document.getElementById('verbsContainer');
@@ -395,6 +397,7 @@ allVerbs.forEach(verb => {
     <a href="#part2"> 2</a>
      <a href="#part3">  3</a>
       <a href="#part4">4  </a>
+       <a href="#part5">5 </a>
       `;
 
     container.appendChild(secHeader);
@@ -403,9 +406,10 @@ allVerbs.forEach(verb => {
   // إنشاء الكارت الخاص بكل فعل
   const card = document.createElement('div');
   card.className = 'card';
-
+card.onclick=function(){card.style.backgroundColor = '#a9a2a2';
+}
   card.innerHTML = `
-    <div class="title">
+    <div class="title"
       <span class="infinitiv" onclick="speak('${verb.infinitiv}')">${i} : ${verb.infinitiv}  </span>
       <span class="arabic">${verb.arabic}</span>
     </div>
