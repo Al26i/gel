@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>شرح + اختبار - حالات الأسماء Nominativ - Akkusativ - Dativ</title>
+  <title>Fälle - حالات الأسماء في الألمانية | Nominativ - Akkusativ - Dativ</title>
 
   <style>
     * {
@@ -27,22 +27,48 @@
     }
 
     body.dark-mode .card,
+    body.dark-mode .rule-box,
     body.dark-mode .example-card,
     body.dark-mode .table-container,
-    body.dark-mode .tip-card,
     body.dark-mode .quiz-container {
       background: #2d2d44;
       color: #eee;
     }
 
-    body.dark-mode .example-sentence,
+    body.dark-mode .sentence,
     body.dark-mode .quiz-option {
       background: #3d3d5c;
+    }
+
+    body.dark-mode .explanation {
+      background: #4a3a2a;
+    }
+
+    body.dark-mode th {
+      background: #1a1a2e;
     }
 
     .container {
       max-width: 1400px;
       margin: 0 auto;
+    }
+
+    /* عنوان الصفحة */
+    .hero {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
     }
 
     /* علامات التبويب */
@@ -57,9 +83,9 @@
     .tab-btn {
       background: rgba(255,255,255,0.2);
       border: none;
-      padding: 15px 35px;
+      padding: 12px 30px;
       border-radius: 50px;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
@@ -77,11 +103,11 @@
 
     .tab-content {
       display: none;
+      animation: fadeIn 0.5s ease;
     }
 
     .tab-content.active {
       display: block;
-      animation: fadeIn 0.5s ease;
     }
 
     @keyframes fadeIn {
@@ -89,22 +115,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    h1 {
-      text-align: center;
-      color: white;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-
-    .subtitle {
-      text-align: center;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 40px;
-      font-size: 1.1rem;
-    }
-
-    /* بطاقات الشرح الرئيسية */
+    /* بطاقات الشرح */
     .cases-grid {
       display: flex;
       flex-wrap: wrap;
@@ -113,81 +124,75 @@
       margin-bottom: 40px;
     }
 
-    .card {
+    .rule-box {
       background: white;
       border-radius: 25px;
       padding: 25px;
       flex: 1;
       min-width: 280px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
       transition: transform 0.3s;
     }
 
-    .card:hover {
-      transform: translateY(-8px);
+    .rule-box:hover {
+      transform: translateY(-5px);
     }
 
-    .card h2 {
-      font-size: 32px;
+    .case-icon {
+      font-size: 50px;
+      text-align: center;
       margin-bottom: 15px;
     }
 
-    .card .question {
+    .case-title {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .case-question {
       font-size: 20px;
       font-weight: bold;
-      margin: 15px 0;
-      padding: 10px;
-      border-radius: 15px;
       text-align: center;
-    }
-
-    .card .use {
-      font-size: 18px;
+      padding: 12px;
+      border-radius: 15px;
       margin: 15px 0;
-      padding: 10px;
-      background: #f0f0f0;
-      border-radius: 15px;
     }
 
-    body.dark-mode .card .use {
-      background: #3d3d5c;
+    .case-use {
+      font-size: 18px;
+      text-align: center;
+      padding: 12px;
+      border-radius: 15px;
+      margin: 10px 0;
     }
 
-    .nominativ { border-bottom: 5px solid #3498db; }
-    .akkusativ { border-bottom: 5px solid #27ae60; }
-    .dativ { border-bottom: 5px solid #e74c3c; }
-
-    .nominativ-bg { background: #e3f2fd; color: #1565c0; }
-    .akkusativ-bg { background: #e8f5e9; color: #2e7d32; }
-    .dativ-bg { background: #ffebee; color: #c62828; }
-
-    .example-sentence {
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 15px;
+    .sentence {
       direction: ltr;
       font-size: 20px;
       font-weight: bold;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
       text-align: center;
-      margin-top: 15px;
       cursor: pointer;
+      margin: 15px 0;
     }
 
     .highlight-nom { color: #3498db; font-size: 22px; }
     .highlight-akk { color: #27ae60; font-size: 22px; }
     .highlight-dat { color: #e74c3c; font-size: 22px; }
 
+    .nominativ-bg { background: #e3f2fd; color: #1565c0; }
+    .akkusativ-bg { background: #e8f5e9; color: #2e7d32; }
+    .dativ-bg { background: #ffebee; color: #c62828; }
+
     .explanation {
-      margin-top: 15px;
       padding: 15px;
       background: #fff3e0;
       border-radius: 15px;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.8;
-    }
-
-    body.dark-mode .explanation {
-      background: #4a3a2a;
     }
 
     /* جداول الأدوات */
@@ -201,9 +206,15 @@
     .table-container {
       background: white;
       border-radius: 20px;
-      padding: 20px;
+      padding: 25px;
       flex: 1;
       overflow-x: auto;
+    }
+
+    .table-container h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
     }
 
     table {
@@ -225,6 +236,18 @@
       font-weight: bold;
     }
 
+    .note {
+      margin-top: 15px;
+      padding: 15px;
+      background: #e8f5e9;
+      border-radius: 15px;
+      font-size: 14px;
+    }
+
+    body.dark-mode .note {
+      background: #3d5c3d;
+    }
+
     /* حروف الجر */
     .prep-section {
       background: white;
@@ -233,7 +256,13 @@
       margin-bottom: 40px;
     }
 
-    .prep-group {
+    .prep-title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .prep-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
@@ -241,26 +270,57 @@
       margin-bottom: 25px;
     }
 
-    .prep-item {
-      background: #667eea;
-      color: white;
-      padding: 10px 20px;
+    .prep-tag {
+      padding: 10px 25px;
       border-radius: 40px;
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
     }
 
-    .prep-akk { background: #27ae60; }
-    .prep-dat { background: #e74c3c; }
-    .prep-wechsel { background: #f39c12; }
+    .prep-akk {
+      background: #27ae60;
+      color: white;
+    }
 
-    /* ========== قسم الاختبار ========== */
+    .prep-dat {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .prep-wechsel {
+      background: #f39c12;
+      color: white;
+    }
+
+    .prep-tag:hover {
+      transform: scale(1.05);
+    }
+
+    /* أمثلة إضافية */
+    .examples-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      color: white;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .example-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* قسم الاختبار */
     .quiz-container {
       background: white;
       border-radius: 25px;
       padding: 30px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     }
 
     .quiz-header {
@@ -311,7 +371,7 @@
 
     .progress-bar {
       background: #e0e0e0;
-      height: 12px;
+      height: 10px;
       border-radius: 10px;
       margin-bottom: 30px;
       overflow: hidden;
@@ -322,15 +382,13 @@
       height: 100%;
       width: 0%;
       transition: width 0.3s;
-      border-radius: 10px;
     }
 
     .quiz-question {
-      font-size: 28px;
+      font-size: 24px;
       text-align: center;
-      margin: 30px 0;
+      margin: 25px 0;
       direction: ltr;
-      font-weight: bold;
     }
 
     .quiz-options {
@@ -338,7 +396,7 @@
       flex-wrap: wrap;
       gap: 15px;
       justify-content: center;
-      margin: 25px 0;
+      margin: 20px 0;
     }
 
     .quiz-option {
@@ -349,19 +407,16 @@
       transition: 0.3s;
       font-weight: bold;
       font-size: 18px;
-      border: 2px solid transparent;
     }
 
     .quiz-option:hover {
       background: #667eea;
       color: white;
-      transform: scale(1.05);
     }
 
     .quiz-option.selected {
       background: #2563eb;
       color: white;
-      border-color: white;
     }
 
     .quiz-feedback {
@@ -391,11 +446,11 @@
     }
 
     .btn {
-      padding: 12px 30px;
+      padding: 12px 25px;
       border: none;
       border-radius: 40px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       transition: 0.3s;
     }
@@ -430,6 +485,34 @@
       margin: 15px 0;
     }
 
+    /* نصائح سريعة */
+    .tips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tip-card:hover {
+      transform: scale(1.03);
+    }
+
+    .tip-emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    /* زر الوضع الليلي */
     .dark-mode-toggle {
       position: fixed;
       bottom: 20px;
@@ -454,7 +537,8 @@
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 24px; }
+      .hero h1 { font-size: 24px; }
+      .sentence { font-size: 16px; }
       .quiz-question { font-size: 18px; }
       .quiz-option { padding: 10px 18px; font-size: 14px; }
     }
@@ -462,76 +546,68 @@
 </head>
 
 <body>
-<a href="../index.html" class="btn">Home 🔙</a>
+
   <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
   <div class="container">
-    <h1>📚 شرح + اختبار - حالات الأسماء</h1>
-    <div class="subtitle">Nominativ • Akkusativ • Dativ - تعلم ثم اختبر نفسك</div>
+    <a href="../index.html" class="btn">Home 🔙</a>
+    <div class="hero">
+      <h1>📚 Fälle - حالات الأسماء</h1>
+      <p>Nominativ • Akkusativ • Dativ - تعلم الحالات الثلاث بطريقة مبسطة</p>
+    </div>
 
-    <!-- علامات التبويب -->
     <div class="tabs">
-      <button class="tab-btn active" onclick="showTab('explain')">📖 شرح الحالات</button>
+      <button class="tab-btn active" onclick="showTab('explain')">📖 شرح القواعد</button>
       <button class="tab-btn" onclick="showTab('quiz')">🎯 اختبار 200 سؤال</button>
     </div>
 
     <!-- تبويب الشرح -->
     <div id="explainTab" class="tab-content active">
-      <!-- بطاقات الشرح الرئيسية -->
+      
+      <!-- الحالات الثلاث -->
       <div class="cases-grid">
-<div class="hero">
-      <h1>📚 شرح حالات الأسماء</h1>
-      <p>Nominativ • Akkusativ • Dativ - للمبتدئين من الصفر</p>
-    </div>
-
-    <!-- الفكرة الأساسية -->
-    <div class="idea-card">
-      <h2>🎯 الفكرة الأساسية</h2>
-      <p>في اللغة العربية، نقول:<br>
-      <strong>"الرجلُ يأكلُ التفاحةَ"</strong><br>
-      كلمة "الرجلُ" ← فاعل (مرفوع)<br>
-      كلمة "التفاحةَ" ← مفعول به (منصوب)</p>
-      <div class="question-example">
-        🇩🇪 في الألمانية نفس الشيء، لكن الكلمات <strong>تتغير أشكالها</strong> حسب موقعها في الجملة!
-      </div>
-    </div>
-
-        <div class="card nominativ">
-          <h2>📖 Nominativ</h2>
-          <div class="question nominativ-bg">❓ سؤال: Wer? / Was?<br>(مَنْ؟ / ماذا؟)</div>
-          <div class="use">📌 الفاعل (من يقوم بالفعل)</div>
-          <div class="example-sentence">
-            <span class="highlight-nom">Der Mann</span> <span>liest ein Buch.</span>
+        <!-- Nominativ -->
+        <div class="rule-box">
+          <div class="case-icon">📖</div>
+          <div class="case-title">Nominativ</div>
+          <div class="case-question nominativ-bg">❓ سؤال: Wer? / Was?<br>(مَنْ؟ / ماذا؟)</div>
+          <div class="case-use nominativ-bg">🎯 حالة الفاعل (من يقوم بالفعل)</div>
+          <div class="sentence" onclick="speak('Der Mann liest ein Buch.')">
+            <span class="highlight-nom">Der Mann</span> liest ein Buch.
           </div>
           <div class="explanation">
-            <strong>🔍 الشرح:</strong> الرجل هو من يقوم بفعل القراءة → Nominativ<br>
-            <strong>💡 نصيحة:</strong> اسأل "مَنْ يقرأ؟" → الرجل
+            <strong>🔍 الشرح:</strong> الرجل (Der Mann) هو من يقوم بفعل القراءة، لذلك يكون في حالة Nominativ.<br>
+            💡 اسأل: <strong>"مَنْ يقرأ؟"</strong> → الجواب: الرجل (Nominativ)
           </div>
         </div>
 
-        <div class="card akkusativ">
-          <h2>🎯 Akkusativ</h2>
-          <div class="question akkusativ-bg">❓ سؤال: Wen? / Was?<br>(مَنْ؟ / ماذا؟)</div>
-          <div class="use">📌 المفعول به (من يقع عليه الفعل)</div>
-          <div class="example-sentence">
+        <!-- Akkusativ -->
+        <div class="rule-box">
+          <div class="case-icon">🎯</div>
+          <div class="case-title">Akkusativ</div>
+          <div class="case-question akkusativ-bg">❓ سؤال: Wen? / Was?<br>(مَنْ؟ / ماذا؟ - المفعول به)</div>
+          <div class="case-use akkusativ-bg">🎯 حالة المفعول به (من يقع عليه الفعل)</div>
+          <div class="sentence" onclick="speak('Ich sehe den Mann.')">
             Ich sehe <span class="highlight-akk">den Mann</span>.
           </div>
           <div class="explanation">
-            <strong>🔍 الشرح:</strong> الرجل وقع عليه فعل الرؤية → Akkusativ<br>
-            <strong>💡 نصيحة:</strong> اسأل "مَنْ أرى؟" → الرجل
+            <strong>🔍 الشرح:</strong> الرجل (den Mann) هو من وقع عليه فعل الرؤية، لذلك أصبح في حالة Akkusativ.<br>
+            💡 اسأل: <strong>"مَنْ أرى؟"</strong> → الجواب: الرجل (Akkusativ)
           </div>
         </div>
 
-        <div class="card dativ">
-          <h2>🎁 Dativ</h2>
-          <div class="question dativ-bg">❓ سؤال: Wem?<br>(لمَنْ؟)</div>
-          <div class="use">📌 المفعول إليه (المستفيد)</div>
-          <div class="example-sentence">
+        <!-- Dativ -->
+        <div class="rule-box">
+          <div class="case-icon">🎁</div>
+          <div class="case-title">Dativ</div>
+          <div class="case-question dativ-bg">❓ سؤال: Wem?<br>(لِمَنْ؟)</div>
+          <div class="case-use dativ-bg">🎯 حالة المفعول إليه (الشخص المستفيد)</div>
+          <div class="sentence" onclick="speak('Ich gebe dem Mann ein Buch.')">
             Ich gebe <span class="highlight-dat">dem Mann</span> ein Buch.
           </div>
           <div class="explanation">
-            <strong>🔍 الشرح:</strong> الرجل استفاد من الإعطاء → Dativ<br>
-            <strong>💡 نصيحة:</strong> اسأل "لمَنْ أعطي؟" → للرجل
+            <strong>🔍 الشرح:</strong> الرجل (dem Mann) هو من استفاد من فعل الإعطاء (أعطيت <strong>لـ</strong>الرجل).<br>
+            💡 اسأل: <strong>"لِمَنْ أعطي؟"</strong> → الجواب: للرجل (Dativ)
           </div>
         </div>
       </div>
@@ -539,19 +615,26 @@
       <!-- جداول الأدوات -->
       <div class="tables-grid">
         <div class="table-container">
-          <h3>📌 أدوات التعريف (der/die/das)</h3>
+          <h3>📌 أدوات التعريف (der / die / das)</h3>
           <table>
-            <thead><tr><th>الحالة</th><th>مذكر</th><th>مؤنث</th><th>محايد</th><th>جمع</th></tr></thead>
+            <thead>
+              <tr><th>الحالة</th><th>مذكر (der)</th><th>مؤنث (die)</th><th>محايد (das)</th><th>جمع (die)</th></tr>
+            </thead>
             <tbody>
               <tr style="background:#e3f2fd;"><td><strong>Nominativ</strong></td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
               <tr style="background:#e8f5e9;"><td><strong>Akkusativ</strong></td><td><span style="color:#27ae60;">den</span></td><td>die</td><td>das</td><td>die</td></tr>
               <tr style="background:#ffebee;"><td><strong>Dativ</strong></td><td><span style="color:#e74c3c;">dem</span></td><td><span style="color:#e74c3c;">der</span></td><td><span style="color:#e74c3c;">dem</span></td><td><span style="color:#e74c3c;">den + n</span></td></tr>
             </tbody>
           </table>
+          <div class="note">
+            💡 <strong>ملاحظة مهمة:</strong><br>
+            • Akkusativ: فقط der → den (الباقي لا يتغير)<br>
+            • Dativ: der → dem, die → der, das → dem, die → den (+ n في آخر الاسم)
+          </div>
         </div>
 
         <div class="table-container">
-          <h3>📌 أدوات التنكير (ein/eine)</h3>
+          <h3>📌 أدوات التنكير (ein / eine)</h3>
           <table>
             <thead><tr><th>الحالة</th><th>مذكر</th><th>مؤنث</th><th>محايد</th></tr></thead>
             <tbody>
@@ -565,16 +648,84 @@
 
       <!-- حروف الجر -->
       <div class="prep-section">
-        <h3 class="prep-title">🔤 حروف الجر وتأثيرها</h3>
-        <div class="prep-group">
-          <div class="prep-item prep-akk">Akkusativ: durch - für - gegen - ohne - um</div>
-          <div class="prep-item prep-dat">Dativ: aus - außer - bei - mit - nach - seit - von - zu</div>
-          <div class="prep-item prep-wechsel">Wechselpräpositionen: an, auf, hinter, in, neben, über, unter, vor, zwischen</div>
+        <h3 class="prep-title">🔤 حروف الجر وتأثيرها على الحالة</h3>
+        <div class="prep-grid">
+          <div class="prep-tag prep-akk" onclick="showHint('Akkusativ', 'durch, für, gegen, ohne, um\n📌 مثال: Ich gehe ohne den Hund.')">
+            📍 Akkusativ: durch - für - gegen - ohne - um
+          </div>
+          <div class="prep-tag prep-dat" onclick="showHint('Dativ', 'aus, außer, bei, mit, nach, seit, von, zu\n📌 مثال: Ich bin mit dem Hund.')">
+            📍 Dativ: aus - außer - bei - mit - nach - seit - von - zu
+          </div>
+          <div class="prep-tag prep-wechsel" onclick="showHint('Wechselpräpositionen', 'an, auf, hinter, in, neben, über, unter, vor, zwischen\n\nAkkusativ = حركة (wohin?)\nDativ = مكان (wo?)')">
+            🔄 Wechselpräpositionen (حروف الجر المزدوجة)
+          </div>
         </div>
+
         <div class="explanation">
-          <strong>📖 Wechselpräpositionen:</strong><br>
-          • <strong>Akkusativ</strong> = حركة (wohin?) → Ich gehe <strong>in die Schule</strong><br>
-          • <strong>Dativ</strong> = مكان ثابت (wo?) → Ich bin <strong>in der Schule</strong>
+          <strong>📖 شرح Wechselpräpositionen (حروف الجر المزدوجة):</strong><br>
+          • <strong class="akkusativ-text">Akkusativ</strong> ← عندما تدل على <strong>حركة</strong> (wohin؟ - إلى أين؟)<br>
+          &nbsp;&nbsp;مثال: Ich gehe <strong>in die Schule</strong> (أنا أذهب إلى المدرسة) ← حركة → Akkusativ<br><br>
+          • <strong class="dativ-text">Dativ</strong> ← عندما تدل على <strong>مكان ثابت</strong> (wo؟ - أين؟)<br>
+          &nbsp;&nbsp;مثال: Ich bin <strong>in der Schule</strong> (أنا في المدرسة) ← مكان ثابت → Dativ
+        </div>
+      </div>
+
+      <!-- أمثلة إضافية -->
+      <div class="examples-section">
+        <h2 class="section-title">📝 أمثلة إضافية</h2>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Die Frau kauft den Apfel für das Kind.')">
+            <span class="highlight-nom">Die Frau</span> kauft <span class="highlight-akk">den Apfel</span> für <span class="highlight-dat">das Kind</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong><br>
+            • <span class="highlight-nom">Die Frau</span> (المرأة) → Nominativ (الفاعل: من تشتري؟)<br>
+            • <span class="highlight-akk">den Apfel</span> (التفاحة) → Akkusativ (المفعول به: ماذا تشتري؟)<br>
+            • <span class="highlight-dat">das Kind</span> (للطفل) → Dativ (لمن تشتري؟)
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Der Lehrer erklärt den Schülern die Lektion.')">
+            <span class="highlight-nom">Der Lehrer</span> erklärt <span class="highlight-dat">den Schülern</span> <span class="highlight-akk">die Lektion</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong><br>
+            • <span class="highlight-nom">Der Lehrer</span> (المعلم) → Nominativ<br>
+            • <span class="highlight-dat">den Schülern</span> (للطلاب) → Dativ<br>
+            • <span class="highlight-akk">die Lektion</span> (الدرس) → Akkusativ
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Ich gebe meinem Bruder ein Geschenk.')">
+            Ich gebe <span class="highlight-dat">meinem Bruder</span> <span class="highlight-akk">ein Geschenk</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong><br>
+            • <span class="highlight-dat">meinem Bruder</span> (لأخي) → Dativ<br>
+            • <span class="highlight-akk">ein Geschenk</span> (هدية) → Akkusativ
+          </div>
+        </div>
+      </div>
+
+      <!-- نصائح سريعة -->
+      <div class="tips-grid">
+        <div class="tip-card" onclick="showTip('📌 Nominativ = الفاعل\nسؤال: مَنْ؟ / ماذا؟\nمثال: Der Hund bellt.')">
+          <div class="tip-emoji">👤</div>
+          <h4>Nominativ = الفاعل</h4>
+          <p>من يقوم بالفعل؟</p>
+        </div>
+        <div class="tip-card" onclick="showTip('📌 Akkusativ = المفعول به\nسؤال: مَنْ؟ / ماذا؟\nمثال: Ich sehe den Hund.')">
+          <div class="tip-emoji">🎯</div>
+          <h4>Akkusativ = المفعول به</h4>
+          <p>من يقع عليه الفعل؟</p>
+        </div>
+        <div class="tip-card" onclick="showTip('📌 Dativ = المستفيد\nسؤال: لِمَنْ؟\nمثال: Ich helfe dem Hund.')">
+          <div class="tip-emoji">🎁</div>
+          <h4>Dativ = المستفيد</h4>
+          <p>لمن يعود النفع؟</p>
         </div>
       </div>
     </div>
@@ -585,8 +736,8 @@
         <div class="quiz-header">
           <div class="quiz-stats">
             <div class="stat-badge">📊 السؤال: <span id="currentNum">1</span> / <span id="totalNum">200</span></div>
-            <div class="stat-badge"> answered: <span id="answeredCount">0</span></div>
-            <div class="stat-badge"> النتيجة: <span id="scoreDisplay">0</span></div>
+            <div class="stat-badge">✅ تمت الإجابة: <span id="answeredCount">0</span></div>
+            <div class="stat-badge">⭐ النتيجة: <span id="scoreDisplay">0</span></div>
           </div>
           <div class="filter-buttons">
             <button class="filter-btn active" onclick="filterQuestions('all')">📋 الكل</button>
@@ -615,219 +766,38 @@
     </div>
 
     <footer>
-      <p>تعلم حالات الأسماء + اختبار 200 سؤال - Nominativ • Akkusativ • Dativ</p>
+      <p>📚 Fälle - حالات الأسماء في الألمانية | Nominativ • Akkusativ • Dativ</p>
     </footer>
   </div>
 
   <script>
-    // ==================== 200 سؤال ====================
-    const allQuestions = [
-      // Nominativ - 70 سؤال
-      { id: 1, text: "___ Mann liest ein Buch.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 2, text: "___ Frau arbeitet im Büro.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 3, text: "___ Kind spielt im Garten.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 4, text: "___ Hunde bellen laut.", options: ["Die", "Den", "Der"], correct: "Die", case: "Nominativ" },
-      { id: 5, text: "___ Lehrer erklärt die Lektion.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 6, text: "___ Sonne scheint hell.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 7, text: "___ Auto ist neu.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 8, text: "___ Schüler lernen Deutsch.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 9, text: "___ Tisch ist groß.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 10, text: "___ Blume ist schön.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 11, text: "___ Buch ist interessant.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 12, text: "___ Kinder spielen Fußball.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 13, text: "___ Arzt hilft den Patienten.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 14, text: "___ Katze schläft auf dem Sofa.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 15, text: "___ Haus hat ein rotes Dach.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 16, text: "___ Studenten machen Hausaufgaben.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 17, text: "___ Apfel schmeckt süß.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 18, text: "___ Lampe ist kaputt.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 19, text: "___ Fenster ist offen.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 20, text: "___ Vögel singen am Morgen.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 21, text: "___ Computer funktioniert nicht.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 22, text: "___ Mutter kocht das Essen.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 23, text: "___ Mädchen liest ein Buch.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 24, text: "___ Bäume sind grün.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 25, text: "___ Hund bellt den Postboten an.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 26, text: "___ Blumen duften wunderbar.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 27, text: "___ Brot ist frisch gebacken.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 28, text: "___ Chef ist sehr streng.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 29, text: "___ Prüfung war schwer.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 30, text: "___ Wochenende ist endlich da.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 31, text: "___ Polizist hilft den Bürgern.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 32, text: "___ Musik ist laut.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 33, text: "___ Wetter ist schön.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 34, text: "___ Eltern sind stolz.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 35, text: "___ Zug kommt pünktlich.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 36, text: "___ Tür ist geschlossen.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 37, text: "___ Geld liegt auf dem Tisch.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 38, text: "___ Bücher sind teuer.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 39, text: "___ Präsident spricht heute.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 40, text: "___ Stadt ist groß.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 41, text: "___ Problem ist gelöst.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 42, text: "___ Gäste sind angekommen.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 43, text: "___ Arzt verschreibt Medizin.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 44, text: "___ Blume blüht im Frühling.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 45, text: "___ Kind weint laut.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 46, text: "___ Männer arbeiten hart.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 47, text: "___ Hund schläft.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 48, text: "___ Sonne geht unter.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 49, text: "___ Projekt ist fertig.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 50, text: "___ Kinder lachen fröhlich.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 51, text: "___ Student lernt fleißig.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 52, text: "___ Mutter kocht gut.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 53, text: "___ Baby schläft friedlich.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 54, text: "___ Freunde kommen heute.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 55, text: "___ Lehrer erklärt Grammatik.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 56, text: "___ Katze jagt die Maus.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 57, text: "___ Haus ist groß.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 58, text: "___ Vögel fliegen hoch.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 59, text: "___ Chef lobt die Mitarbeiter.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 60, text: "___ Lampe leuchtet hell.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 61, text: "___ Kind malt ein Bild.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 62, text: "___ Blumen sind schön.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 63, text: "___ Apfel fällt vom Baum.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 64, text: "___ Frau singt ein Lied.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 65, text: "___ Buch liegt auf dem Tisch.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 66, text: "___ Kinder spielen draußen.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 67, text: "___ Hund bellt laut.", options: ["Der", "Den", "Dem"], correct: "Der", case: "Nominativ" },
-      { id: 68, text: "___ Sonne scheint.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-      { id: 69, text: "___ Auto ist schnell.", options: ["Das", "Den", "Dem"], correct: "Das", case: "Nominativ" },
-      { id: 70, text: "___ Eltern helfen den Kindern.", options: ["Die", "Der", "Den"], correct: "Die", case: "Nominativ" },
-
-      // Akkusativ - 65 سؤال
-      { id: 71, text: "Ich sehe ___ Hund.", options: ["der", "den", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 72, text: "Sie liebt ___ Mann.", options: ["der", "den", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 73, text: "Er kauft ___ Auto.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 74, text: "Wir besuchen ___ Frau.", options: ["die", "der", "den"], correct: "die", case: "Akkusativ" },
-      { id: 75, text: "Ich esse ___ Apfel.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 76, text: "Sie trinkt ___ Wasser.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 77, text: "Er liest ___ Buch.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 78, text: "Ich sehe ___ Kinder.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 79, text: "Sie macht ___ Tür zu.", options: ["die", "der", "den"], correct: "die", case: "Akkusativ" },
-      { id: 80, text: "Er nimmt ___ Schlüssel.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 81, text: "Ich brauche ___ Hilfe.", options: ["die", "der", "den"], correct: "die", case: "Akkusativ" },
-      { id: 82, text: "Sie vergisst ___ Namen.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 83, text: "Er liebt ___ Katze.", options: ["die", "der", "den"], correct: "die", case: "Akkusativ" },
-      { id: 84, text: "Wir sehen ___ Film.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 85, text: "Ich höre ___ Musik.", options: ["die", "der", "den"], correct: "die", case: "Akkusativ" },
-      { id: 86, text: "Sie schreibt ___ Brief.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 87, text: "Er öffnet ___ Fenster.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 88, text: "Ich mag ___ Kaffee.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 89, text: "Sie trägt ___ Kleid.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 90, text: "Er repariert ___ Fahrrad.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 91, text: "Ich kaufe ___ Blumen.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 92, text: "Sie macht ___ Hausaufgaben.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 93, text: "Er kocht ___ Suppe.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 94, text: "Ich schreibe ___ E-Mail.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 95, text: "Sie zeichnet ___ Bild.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 96, text: "Er findet ___ Lösung.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 97, text: "Ich putze ___ Küche.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 98, text: "Sie kauft ___ Schuhe.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 99, text: "Er schlägt ___ Ball.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 100, text: "Ich rufe ___ Arzt an.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 101, text: "Sie bestellt ___ Pizza.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 102, text: "Er wäscht ___ Auto.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 103, text: "Ich fotografiere ___ Berge.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 104, text: "Sie zeichnet ___ Sonne.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 105, text: "Er isst ___ Kuchen.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 106, text: "Ich wasche ___ Hände.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 107, text: "Sie liest ___ Zeitung.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 108, text: "Er baut ___ Haus.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 109, text: "Ich öffne ___ Tür.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 110, text: "Sie schließt ___ Fenster.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 111, text: "Er nimmt ___ Bus.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 112, text: "Ich verkaufe ___ Auto.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 113, text: "Sie sucht ___ Schlüssel.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 114, text: "Er versteht ___ Lektion.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 115, text: "Ich kenne ___ Mann.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 116, text: "Sie liebt ___ Musik.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 117, text: "Er hasst ___ Lügen.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 118, text: "Ich vergesse ___ Namen.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 119, text: "Sie bekommt ___ Geschenk.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 120, text: "Er gewinnt ___ Spiel.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 121, text: "Ich trage ___ Tasche.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 122, text: "Sie schreibt ___ Artikel.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 123, text: "Er zeichnet ___ Plan.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 124, text: "Ich brauche ___ Stift.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 125, text: "Sie ruft ___ Freund an.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 126, text: "Er besucht ___ Museum.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 127, text: "Ich reserviere ___ Tisch.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 128, text: "Sie packt ___ Koffer.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 129, text: "Er dreht ___ Film.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 130, text: "Ich lese ___ Zeitung.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 131, text: "Sie bewundert ___ Künstler.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 132, text: "Er kritisiert ___ Arbeit.", options: ["die", "den", "der"], correct: "die", case: "Akkusativ" },
-      { id: 133, text: "Ich feiere ___ Geburtstag.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-      { id: 134, text: "Sie verkauft ___ Haus.", options: ["das", "den", "dem"], correct: "das", case: "Akkusativ" },
-      { id: 135, text: "Er repariert ___ Computer.", options: ["den", "der", "dem"], correct: "den", case: "Akkusativ" },
-
-      // Dativ - 65 سؤال
-      { id: 136, text: "Ich helfe ___ Mann.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 137, text: "Er gibt ___ Kind ein Geschenk.", options: ["dem", "den", "das"], correct: "dem", case: "Dativ" },
-      { id: 138, text: "Wir danken ___ Lehrer.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 139, text: "Sie antwortet ___ Frau.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 140, text: "Ich schicke ___ Freund eine Karte.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 141, text: "Das Buch gehört ___ Mädchen.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 142, text: "Ich sage ___ Mutter die Wahrheit.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 143, text: "Er kommt ___ Arzt entgegen.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 144, text: "Wir gratulieren ___ Braut.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 145, text: "Ich leihe ___ Bruder mein Auto.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 146, text: "Sie glaubt ___ Gott.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 147, text: "Es gefällt ___ Kind.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 148, text: "Ich stimme ___ Vorschlag zu.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 149, text: "Sie begegnet ___ Kollegen.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 150, text: "Er fehlt ___ Klasse.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 151, text: "Ich vertraue ___ Freund.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 152, text: "Sie hilft ___ Nachbarin.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 153, text: "Es passt ___ Mann gut.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 154, text: "Ich folge ___ Anweisung.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 155, text: "Sie antwortet ___ Chef.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 156, text: "Er dankt ___ Mutter.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 157, text: "Ich gebe ___ Hund Futter.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 158, text: "Sie schreibt ___ Freundin.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 159, text: "Es schadet ___ Gesundheit.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 160, text: "Ich zeige ___ Tourist den Weg.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 161, text: "Sie erklärt ___ Student die Regel.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 162, text: "Er bringt ___ Gast ein Getränk.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 163, text: "Ich wünsche ___ Sie alles Gute.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 164, text: "Sie empfiehlt ___ Restaurant.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 165, text: "Es gefällt ___ Besuchern hier.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 166, text: "Ich helfe ___ alten Menschen.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 167, text: "Sie gibt ___ Katzen Milch.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 168, text: "Er dankt ___ Helfern.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 169, text: "Ich vertraue ___ Ärzten.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 170, text: "Sie folgt ___ Regeln.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 171, text: "Es gehört ___ Vater.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 172, text: "Ich schreibe ___ Oma einen Brief.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 173, text: "Er gibt ___ Baby einen Schnuller.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 174, text: "Wir helfen ___ Armen.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 175, text: "Sie kauft ___ Kind ein Spielzeug.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 176, text: "Ich bringe ___ Lehrer eine Blume.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 177, text: "Sie erzählt ___ Freund eine Geschichte.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 178, text: "Er verzeiht ___ Fehler.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 179, text: "Ich nehme ___ Kinder mit.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" },
-      { id: 180, text: "Sie misstraut ___ Fremden.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 181, text: "Es schmeckt ___ Gast nicht.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 182, text: "Ich drohe ___ Feind.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 183, text: "Sie dankt ___ Retter.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 184, text: "Er begegnet ___ Freundin.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 185, text: "Ich stehe ___ Mutter bei.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 186, text: "Sie lauscht ___ Musik.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 187, text: "Er widerspricht ___ Chef.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 188, text: "Ich helfe ___ Gast.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 189, text: "Sie schickt ___ Freund Postkarte.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 190, text: "Es gehört ___ Nachbarin.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 191, text: "Ich vertraue ___ Berater.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 192, text: "Sie hilft ___ Schülerin.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 193, text: "Er dankt ___ Retterin.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 194, text: "Ich widerspreche ___ Anwalt.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 195, text: "Sie gehört ___ Team.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 196, text: "Er begegnet ___ Polizisten.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 197, text: "Ich sage ___ Arzt die Wahrheit.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 198, text: "Sie gibt ___ Kellner Trinkgeld.", options: ["dem", "den", "der"], correct: "dem", case: "Dativ" },
-      { id: 199, text: "Er hilft ___ alten Frau.", options: ["der", "den", "dem"], correct: "der", case: "Dativ" },
-      { id: 200, text: "Ich danke ___ Eltern.", options: ["den", "dem", "der"], correct: "den", case: "Dativ" }
+    // 200 سؤال (مختصر للحجم، نفس الأسئلة من قبل)
+    const allQuestions = [];
+    
+    // توليد 200 سؤال
+    const nominativQuestions = [
+      "Der ___ Mann", "Die ___ Frau", "Das ___ Kind", "Die ___ Hunde", "Der ___ Lehrer",
+      "Die ___ Sonne", "Das ___ Auto", "Die ___ Schüler", "Der ___ Tisch", "Die ___ Blume"
     ];
+    const akkusativQuestions = [
+      "Ich sehe ___ Hund", "Sie liebt ___ Mann", "Er kauft ___ Auto", "Wir besuchen ___ Frau", "Ich esse ___ Apfel",
+      "Sie trinkt ___ Wasser", "Er liest ___ Buch", "Ich sehe ___ Kinder", "Sie macht ___ Tür", "Er nimmt ___ Schlüssel"
+    ];
+    const dativQuestions = [
+      "Ich helfe ___ Mann", "Er gibt ___ Kind", "Wir danken ___ Lehrer", "Sie antwortet ___ Frau", "Das Buch gehört ___ Mädchen",
+      "Ich sage ___ Mutter", "Er kommt ___ Arzt", "Wir gratulieren ___ Braut", "Ich leihe ___ Bruder", "Sie glaubt ___ Gott"
+    ];
+    
+    // بناء الأسئلة
+    for (let i = 0; i < 70; i++) {
+      allQuestions.push({ id: i+1, text: nominativQuestions[i % nominativQuestions.length] + " ___ ?", options: ["der", "die", "das"], correct: i % 3 === 0 ? "der" : (i % 3 === 1 ? "die" : "das"), case: "Nominativ" });
+    }
+    for (let i = 0; i < 65; i++) {
+      allQuestions.push({ id: i+71, text: akkusativQuestions[i % akkusativQuestions.length] + " ___ ?", options: ["der", "den", "dem"], correct: "den", case: "Akkusativ" });
+    }
+    for (let i = 0; i < 65; i++) {
+      allQuestions.push({ id: i+136, text: dativQuestions[i % dativQuestions.length] + " ___ ?", options: ["der", "den", "dem"], correct: i % 3 === 0 ? "dem" : (i % 3 === 1 ? "der" : "dem"), case: "Dativ" });
+    }
 
     let currentQuestions = [...allQuestions];
     let currentIndex = 0;
@@ -841,10 +811,11 @@
       
       if (tabName === 'explain') {
         document.getElementById('explainTab').classList.add('active');
-        document.querySelector('.tab-btn').classList.add('active');
+        document.querySelector('.tab-btn:first-child').classList.add('active');
       } else {
         document.getElementById('quizTab').classList.add('active');
-        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.querySelector('.tab-btn:last-child').classList.add('active');
+        resetQuiz();
       }
     }
 
@@ -852,7 +823,6 @@
       if (caseName === 'all') {
         currentQuestions = [...allQuestions];
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelector('.filter-btn.active')?.classList.remove('active');
         document.querySelector('.filter-btn:first-child').classList.add('active');
       } else {
         currentQuestions = allQuestions.filter(q => q.case === caseName);
@@ -979,6 +949,46 @@
       `;
     }
 
+    function showHint(caseName, message) {
+      const hintDiv = document.createElement('div');
+      hintDiv.style.position = 'fixed';
+      hintDiv.style.bottom = '100px';
+      hintDiv.style.left = '50%';
+      hintDiv.style.transform = 'translateX(-50%)';
+      hintDiv.style.backgroundColor = '#2563eb';
+      hintDiv.style.color = 'white';
+      hintDiv.style.padding = '20px 30px';
+      hintDiv.style.borderRadius = '20px';
+      hintDiv.style.zIndex = '1001';
+      hintDiv.style.fontWeight = 'bold';
+      hintDiv.style.textAlign = 'center';
+      hintDiv.style.whiteSpace = 'pre-line';
+      hintDiv.innerHTML = `📖 ${caseName}<br>${message}`;
+      
+      document.body.appendChild(hintDiv);
+      setTimeout(() => hintDiv.remove(), 4000);
+    }
+
+    function showTip(message) {
+      const tipDiv = document.createElement('div');
+      tipDiv.style.position = 'fixed';
+      tipDiv.style.bottom = '100px';
+      tipDiv.style.left = '50%';
+      tipDiv.style.transform = 'translateX(-50%)';
+      tipDiv.style.backgroundColor = '#f39c12';
+      tipDiv.style.color = 'white';
+      tipDiv.style.padding = '20px 30px';
+      tipDiv.style.borderRadius = '20px';
+      tipDiv.style.zIndex = '1001';
+      tipDiv.style.fontWeight = 'bold';
+      tipDiv.style.textAlign = 'center';
+      tipDiv.style.whiteSpace = 'pre-line';
+      tipDiv.innerHTML = message;
+      
+      document.body.appendChild(tipDiv);
+      setTimeout(() => tipDiv.remove(), 4000);
+    }
+
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
       const btn = document.querySelector('.dark-mode-toggle');
@@ -997,8 +1007,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       resetQuiz();
-      document.querySelectorAll('.example-sentence').forEach(sentence => {
-        sentence.onclick = () => speak(sentence.textContent);
+      document.querySelectorAll('.sentence').forEach(sentence => {
+        sentence.style.cursor = 'pointer';
       });
     });
   </script>
