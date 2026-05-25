@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfekt Verben</title>
+
+  <style>
+    /* إعدادات الخطوط والخلفية العامة */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+
+    /* الحاوية الرئيسية للبطاقات */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      max-width: 1200px;
+      min-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* تصميم البطاقة الذكي */
+    .card {
+      background: white;
+      width: 100%;
+      max-width: 1050px; 
+      min-width: 820px;
+      padding: 15px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      border: 1px solid #eef2f5;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+
+    /* رأس البطاقة */
+    .title {
+      background: #2c3e50; /* لون داكن مميز لزمن الماضي */
+      color: white;
+      text-align: center;
+      padding: 16px;
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px 10px 0 0;
+    }
+
+    /* جعل الفعل الرئيسي قابل للنطق أيضاً */
+    .infinitiv {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* تفاصيل قاعدة الفعل في الماضي */
+    .perfekt-info {
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: normal;
+    }
+
+    .arabic {
+      font-size: 18px;
+      font-weight: normal;
+      background: #0077cc;
+      padding: 4px 12px;
+      border-radius: 20px;
+      direction: rtl;
+    }
+
+    /* تنسيق الجدول الأفقي */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed; 
+      margin-top: 10px;
+    }
+
+    /* تنسيق صف الضمائر العلوي */
+    th {
+      color: #555;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 12px 5px;
+      border-bottom: 2px solid #edeff1;
+    }
+
+    /* تنسيق صف التصريفات السفلي */
+    td {
+      text-align: center;
+      padding: 15px 5px;
+      font-size: 16px;
+      color: #2c3e50;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    /* تأثير بصري عند التمرير بالماوس */
+    td:hover {
+      background: #f0f8ff;
+    }
+    
+    /* تأثير خفيف أثناء الضغط */
+    td:active, .infinitiv:active {
+      opacity: 0.7;
+    }
+    
+    .nav-links {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .nav-links a {
+      padding: 10px 15px;
+      font-size: large;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
+
+    /* تنسيق فهارس الأقسام */
+    .section-nav {
+      margin: 15px 0;
+    }
+    .section-nav a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 6px 15px;
+      background: #eef2f5;
+      color: #0077cc;
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .section-nav a:hover {
+      background: #0077cc;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-links">
+     <a href="../index.html" class="btn">Home</a>
+  </div>
+
+<h1>تصريف الأفعال الألمانية الماضي التام Perfekt</h1>
+<p style="text-align: center; color: #7f8c8d; margin-top: 0px; margin-bottom: 30px;">💡 اضغط على أي كلمة أو تصريف ألماني لسماع نطقه الصحيح بالكامل</p>
+
+<div class="container" id="verbsContainer"></div>
+
+<script>
+// تجميع كل المصفوفات مقسمة إلى 3 أقسام رئيسية واضحة ومفهومة لتكوين الجملة
+const allVerbs = [
+  // ============================================
+  // القسم الأول: أفعال تأخذ المساعد (haben)
+  // ============================================
+  { 
+    section: "perfekt_haben", 
+    sectionTitle: "القسم 1: أفعال الماضي التام التي تأخذ الفعل المساعد (haben)",
+    infinitiv: "machen", 
+    arabic: "يفعل / يصنع", 
+    auxiliary: "haben", 
+    partizip2: "gemacht",
+    forms: { 
+      ich: "habe Hausaufgaben gemacht", 
+      du: "hast Hausaufgaben gemacht", 
+      er: "hat Hausaufgaben gemacht", 
+      wir: "haben Hausaufgaben gemacht", 
+      ihr: "habt Hausaufgaben gemacht", 
+      sie: "haben Hausaufgaben gemacht" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "kaufen", 
+    arabic: "يشتري", 
+    auxiliary: "haben", 
+    partizip2: "gekauft",
+    forms: { 
+      ich: "habe ein Auto gekauft", 
+      du: "hast ein Auto gekauft", 
+      er: "hat ein Auto gekauft", 
+      wir: "haben ein Auto gekauft", 
+      ihr: "habt ein Auto gekauft", 
+      sie: "haben ein Auto gekauft" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "essen", 
+    arabic: "يأكل", 
+    auxiliary: "haben", 
+    partizip2: "gegessen",
+    forms: { 
+      ich: "habe Pizza gegessen", 
+      du: "hast Pizza gegessen", 
+      er: "hat Pizza gegessen", 
+      wir: "haben Pizza gegessen", 
+      ihr: "habt Pizza gegessen", 
+      sie: "haben Pizza gegessen" 
+    } 
+  },
+
+  // ============================================
+  // القسم الثاني: أفعال تأخذ المساعد (sein) - حركة وانتقال
+  // ============================================
+  { 
+    section: "perfekt_sein", 
+    sectionTitle: "القسم 2: أفعال الماضي التام التي تأخذ الفعل المساعد (sein)",
+    infinitiv: "gehen", 
+    arabic: "يذهب", 
+    auxiliary: "sein", 
+    partizip2: "gegangen",
+    forms: { 
+      ich: "bin nach Hause gegangen", 
+      du: "bist nach Hause gegangen", 
+      er: "ist nach Hause gegangen", 
+      wir: "sind nach Hause gegangen", 
+      ihr: "seid nach Hause gegangen", 
+      sie: "sind nach Hause gegangen" 
+    } 
+  },
+  { 
+    section: "perfekt_sein", 
+    infinitiv: "fahren", 
+    arabic: "يسافر / يقود", 
+    auxiliary: "sein", 
+    partizip2: "gefahren",
+    forms: { 
+      ich: "bin nach Berlin gefahren", 
+      du: "bist nach Berlin gefahren", 
+      er: "ist nach Berlin gefahren", 
+      wir: "sind nach Berlin gefahren", 
+      ihr: "seid nach Berlin gefahren", 
+      sie: "sind nach Berlin gefahren" 
+    } 
+  },
+  { 
+    section: "perfekt_sein", 
+    infinitiv: "kommen", 
+    arabic: "يأتي", 
+    auxiliary: "sein", 
+    partizip2: "gekommen",
+    forms: { 
+      ich: "bin pünktlich gekommen", 
+      du: "bist pünktlich gekommen", 
+      er: "ist pünktlich gekommen", 
+      wir: "sind pünktlich gekommen", 
+      ihr: "seid pünktlich gekommen", 
+      sie: "sind pünktlich gekommen" 
+    } 
+  },
+
+  // ============================================
+  // القسم الثالث: أفعال الكيف المساعدة (Modalverben)
+  // ============================================
+  { 
+    section: "perfekt_modal", 
+    sectionTitle: "القسم 3: أفعال الكيف المساعدة (Modalverben) في الماضي التام",
+    infinitiv: "können", 
+    arabic: "يستطيع", 
+    auxiliary: "haben", 
+    partizip2: "gekonnt",
+    forms: { ich: "habe gekonnt", du: "hast gekonnt", er: "hat gekonnt", wir: "haben gekonnt", ihr: "habt gekonnt", sie: "haben gekonnt" } 
+  },
+  { 
+    section: "perfekt_modal", 
+    infinitiv: "müssen", 
+    arabic: "يجب / يضطر", 
+    auxiliary: "haben", 
+    partizip2: "gemusst",
+    forms: { ich: "habe gemusst", du: "hast gemusst", er: "hat gemusst", wir: "haben gemusst", ihr: "habt gemusst", sie: "haben gemusst" } 
+  },
+  { 
+    section: "perfekt_modal", 
+    infinitiv: "wollen", 
+    arabic: "يريد", 
+    auxiliary: "haben", 
+    partizip2: "gewollt",
+    forms: { ich: "habe gewollt", du: "hast gewollt", er: "hat gewollt", wir: "haben gewollt", ihr: "habt gewollt", sie: "haben gewollt" } 
+  },
+  { 
+    section: "perfekt_modal", 
+    infinitiv: "dürfen", 
+    arabic: "يسمح له", 
+    auxiliary: "haben", 
+    partizip2: "gedurft",
+    forms: { ich: "habe gedurft", du: "hast gedurft", er: "hat gedurft", wir: "haben gedurft", ihr: "habt gedurft", sie: "haben gedurft" } 
+  },
+  { 
+    section: "perfekt_modal", 
+    infinitiv: "sollen", 
+    arabic: "ينبغي", 
+    auxiliary: "haben", 
+    partizip2: "gesollt",
+    forms: { ich: "habe gesollt", du: "hast gesollt", er: "hat gesollt", wir: "haben gesollt", ihr: "habt gesollt", sie: "haben gesollt" } 
+  },
+  { 
+    section: "perfekt_modal", 
+    infinitiv: "möchten", 
+    arabic: "يرغب", 
+    auxiliary: "haben", 
+    partizip2: "gemocht",
+    forms: { ich: "habe gemocht", du: "hast gemocht", er: "hat gemocht", wir: "haben gemocht", ihr: "habt gemocht", sie: "haben gemocht" } 
+  },
+  { 
+    section: "perfekt_modal", 
+    infinitiv: "mögen", 
+    arabic: "يحب", 
+    auxiliary: "haben", 
+    partizip2: "gemocht",
+    forms: { ich: "habe gemocht", du: "hast gemocht", er: "hat gemocht", wir: "haben gemocht", ihr: "habt gemocht", sie: "haben gemocht" } 
+  }
+];
+
+const container = document.getElementById('verbsContainer');
+let currentSection = "";
+var i = 0;
+
+// دالة لتوليد عناصر واجهة المستخدم ديناميكياً بناءً على البيانات
+allVerbs.forEach(verb => {
+  i++;
+  // إضافة عنوان القسم إذا تغير القسم الحالي
+  if (verb.sectionTitle && currentSection !== verb.section) {
+    currentSection = verb.section;
+    const secHeader = document.createElement('h2');
+   
+    secHeader.id = verb.section;
+    secHeader.style.width = '100%';
+    secHeader.style.textAlign = 'center';
+    secHeader.style.color = '#0077cc';
+    secHeader.style.marginTop = '50px';
+    secHeader.style.borderBottom = '2px solid #0077cc';
+    secHeader.style.paddingBottom = '10px';
+    
+    // إنشاء روابط الفهرس الفرعية متوافقة مع الأقسام الثلاثة الجديدة للماضي التام
+    secHeader.innerHTML = verb.sectionTitle + `<br>
+      <div class="section-nav">
+        <a href="#perfekt_haben">قسم 1 (haben)</a>
+        <a href="#perfekt_sein">قسم 2 (sein)</a>
+        <a href="#perfekt_modal">قسم 3 (Modalverben)</a>
+      </div>
+    `;
+
+    container.appendChild(secHeader);
+  }
+
+  // إنشاء الكارت الخاص بكل فعل
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.onclick = function() {
+    // إرجاع الألوان الأخرى للوضع الطبيعي قبل تمييز الكارت الحالي
+    document.querySelectorAll('.card').forEach(c => c.style.backgroundColor = 'white');
+    card.style.backgroundColor = '#f7f9fa';
+  }
+
+  card.innerHTML = `
+    <div class="title">
+      <span class="infinitiv" onclick="speak('${verb.infinitiv}'); event.stopPropagation();">${i} : ${verb.infinitiv}</span>
+      <span class="perfekt-info">(${verb.auxiliary} + ... + ${verb.partizip2})</span>
+      <span class="arabic">${verb.arabic}</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ich</th>
+          <th>du</th>
+          <th>er/sie/es</th>
+          <th>wir</th>
+          <th>ihr</th>
+          <th>sie/Sie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td onclick="speak('${verb.forms.ich}'); event.stopPropagation();">${verb.forms.ich}</td>
+          <td onclick="speak('${verb.forms.du}'); event.stopPropagation();">${verb.forms.du}</td>
+          <td onclick="speak('${verb.forms.er}'); event.stopPropagation();">${verb.forms.er}</td>
+          <td onclick="speak('${verb.forms.wir}'); event.stopPropagation();">${verb.forms.wir}</td>
+          <td onclick="speak('${verb.forms.ihr}'); event.stopPropagation();">${verb.forms.ihr}</td>
+          <td onclick="speak('${verb.forms.sie}'); event.stopPropagation();">${verb.forms.sie}</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+  container.appendChild(card);
+});
+
+// دالة نطق الكلمات بالألمانية باستخدام ميزة توليد الأصوات في المتصفح Web Speech API
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    // إلغاء أي نطق مستمر لمنع التداخل والتعليق
+    window.speechSynthesis.cancel();
+  
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE'; // تعيين اللغة الألمانية
+    utterance.rate = 0.85;    // إبطاء السرعة قليلاً بوضوح لتسهيل الفهم والتعلم
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert("عذراً، متصفحك لا يدعم ميزة النطق الصوتي التلقائي.");
+  }
+}
+</script>
+</body>
+</html>
