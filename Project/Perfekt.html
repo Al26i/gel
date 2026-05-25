@@ -172,7 +172,6 @@
 <div class="container" id="verbsContainer"></div>
 
 <script>
-// تجميع كل المصفوفات مقسمة إلى 3 أقسام رئيسية واضحة ومفهومة لتكوين الجملة
 const allVerbs = [
   // ============================================
   // القسم الأول: أفعال تأخذ المساعد (haben)
@@ -195,6 +194,7 @@ const allVerbs = [
   },
   { 
     section: "perfekt_haben", 
+    infinitiv: "kaufem", 
     infinitiv: "kaufen", 
     arabic: "يشتري", 
     auxiliary: "haben", 
@@ -223,9 +223,129 @@ const allVerbs = [
       sie: "haben Pizza gegessen" 
     } 
   },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "trinken", 
+    arabic: "يشرب", 
+    auxiliary: "haben", 
+    partizip2: "getrunken",
+    forms: { 
+      ich: "habe Wasser getrunken", 
+      du: "hast Wasser getrunken", 
+      er: "hat Wasser getrunken", 
+      wir: "haben Wasser getrunken", 
+      ihr: "habt Wasser getrunken", 
+      sie: "haben Wasser getrunken" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "schreiben", 
+    arabic: "يكتب", 
+    auxiliary: "haben", 
+    partizip2: "geschrieben",
+    forms: { 
+      ich: "habe einen Brief geschrieben", 
+      du: "hast einen Brief geschrieben", 
+      er: "hat einen Brief geschrieben", 
+      wir: "haben einen Brief geschrieben", 
+      ihr: "habt einen Brief geschrieben", 
+      sie: "haben einen Brief geschrieben" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "lesen", 
+    arabic: "يقرأ", 
+    auxiliary: "haben", 
+    partizip2: "gelesen",
+    forms: { 
+      ich: "habe ein Buch gelesen", 
+      du: "hast ein Buch gelesen", 
+      er: "hat ein Buch gelesen", 
+      wir: "haben ein Buch gelesen", 
+      ihr: "habt ein Buch gelesen", 
+      sie: "haben ein Buch gelesen" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "hören", 
+    arabic: "يسمع", 
+    auxiliary: "haben", 
+    partizip2: "gehört",
+    forms: { 
+      ich: "habe Musik gehört", 
+      du: "hast Musik gehört", 
+      er: "hat Musik gehört", 
+      wir: "haben Musik gehört", 
+      ihr: "habt Musik gehört", 
+      sie: "haben Musik gehört" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "sehen", 
+    arabic: "يرى / يشاهد", 
+    auxiliary: "haben", 
+    partizip2: "gesehen",
+    forms: { 
+      ich: "habe einen Film gesehen", 
+      du: "hast einen Film gesehen", 
+      er: "hat einen Film gesehen", 
+      wir: "haben einen Film gesehen", 
+      ihr: "habt einen Film gesehen", 
+      sie: "haben einen Film gesehen" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "lernen", 
+    arabic: "يتعلم", 
+    auxiliary: "haben", 
+    partizip2: "gelernt",
+    forms: { 
+      ich: "habe Deutsch gelernt", 
+      du: "hast Deutsch gelernt", 
+      er: "hat Deutsch gelernt", 
+      wir: "haben Deutsch gelernt", 
+      ihr: "habt Deutsch gelernt", 
+      sie: "haben Deutsch gelernt" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "suchen", 
+    arabic: "يبحث عن", 
+    auxiliary: "haben", 
+    partizip2: "gesucht",
+    forms: { 
+      ich: "habe den Schlüssel gesucht", 
+      du: "hast den Schlüssel gesucht", 
+      er: "hat den Schlüssel gesucht", 
+      wir: "haben den Schlüssel gesucht", 
+      ihr: "habt den Schlüssel gesucht", 
+      sie: "haben den Schlüssel gesucht" 
+    } 
+  },
+  { 
+    section: "perfekt_haben", 
+    infinitiv: "finden", 
+    arabic: "يجد", 
+    auxiliary: "haben", 
+    partizip2: "gefunden",
+    forms: { 
+      ich: "habe die Lösung gefunden", 
+      du: "hast die Lösung gefunden", 
+      er: "hat die Lösung gefunden", 
+      wir: "haben die Lösung gefunden", 
+      ihr: "habt die Lösung gefunden", 
+      sie: "haben die Lösung gefunden" 
+    } 
+  },
 
   // ============================================
-  // القسم الثاني: أفعال تأخذ المساعد (sein) - حركة وانتقال
+  // القسم الثاني: أفعال تأخذ المساعد (sein) - حركة وتغير حالة
   // ============================================
   { 
     section: "perfekt_sein", 
@@ -271,6 +391,81 @@ const allVerbs = [
       wir: "sind pünktlich gekommen", 
       ihr: "seid pünktlich gekommen", 
       sie: "sind pünktlich gekommen" 
+    } 
+  },
+  { 
+    section: "perfekt_sein", 
+    infinitiv: "fliegen", 
+    arabic: "يطير / يسافر جواً", 
+    auxiliary: "sein", 
+    partizip2: "geflogen",
+    forms: { 
+      ich: "bin nach Dubai geflogen", 
+      du: "bist nach Dubai geflogen", 
+      er: "ist nach Dubai geflogen", 
+      wir: "sind nach Dubai geflogen", 
+      ihr: "seid nach Dubai geflogen", 
+      sie: "sind nach Dubai geflogen" 
+    } 
+  },
+  { 
+    section: "perfekt_sein", 
+    infinitiv: "laufen", 
+    arabic: "يركض / يمشي", 
+    auxiliary: "sein", 
+    partizip2: "gelaufen",
+    forms: { 
+      ich: "bin im Park gelaufen", 
+      du: "bist im Park gelaufen", 
+      er: "ist im Park gelaufen", 
+      wir: "sind im Park gelaufen", 
+      ihr: "seid im Park gelaufen", 
+      sie: "sind im Park gelaufen" 
+    } 
+  },
+  { 
+    section: "perfekt_sein", 
+    infinitiv: "bleiben", 
+    arabic: "يمكث / يبقى (حالة ثابتة استثنائية)", 
+    auxiliary: "sein", 
+    partizip2: "geblieben",
+    forms: { 
+      ich: "bin im Hotel geblieben", 
+      du: "bist im Hotel geblieben", 
+      er: "ist im Hotel geblieben", 
+      wir: "sind im Hotel geblieben", 
+      ihr: "seid im Hotel geblieben", 
+      sie: "sind im Hotel geblieben" 
+    } 
+  },
+  { 
+    section: "perfekt_sein", 
+    infinitiv: "aufstehen", 
+    arabic: "يستيقظ / ينهض", 
+    auxiliary: "sein", 
+    partizip2: "aufgestanden",
+    forms: { 
+      ich: "bin früh aufgestanden", 
+      du: "bist früh aufgestanden", 
+      er: "ist früh aufgestanden", 
+      wir: "sind früh aufgestanden", 
+      ihr: "seid früh aufgestanden", 
+      sie: "sind früh aufgestanden" 
+    } 
+  },
+  { 
+    section: "perfekt_sein", 
+    infinitiv: "passieren", 
+    arabic: "يحدث (تغير حالة عامة)", 
+    auxiliary: "sein", 
+    partizip2: "passiert",
+    forms: { 
+      ich: "bin erschrocken (مثال آخر)", 
+      du: "bist gewachsen (مثال آخر)", 
+      er: "ist gestern passiert", 
+      wir: "sind spät angekommen", 
+      ihr: "seid schnell gelaufen", 
+      sie: "sind gestern passiert" 
     } 
   },
 
@@ -320,16 +515,8 @@ const allVerbs = [
   },
   { 
     section: "perfekt_modal", 
-    infinitiv: "möchten", 
-    arabic: "يرغب", 
-    auxiliary: "haben", 
-    partizip2: "gemocht",
-    forms: { ich: "habe gemocht", du: "hast gemocht", er: "hat gemocht", wir: "haben gemocht", ihr: "habt gemocht", sie: "haben gemocht" } 
-  },
-  { 
-    section: "perfekt_modal", 
     infinitiv: "mögen", 
-    arabic: "يحب", 
+    arabic: "يحب / يرغب", 
     auxiliary: "haben", 
     partizip2: "gemocht",
     forms: { ich: "habe gemocht", du: "hast gemocht", er: "hat gemocht", wir: "haben gemocht", ihr: "habt gemocht", sie: "haben gemocht" } 
