@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 موسوعة قواعد B1 - شرح شامل، مقارنة الأزمنة، وجداول حروف الجر</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+      transition: background 0.3s;
+    }
+
+    body.dark-mode {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #eee;
+    }
+
+    body.dark-mode .container,
+    body.dark-mode .rule-card,
+    body.dark-mode .comparison-card,
+    body.dark-mode .prep-card,
+    body.dark-mode .table-container,
+    body.dark-mode .tense-card {
+      background: #2d2d44;
+      color: #eee;
+    }
+
+    body.dark-mode .rule-item {
+      background: #3d3d5c;
+    }
+
+    body.dark-mode td {
+      border-bottom-color: #444;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* التنقل السريع */
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .nav-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+
+    /* بطاقات القواعد */
+    .rules-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .rule-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      width: 100%;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .rule-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #2563eb;
+    }
+
+    .rule-icon {
+      font-size: 40px;
+    }
+
+    .rule-title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .rule-subtitle {
+      color: #666;
+      font-size: 14px;
+    }
+
+    body.dark-mode .rule-subtitle {
+      color: #aaa;
+    }
+
+    .rule-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .rule-formula {
+      flex: 1;
+      min-width: 250px;
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 15px;
+    }
+
+    body.dark-mode .rule-formula {
+      background: #3d3d5c;
+    }
+
+    .rule-formula h4 {
+      margin-bottom: 10px;
+      color: #2563eb;
+    }
+
+    .rule-formula .formula {
+      direction: ltr;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px;
+      background: white;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    body.dark-mode .rule-formula .formula {
+      background: #2d2d44;
+    }
+
+    .rule-examples {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .rule-examples h4 {
+      margin-bottom: 10px;
+      color: #2563eb;
+    }
+
+    .example-item {
+      direction: ltr;
+      padding: 8px;
+      margin: 5px 0;
+      background: #f8f9fa;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    body.dark-mode .example-item {
+      background: #3d3d5c;
+    }
+
+    .example-item:hover {
+      background: #e3f2fd;
+      transform: translateX(-5px);
+    }
+
+    .highlight {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    /* قسم مقارنة الأزمنة */
+    .tense-section {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .tense-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2563eb;
+    }
+
+    .tense-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .tense-card {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      flex: 1;
+      min-width: 200px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .tense-card h3 {
+      text-align: center;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid;
+    }
+
+    .präsens { border-bottom-color: #3498db; }
+    .perfekt { border-bottom-color: #27ae60; }
+    .präteritum { border-bottom-color: #e74c3c; }
+    .plusquamperfekt { border-bottom-color: #9b59b6; }
+    .futur { border-bottom-color: #f39c12; }
+
+    .tense-formula {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 10px;
+      direction: ltr;
+      text-align: center;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    body.dark-mode .tense-formula {
+      background: #3d3d5c;
+    }
+
+    /* جدول المقارنة العام */
+    .comparison-card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .comparison-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2563eb;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th {
+      background: #667eea;
+      color: white;
+      padding: 12px;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* حروف الجر */
+    .prep-card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .prep-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2563eb;
+    }
+
+    .prep-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .prep-group {
+      flex: 1;
+      min-width: 250px;
+      background: #f0f0f0;
+      border-radius: 15px;
+      padding: 15px;
+    }
+
+    body.dark-mode .prep-group {
+      background: #3d3d5c;
+    }
+
+    .prep-group h4 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .prep-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .prep-list li {
+      padding: 5px 0;
+      direction: ltr;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .prep-list li:hover {
+      color: #2563eb;
+    }
+
+    .akkusativ { color: #27ae60; }
+    .dativ { color: #e74c3c; }
+    .wechsel { color: #f39c12; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0f172a;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      .rule-title { font-size: 22px; }
+    }
+    .btn-home {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.btn-home:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(238, 90, 36, 0.5);
+  background: linear-gradient(135deg, #ff8c5a, #ff4757);
+}
+  </style>
+</head>
+
+<body>
+<a href="../index.html" class="btn-home">🏠 Home 🔙</a>
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <div class="container">
+    <header>
+      <h1>📚 موسوعة قواعد اللغة الألمانية B1</h1>
+      <p>شرح شامل، مقارنة بين الأزمنة، وجداول حروف الجر - مع أمثلة ونطق صوتي</p>
+    </header>
+
+    <!-- تنقل سريع -->
+    <div class="quick-nav">
+      <button class="nav-btn" onclick="scrollToSection('tenses')">⏰ مقارنة الأزمنة</button>
+      <button class="nav-btn" onclick="scrollToSection('grammar')">📖 القواعد</button>
+      <button class="nav-btn" onclick="scrollToSection('comparison')">📊 جدول المقارنة</button>
+      <button class="nav-btn" onclick="scrollToSection('prepositions')">🔤 حروف الجر</button>
+    </div>
+
+    <!-- ==================== القسم 1: مقارنة الأزمنة ==================== -->
+    <div id="tenses" class="tense-section">
+      <h2>⏰ مقارنة شاملة بين الأزمنة في الألمانية</h2>
+      
+      <div class="tense-grid">
+        <!-- Präsens -->
+        <div class="tense-card">
+          <h3 class="präsens">Präsens (المضارع)</h3>
+          <div class="tense-formula">فعل مصروف</div>
+          <div class="example-item" onclick="speak('Ich lerne Deutsch.')">Ich <span class="highlight">lerne</span> Deutsch.</div>
+          <div class="example-item" onclick="speak('Er geht nach Hause.')">Er <span class="highlight">geht</span> nach Hause.</div>
+          <div class="example-item" onclick="speak('Wir spielen Fußball.')">Wir <span class="highlight">spielen</span> Fußball.</div>
+          <p style="margin-top: 10px; font-size: 13px;">📌 للحقائق، العادات، والحاضر</p>
+        </div>
+
+        <!-- Perfekt -->
+        <div class="tense-card">
+          <h3 class="perfekt">Perfekt (الماضي التام)</h3>
+          <div class="tense-formula">haben/sein + Partizip II</div>
+          <div class="example-item" onclick="speak('Ich habe Deutsch gelernt.')">Ich <span class="highlight">habe</span> Deutsch <span class="highlight">gelernt</span>.</div>
+          <div class="example-item" onclick="speak('Er ist nach Hause gegangen.')">Er <span class="highlight">ist</span> nach Hause <span class="highlight">gegangen</span>.</div>
+          <div class="example-item" onclick="speak('Wir haben Fußball gespielt.')">Wir <span class="highlight">haben</span> Fußball <span class="highlight">gespielt</span>.</div>
+          <p style="margin-top: 10px; font-size: 13px;">📌 للماضي في المحادثة (الأكثر استخداماً)</p>
+        </div>
+
+        <!-- Präteritum -->
+        <div class="tense-card">
+          <h3 class="präteritum">Präteritum (الماضي البسيط)</h3>
+          <div class="tense-formula">فعل في صيغة الماضي</div>
+          <div class="example-item" onclick="speak('Ich lernte Deutsch.')">Ich <span class="highlight">lernte</span> Deutsch.</div>
+          <div class="example-item" onclick="speak('Er ging nach Hause.')">Er <span class="highlight">ging</span> nach Hause.</div>
+          <div class="example-item" onclick="speak('Er hatte keine Zeit.')">Er <span class="highlight">hatte</span> keine Zeit.</div>
+          <p style="margin-top: 10px; font-size: 13px;">📌 للكتابة والروايات والأفعال المساعدة (war, hatte)</p>
+        </div>
+
+        <!-- Plusquamperfekt -->
+        <div class="tense-card">
+          <h3 class="plusquamperfekt">Plusquamperfekt (الماضي التام البعيد)</h3>
+          <div class="tense-formula">hatte/war + Partizip II</div>
+          <div class="example-item" onclick="speak('Ich hatte Deutsch gelernt, bevor ich nach Deutschland kam.')">Ich <span class="highlight">hatte</span> Deutsch <span class="highlight">gelernt</span>.</div>
+          <div class="example-item" onclick="speak('Er war schon gegangen.')">Er <span class="highlight">war</span> schon <span class="highlight">gegangen</span>.</div>
+          <p style="margin-top: 10px; font-size: 13px;">📌 للماضي قبل ماضي آخر (Vorvergangenheit)</p>
+        </div>
+
+        <!-- Futur I -->
+        <div class="tense-card">
+          <h3 class="futur">Futur I (المستقبل)</h3>
+          <div class="tense-formula">werden + Infinitiv</div>
+          <div class="example-item" onclick="speak('Ich werde Deutsch lernen.')">Ich <span class="highlight">werde</span> Deutsch <span class="highlight">lernen</span>.</div>
+          <div class="example-item" onclick="speak('Er wird nach Hause gehen.')">Er <span class="highlight">wird</span> nach Hause <span class="highlight">gehen</span>.</div>
+          <div class="example-item" onclick="speak('Wir werden Fußball spielen.')">Wir <span class="highlight">werden</span> Fußball <span class="highlight">spielen</span>.</div>
+          <p style="margin-top: 10px; font-size: 13px;">📌 للمستقبل والتوقعات</p>
+        </div>
+      </div>
+
+      <!-- جدول مقارنة الأزمنة (نفس الفعل) -->
+      <div class="table-container" style="margin-top: 30px;">
+        <h3 style="text-align: center; margin-bottom: 15px;">📊 مقارنة نفس الفعل (lernen) في جميع الأزمنة</h3>
+        <table>
+          <thead>
+            <tr style="background:#667eea; color:white;">
+              <th>الزمن</th>
+              <th>الصيغة</th>
+              <th>مثال (ich)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Präsens</td><td>فعل مصروف</td><td>ich <span class="highlight">lerne</span></td></tr>
+            <tr><td>Perfekt</td><td>haben/sein + Partizip II</td><td>ich <span class="highlight">habe gelernt</span></td></tr>
+            <tr><td>Präteritum</td><td>فعل في صيغة الماضي</td><td>ich <span class="highlight">lernte</span></td></tr>
+            <tr><td>Plusquamperfekt</td><td>hatte/war + Partizip II</td><td>ich <span class="highlight">hatte gelernt</span></td></tr>
+            <tr><td>Futur I</td><td>werden + Infinitiv</td><td>ich <span class="highlight">werde lernen</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- مقارنة الأفعال المساعدة -->
+      <div class="table-container" style="margin-top: 20px;">
+        <h3 style="text-align: center; margin-bottom: 15px;">🎯 الأفعال المساعدة في الماضي (Präteritum) - الأكثر استخداماً</h3>
+        <table>
+          <thead>
+            <tr style="background:#667eea; color:white;">
+              <th>الفعل</th>
+              <th>ich</th>
+              <th>du</th>
+              <th>er/sie/es</th>
+              <th>wir</th>
+              <th>ihr</th>
+              <th>sie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>sein</strong> (كان)</td><td>war</td><td>warst</td><td>war</td><td>waren</td><td>wart</td><td>waren</td></tr>
+            <tr><td><strong>haben</strong> (كان لدي)</td><td>hatte</td><td>hattest</td><td>hatte</td><td>hatten</td><td>hattet</td><td>hatten</td></tr>
+            <tr><td><strong>werden</strong> (أصبح)</td><td>wurde</td><td>wurdest</td><td>wurde</td><td>wurden</td><td>wurdet</td><td>wurden</td></tr>
+            <tr><td><strong>können</strong> (استطاع)</td><td>konnte</td><td>konntest</td><td>konnte</td><td>konnten</td><td>konntet</td><td>konnten</td></tr>
+            <tr><td><strong>müssen</strong> (اضطر)</td><td>musste</td><td>musstest</td><td>musste</td><td>mussten</td><td>musstet</td><td>mussten</td></tr>
+            <tr><td><strong>wollen</strong> (أراد)</td><td>wollte</td><td>wolltest</td><td>wollte</td><td>wollten</td><td>wolltet</td><td>wollten</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==================== القسم 2: القواعد التفصيلية ==================== -->
+    <div id="grammar">
+      <!-- قاعدة 1: Nebensätze -->
+      <div class="rule-card">
+        <div class="rule-header">
+          <div class="rule-icon">📚</div>
+          <div>
+            <div class="rule-title">Nebensätze - الجمل الثانوية</div>
+            <div class="rule-subtitle">weil • dass • wenn • obwohl • damit</div>
+          </div>
+        </div>
+        <div class="rule-content">
+          <div class="rule-formula">
+            <h4>📌 القاعدة الذهبية</h4>
+            <div class="formula">
+              Konjunktion + Subjekt + ... + <span class="highlight">فعل في الآخر</span>
+            </div>
+            <p style="margin-top: 10px;">في الجملة الثانوية، <strong>الفعل يأتي في نهاية الجملة</strong>.</p>
+          </div>
+          <div class="rule-examples">
+            <h4>📝 أمثلة (10 جمل)</h4>
+            <div class="example-item" onclick="speak('Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte.')">1. Ich lerne Deutsch, <span class="highlight">weil</span> ich in Deutschland arbeiten <span class="highlight">möchte</span>.</div>
+            <div class="example-item" onclick="speak('Ich hoffe, dass du mich besuchst.')">2. Ich hoffe, <span class="highlight">dass</span> du mich <span class="highlight">besuchst</span>.</div>
+            <div class="example-item" onclick="speak('Wenn ich Zeit habe, gehe ich ins Kino.')">3. <span class="highlight">Wenn</span> ich Zeit <span class="highlight">habe</span>, gehe ich ins Kino.</div>
+            <div class="example-item" onclick="speak('Obwohl es regnet, gehe ich spazieren.')">4. <span class="highlight">Obwohl</span> es <span class="highlight">regnet</span>, gehe ich spazieren.</div>
+            <div class="example-item" onclick="speak('Ich lerne Deutsch, damit ich in Deutschland arbeiten kann.')">5. Ich lerne Deutsch, <span class="highlight">damit</span> ich in Deutschland arbeiten <span class="highlight">kann</span>.</div>
+            <div class="example-item" onclick="speak('Ich weiß, dass du Recht hast.')">6. Ich weiß, <span class="highlight">dass</span> du Recht <span class="highlight">hast</span>.</div>
+            <div class="example-item" onclick="speak('Wenn du lernst, wirst du bestehen.')">7. <span class="highlight">Wenn</span> du <span class="highlight">lernst</span>, wirst du bestehen.</div>
+            <div class="example-item" onclick="speak('Obwohl er krank ist, geht er zur Arbeit.')">8. <span class="highlight">Obwohl</span> er krank <span class="highlight">ist</span>, geht er zur Arbeit.</div>
+            <div class="example-item" onclick="speak('Ich bleibe zu Hause, weil es kalt ist.')">9. Ich bleibe zu Hause, <span class="highlight">weil</span> es kalt <span class="highlight">ist</span>.</div>
+            <div class="example-item" onclick="speak('Ich spare Geld, damit ich ein Auto kaufen kann.')">10. Ich spare Geld, <span class="highlight">damit</span> ich ein Auto kaufen <span class="highlight">kann</span>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قاعدة 2: Konnektoren -->
+      <div class="rule-card">
+        <div class="rule-header">
+          <div class="rule-icon">🔗</div>
+          <div>
+            <div class="rule-title">Konnektoren - أدوات الربط</div>
+            <div class="rule-subtitle">deshalb • deswegen • trotzdem • außerdem</div>
+          </div>
+        </div>
+        <div class="rule-content">
+          <div class="rule-formula">
+            <h4>📌 القاعدة</h4>
+            <div class="formula">
+              Satz 1 + Konnektor + <span class="highlight">فعل</span> + Subjekt + ...
+            </div>
+            <p style="margin-top: 10px;">بعد أدوات الربط، يأتي <strong>الفعل في المرتبة الثانية</strong>.</p>
+          </div>
+          <div class="rule-examples">
+            <h4>📝 أمثلة (10 جمل)</h4>
+            <div class="example-item" onclick="speak('Ich bin müde, deshalb gehe ich schlafen.')">1. Ich bin müde, <span class="highlight">deshalb gehe</span> ich schlafen.</div>
+            <div class="example-item" onclick="speak('Es regnet, deswegen bleibe ich zu Hause.')">2. Es regnet, <span class="highlight">deswegen bleibe</span> ich zu Hause.</div>
+            <div class="example-item" onclick="speak('Es regnet, trotzdem gehe ich spazieren.')">3. Es regnet, <span class="highlight">trotzdem gehe</span> ich spazieren.</div>
+            <div class="example-item" onclick="speak('Ich lerne Deutsch, außerdem lerne ich Englisch.')">4. Ich lerne Deutsch, <span class="highlight">außerdem lerne</span> ich Englisch.</div>
+            <div class="example-item" onclick="speak('Ich habe viel gelernt, deshalb habe ich die Prüfung bestanden.')">5. Ich habe viel gelernt, <span class="highlight">deshalb habe</span> ich die Prüfung bestanden.</div>
+            <div class="example-item" onclick="speak('Das Wetter ist schlecht, deswegen bleiben wir zu Hause.')">6. Das Wetter ist schlecht, <span class="highlight">deswegen bleiben</span> wir zu Hause.</div>
+            <div class="example-item" onclick="speak('Er ist krank, trotzdem geht er zur Arbeit.')">7. Er ist krank, <span class="highlight">trotzdem geht</span> er zur Arbeit.</div>
+            <div class="example-item" onclick="speak('Ich mag Fußball, außerdem mag ich Basketball.')">8. Ich mag Fußball, <span class="highlight">außerdem mag</span> ich Basketball.</div>
+            <div class="example-item" onclick="speak('Das Essen ist teuer, deshalb esse ich zu Hause.')">9. Das Essen ist teuer, <span class="highlight">deshalb esse</span> ich zu Hause.</div>
+            <div class="example-item" onclick="speak('Er hat wenig Zeit, trotzdem hilft er mir.')">10. Er hat wenig Zeit, <span class="highlight">trotzdem hilft</span> er mir.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قاعدة 3: Passiv -->
+      <div class="rule-card">
+        <div class="rule-header">
+          <div class="rule-icon">📖</div>
+          <div>
+            <div class="rule-title">Passiv - المبني للمجهول</div>
+            <div class="rule-subtitle">Präsens Passiv • Präteritum Passiv</div>
+          </div>
+        </div>
+        <div class="rule-content">
+          <div class="rule-formula">
+            <h4>📌 القاعدة</h4>
+            <div class="formula">
+              Präsens: <span class="highlight">werden</span> + Partizip II<br>
+              Präteritum: <span class="highlight">wurden</span> + Partizip II
+            </div>
+          </div>
+          <div class="rule-examples">
+            <h4>📝 أمثلة (10 جمل)</h4>
+            <div class="example-item" onclick="speak('Das Auto wird repariert.')">1. Das Auto <span class="highlight">wird repariert</span>.</div>
+            <div class="example-item" onclick="speak('Das Auto wurde repariert.')">2. Das Auto <span class="highlight">wurde repariert</span>.</div>
+            <div class="example-item" onclick="speak('Die Pizza wird gebacken.')">3. Die Pizza <span class="highlight">wird gebacken</span>.</div>
+            <div class="example-item" onclick="speak('Der Brief wird geschrieben.')">4. Der Brief <span class="highlight">wird geschrieben</span>.</div>
+            <div class="example-item" onclick="speak('Das Haus wird gebaut.')">5. Das Haus <span class="highlight">wird gebaut</span>.</div>
+            <div class="example-item" onclick="speak('Die Tür wird geöffnet.')">6. Die Tür <span class="highlight">wird geöffnet</span>.</div>
+            <div class="example-item" onclick="speak('Der Hund wurde gefüttert.')">7. Der Hund <span class="highlight">wurde gefüttert</span>.</div>
+            <div class="example-item" onclick="speak('Das Problem wurde gelöst.')">8. Das Problem <span class="highlight">wurde gelöst</span>.</div>
+            <div class="example-item" onclick="speak('Die Rechnung wird bezahlt.')">9. Die Rechnung <span class="highlight">wird bezahlt</span>.</div>
+            <div class="example-item" onclick="speak('Der Film wurde gezeigt.')">10. Der Film <span class="highlight">wurde gezeigt</span>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قاعدة 4: Komparativ & Superlativ -->
+      <div class="rule-card">
+        <div class="rule-header">
+          <div class="rule-icon">📊</div>
+          <div>
+            <div class="rule-title">Komparativ & Superlativ</div>
+            <div class="rule-subtitle">المقارنة والتفضيل</div>
+          </div>
+        </div>
+        <div class="rule-content">
+          <div class="rule-formula">
+            <h4>📌 القاعدة</h4>
+            <div class="formula">
+              Komparativ: <span class="highlight">صفة + er + als</span><br>
+              Superlativ: <span class="highlight">am + صفة + sten</span> / <span class="highlight">der/die/das + صفة + ste</span>
+            </div>
+          </div>
+          <div class="rule-examples">
+            <h4>📝 أمثلة (10 جمل)</h4>
+            <div class="example-item" onclick="speak('Mein Auto ist schneller als deins.')">1. Mein Auto ist <span class="highlight">schneller</span> als deins.</div>
+            <div class="example-item" onclick="speak('Dieses Auto ist am schnellsten.')">2. Dieses Auto ist <span class="highlight">am schnellsten</span>.</div>
+            <div class="example-item" onclick="speak('Das ist das schnellste Auto.')">3. Das ist <span class="highlight">das schnellste</span> Auto.</div>
+            <div class="example-item" onclick="speak('Ich bin größer als mein Bruder.')">4. Ich bin <span class="highlight">größer</span> als mein Bruder.</div>
+            <div class="example-item" onclick="speak('Der Mount Everest ist der höchste Berg.')">5. Der Mount Everest ist <span class="highlight">der höchste</span> Berg.</div>
+            <div class="example-item" onclick="speak('Deutsch ist schwerer als Englisch.')">6. Deutsch ist <span class="highlight">schwerer</span> als Englisch.</div>
+            <div class="example-item" onclick="speak('Dieser Film ist am besten.')">7. Dieser Film ist <span class="highlight">am besten</span>.</div>
+            <div class="example-item" onclick="speak('Das ist das beste Buch.')">8. Das ist <span class="highlight">das beste</span> Buch.</div>
+            <div class="example-item" onclick="speak('Sie ist die schönste Frau.')">9. Sie ist <span class="highlight">die schönste</span> Frau.</div>
+            <div class="example-item" onclick="speak('Gut → besser → am besten')">10. <span class="highlight">gut → besser → am besten</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قاعدة 5: Adjektivdeklination -->
+      <div class="rule-card">
+        <div class="rule-header">
+          <div class="rule-icon">📝</div>
+          <div>
+            <div class="rule-title">Adjektivdeklination</div>
+            <div class="rule-subtitle">تصريف الصفات بعد der • ein • بدون أداة</div>
+          </div>
+        </div>
+        <div class="rule-content">
+          <div class="rule-formula">
+            <h4>📌 القاعدة</h4>
+            <div class="formula">
+              بعد der/die/das: <span class="highlight">-e / -en</span><br>
+              بعد ein/eine: <span class="highlight">-er, -e, -es, -en</span><br>
+              بدون أداة: <span class="highlight">-er, -e, -es, -en, -em</span>
+            </div>
+          </div>
+          <div class="rule-examples">
+            <h4>📝 أمثلة (10 جمل)</h4>
+            <div class="example-item" onclick="speak('Der große Mann ist mein Vater.')">1. Der <span class="highlight">große</span> Mann ist mein Vater.</div>
+            <div class="example-item" onclick="speak('Die kleine Katze schläft.')">2. Die <span class="highlight">kleine</span> Katze schläft.</div>
+            <div class="example-item" onclick="speak('Das neue Auto ist schnell.')">3. Das <span class="highlight">neue</span> Auto ist schnell.</div>
+            <div class="example-item" onclick="speak('Ein großer Mann steht dort.')">4. Ein <span class="highlight">großer</span> Mann steht dort.</div>
+            <div class="example-item" onclick="speak('Eine kleine Katze spielt.')">5. Eine <span class="highlight">kleine</span> Katze spielt.</div>
+            <div class="example-item" onclick="speak('Ein neues Auto ist teuer.')">6. Ein <span class="highlight">neues</span> Auto ist teuer.</div>
+            <div class="example-item" onclick="speak('Großer Mann sucht Arbeit.')">7. <span class="highlight">Großer</span> Mann sucht Arbeit.</div>
+            <div class="example-item" onclick="speak('Schöne Frau singt.')">8. <span class="highlight">Schöne</span> Frau singt.</div>
+            <div class="example-item" onclick="speak('Neues Auto ist schnell.')">9. <span class="highlight">Neues</span> Auto ist schnell.</div>
+            <div class="example-item" onclick="speak('Ich sehe den großen Mann.')">10. Ich sehe den <span class="highlight">großen</span> Mann.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قاعدة 6: Konditionalsätze -->
+      <div class="rule-card">
+        <div class="rule-header">
+          <div class="rule-icon">🔮</div>
+          <div>
+            <div class="rule-title">Konditionalsätze</div>
+            <div class="rule-subtitle">الجمل الشرطية - 3 أنواع</div>
+          </div>
+        </div>
+        <div class="rule-content">
+          <div class="rule-formula">
+            <h4>📌 القاعدة</h4>
+            <div class="formula">
+              النوع 1: <span class="highlight">Wenn + Präsens, Präsens</span><br>
+              النوع 2: <span class="highlight">Wenn + Präteritum, würde + Infinitiv</span><br>
+              النوع 3: <span class="highlight">Wenn + Plusquamperfekt, Konjunktiv II</span>
+            </div>
+          </div>
+          <div class="rule-examples">
+            <h4>📝 أمثلة (10 جمل)</h4>
+            <div class="example-item" onclick="speak('Wenn du lernst, wirst du bestehen.')">1. <span class="highlight">Wenn</span> du lernst, wirst du bestehen. (نوع 1)</div>
+            <div class="example-item" onclick="speak('Wenn ich Zeit habe, komme ich.')">2. <span class="highlight">Wenn</span> ich Zeit habe, komme ich. (نوع 1)</div>
+            <div class="example-item" onclick="speak('Wenn ich Zeit hätte, würde ich reisen.')">3. <span class="highlight">Wenn</span> ich Zeit <span class="highlight">hätte</span>, <span class="highlight">würde</span> ich reisen. (نوع 2)</div>
+            <div class="example-item" onclick="speak('Wenn ich Millionär wäre, würde ich ein Haus kaufen.')">4. <span class="highlight">Wenn</span> ich Millionär <span class="highlight">wäre</span>, <span class="highlight">würde</span> ich ein Haus kaufen. (نوع 2)</div>
+            <div class="example-item" onclick="speak('Wenn ich fliegen könnte, würde ich zu den Sternen fliegen.')">5. <span class="highlight">Wenn</span> ich fliegen <span class="highlight">könnte</span>, <span class="highlight">würde</span> ich zu den Sternen fliegen. (نوع 2)</div>
+            <div class="example-item" onclick="speak('Wenn ich Zeit gehabt hätte, wäre ich gereist.')">6. <span class="highlight">Wenn</span> ich Zeit <span class="highlight">gehabt hätte</span>, <span class="highlight">wäre</span> ich gereist. (نوع 3)</div>
+            <div class="example-item" onclick="speak('Wenn ich dich gesehen hätte, hätte ich dich angerufen.')">7. <span class="highlight">Wenn</span> ich dich <span class="highlight">gesehen hätte</span>, <span class="highlight">hätte</span> ich dich angerufen. (نوع 3)</div>
+            <div class="example-item" onclick="speak('Wenn du früher gekommen wärst, hättest du ihn getroffen.')">8. <span class="highlight">Wenn</span> du früher <span class="highlight">gekommen wärst</span>, <span class="highlight">hättest</span> du ihn getroffen. (نوع 3)</div>
+            <div class="example-item" onclick="speak('Wenn es nicht regnen würde, würden wir spazieren gehen.')">9. <span class="highlight">Wenn</span> es nicht <span class="highlight">regnen würde</span>, <span class="highlight">würden</span> wir spazieren gehen. (نوع 2)</div>
+            <div class="example-item" onclick="speak('Wenn du mich fragst, helfe ich dir.')">10. <span class="highlight">Wenn</span> du mich fragst, helfe ich dir. (نوع 1)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قاعدة 7: Konjunktiv II -->
+      <div class="rule-card">
+        <div class="rule-header">
+          <div class="rule-icon">✨</div>
+          <div>
+            <div class="rule-title">Konjunktiv II</div>
+            <div class="rule-subtitle">التمني والطلبات المهذبة</div>
+          </div>
+        </div>
+        <div class="rule-content">
+          <div class="rule-formula">
+            <h4>📌 القاعدة</h4>
+            <div class="formula">
+              للتمني: <span class="highlight">würde gern / hätte gern</span><br>
+              للطلبات: <span class="highlight">Könnten Sie / Würden Sie</span>
+            </div>
+          </div>
+          <div class="rule-examples">
+            <h4>📝 أمثلة (10 جمل)</h4>
+            <div class="example-item" onclick="speak('Ich würde gern nach Deutschland reisen.')">1. Ich <span class="highlight">würde gern</span> nach Deutschland reisen.</div>
+            <div class="example-item" onclick="speak('Ich hätte gern einen Kaffee.')">2. Ich <span class="highlight">hätte gern</span> einen Kaffee.</div>
+            <div class="example-item" onclick="speak('Könnten Sie mir bitte helfen?')">3. <span class="highlight">Könnten Sie</span> mir bitte helfen?</div>
+            <div class="example-item" onclick="speak('Würden Sie mir das Wasser reichen?')">4. <span class="highlight">Würden Sie</span> mir das Wasser reichen?</div>
+            <div class="example-item" onclick="speak('Ich würde gern Deutsch lernen.')">5. Ich <span class="highlight">würde gern</span> Deutsch lernen.</div>
+            <div class="example-item" onclick="speak('Ich hätte gern ein neues Auto.')">6. Ich <span class="highlight">hätte gern</span> ein neues Auto.</div>
+            <div class="example-item" onclick="speak('Könnten Sie bitte die Tür öffnen?')">7. <span class="highlight">Könnten Sie</span> bitte die Tür öffnen?</div>
+            <div class="example-item" onclick="speak('Würden Sie bitte leiser sprechen?')">8. <span class="highlight">Würden Sie</span> bitte leiser sprechen?</div>
+            <div class="example-item" onclick="speak('Ich würde gern mehr Zeit haben.')">9. Ich <span class="highlight">würde gern</span> mehr Zeit haben.</div>
+            <div class="example-item" onclick="speak('Könnten Sie mir die Uhrzeit sagen?')">10. <span class="highlight">Könnten Sie</span> mir die Uhrzeit sagen?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قاعدة 8: Doppelkonnektoren -->
+      <div class="rule-card">
+        <div class="rule-header">
+          <div class="rule-icon">🔗</div>
+          <div>
+            <div class="rule-title">Doppelkonnektoren</div>
+            <div class="rule-subtitle">entweder...oder • nicht nur...sondern auch • zwar...aber</div>
+          </div>
+        </div>
+        <div class="rule-content">
+          <div class="rule-formula">
+            <h4>📌 القاعدة</h4>
+            <div class="formula">
+              <span class="highlight">entweder...oder</span> = إما...أو<br>
+              <span class="highlight">nicht nur...sondern auch</span> = ليس فقط...بل أيضاً<br>
+              <span class="highlight">zwar...aber</span> = صحيح أن...لكن
+            </div>
+          </div>
+          <div class="rule-examples">
+            <h4>📝 أمثلة (10 جمل)</h4>
+            <div class="example-item" onclick="speak('Entweder du kommst, oder du bleibst.')">1. <span class="highlight">Entweder</span> du kommst, <span class="highlight">oder</span> du bleibst.</div>
+            <div class="example-item" onclick="speak('Ich möchte entweder Tee oder Kaffee.')">2. Ich möchte <span class="highlight">entweder</span> Tee <span class="highlight">oder</span> Kaffee.</div>
+            <div class="example-item" onclick="speak('Er spricht nicht nur Deutsch, sondern auch Englisch.')">3. Er spricht <span class="highlight">nicht nur</span> Deutsch, <span class="highlight">sondern auch</span> Englisch.</div>
+            <div class="example-item" onclick="speak('Sie ist nicht nur schön, sondern auch klug.')">4. Sie ist <span class="highlight">nicht nur</span> schön, <span class="highlight">sondern auch</span> klug.</div>
+            <div class="example-item" onclick="speak('Das Auto ist zwar teuer, aber sehr gut.')">5. Das Auto ist <span class="highlight">zwar</span> teuer, <span class="highlight">aber</span> sehr gut.</div>
+            <div class="example-item" onclick="speak('Er ist zwar jung, aber sehr erfahren.')">6. Er ist <span class="highlight">zwar</span> jung, <span class="highlight">aber</span> sehr erfahren.</div>
+            <div class="example-item" onclick="speak('Entweder heute oder morgen komme ich.')">7. <span class="highlight">Entweder</span> heute <span class="highlight">oder</span> morgen komme ich.</div>
+            <div class="example-item" onclick="speak('Nicht nur ich, sondern auch meine Schwester kommt.')">8. <span class="highlight">Nicht nur</span> ich, <span class="highlight">sondern auch</span> meine Schwester kommt.</div>
+            <div class="example-item" onclick="speak('Die Wohnung ist zwar klein, aber gemütlich.')">9. Die Wohnung ist <span class="highlight">zwar</span> klein, <span class="highlight">aber</span> gemütlich.</div>
+            <div class="example-item" onclick="speak('Er ist nicht nur mein Freund, sondern auch mein Kollege.')">10. Er ist <span class="highlight">nicht nur</span> mein Freund, <span class="highlight">sondern auch</span> mein Kollege.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== القسم 3: جدول المقارنة العام ==================== -->
+    <div id="comparison" class="comparison-card">
+      <h2>📊 مقارنة بين القواعد المهمة في B1</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr style="background:#667eea; color:white;">
+              <th>القاعدة</th>
+              <th>الاستخدام</th>
+              <th>ترتيب الفعل</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Nebensätze</strong></td><td>الجمل الثانوية</td><td>الفعل في <span class="highlight">الآخر</span></td><td>Ich lerne, weil ich <span class="highlight">will</span>.</td></tr>
+            <tr><td><strong>Konnektoren</strong></td><td>ربط الجمل</td><td>الفعل في <span class="highlight">المرتبة الثانية</span></td><td>Ich bin müde, <span class="highlight">deshalb gehe</span> ich.</td></tr>
+            <tr><td><strong>Passiv</strong></td><td>المبني للمجهول</td><td>werden + Partizip II</td><td>Das Auto <span class="highlight">wird repariert</span>.</td></tr>
+            <tr><td><strong>Komparativ</strong></td><td>مقارنة</td><td>صفة + er + als</td><td>Ich bin <span class="highlight">größer als</span> du.</td></tr>
+            <tr><td><strong>Superlativ</strong></td><td>تفضيل</td><td>am + صفة + sten</td><td>Ich bin <span class="highlight">am größten</span>.</td></tr>
+            <tr><td><strong>Adjektivdeklination</strong></td><td>تصريف الصفات</td><td>حسب الأداة والحالة</td><td>der <span class="highlight">große</span> Mann</td></tr>
+            <tr><td><strong>Konditionalsätze Typ 2</strong></td><td>شرط غير واقعي</td><td>würde + Infinitiv</td><td>Wenn ich Zeit <span class="highlight">hätte</span>, <span class="highlight">würde</span> ich kommen.</td></tr>
+            <tr><td><strong>Konjunktiv II</strong></td><td>تمني/تهذيب</td><td>würde/könnte + Infinitiv</td><td><span class="highlight">Könnten Sie</span> mir helfen?</td></tr>
+            <tr><td><strong>Doppelkonnektoren</strong></td><td>ربط مزدوج</td><td>entweder...oder</td><td><span class="highlight">Entweder</span> heute <span class="highlight">oder</span> morgen.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==================== القسم 4: حروف الجر ==================== -->
+    <div id="prepositions" class="prep-card">
+      <h2>🔤 حروف الجر (Präpositionen) - مرجع كامل مع الأمثلة</h2>
+      
+      <div class="prep-grid">
+        <div class="prep-group">
+          <h4 class="akkusativ">🎯 Akkusativ (حالة النصب)</h4>
+          <ul class="prep-list">
+            <li onclick="speak('durch den Park')">durch (خلال) → durch den Park</li>
+            <li onclick="speak('für dich')">für (لأجل) → für dich</li>
+            <li onclick="speak('gegen die Wand')">gegen (ضد) → gegen die Wand</li>
+            <li onclick="speak('ohne mich')">ohne (بدون) → ohne mich</li>
+            <li onclick="speak('um die Ecke')">um (حول) → um die Ecke</li>
+            <li onclick="speak('bis morgen')">bis (حتى) → bis morgen</li>
+          </ul>
+        </div>
+
+        <div class="prep-group">
+          <h4 class="dativ">🎁 Dativ (حالة الجر)</h4>
+          <ul class="prep-list">
+            <li onclick="speak('aus Deutschland')">aus (من) → aus Deutschland</li>
+            <li onclick="speak('außer mir')">außer (باستثناء) → außer mir</li>
+            <li onclick="speak('bei mir')">bei (عند) → bei mir</li>
+            <li onclick="speak('mit dir')">mit (مع) → mit dir</li>
+            <li onclick="speak('nach Hause')">nach (بعد/إلى) → nach Hause</li>
+            <li onclick="speak('seit einem Jahr')">seit (منذ) → seit einem Jahr</li>
+            <li onclick="speak('von mir')">von (من) → von mir</li>
+            <li onclick="speak('zu dir')">zu (إلى) → zu dir</li>
+          </ul>
+        </div>
+
+        <div class="prep-group">
+          <h4 class="wechsel">🔄 Wechselpräpositionen (مزدوجة)</h4>
+          <ul class="prep-list">
+            <li onclick="speak('an die Wand / an der Wand')">an (على/إلى)</li>
+            <li onclick="speak('auf den Tisch / auf dem Tisch')">auf (على)</li>
+            <li onclick="speak('hinter das Haus / hinter dem Haus')">hinter (خلف)</li>
+            <li onclick="speak('in die Schule / in der Schule')">in (في/إلى)</li>
+            <li onclick="speak('neben mich / neben mir')">neben (بجانب)</li>
+            <li onclick="speak('über die Brücke / über der Brücke')">über (فوق)</li>
+            <li onclick="speak('unter den Tisch / unter dem Tisch')">unter (تحت)</li>
+            <li onclick="speak('vor die Tür / vor der Tür')">vor (أمام)</li>
+            <li onclick="speak('zwischen die Stühle / zwischen den Stühlen')">zwischen (بين)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rule-formula" style="margin-top: 15px;">
+        <h4>📌 قاعدة Wechselpräpositionen</h4>
+        <div class="formula">
+          <span class="akkusativ">Akkusativ</span> = حركة (wohin? - إلى أين؟)<br>
+          <span class="dativ">Dativ</span> = مكان ثابت (wo? - أين؟)
+        </div>
+        <div class="example-item" onclick="speak('Ich gehe in die Schule. (Akkusativ - حركة)')">📌 Ich gehe <span class="highlight">in die Schule</span>. (wohin? → Akkusativ)</div>
+        <div class="example-item" onclick="speak('Ich bin in der Schule. (Dativ - مكان)')">📌 Ich bin <span class="highlight">in der Schule</span>. (wo? → Dativ)</div>
+        <div class="example-item" onclick="speak('Ich lege das Buch auf den Tisch.')">📌 Ich lege das Buch <span class="highlight">auf den Tisch</span>. (wohin? → Akkusativ)</div>
+        <div class="example-item" onclick="speak('Das Buch liegt auf dem Tisch.')">📌 Das Buch liegt <span class="highlight">auf dem Tisch</span>. (wo? → Dativ)</div>
+      </div>
+    </div>
+
+    <!-- أفعال مع حروف جر ثابتة -->
+    <div class="prep-card">
+      <h2>📚 أفعال مع حروف جر ثابتة (Verben mit festen Präpositionen)</h2>
+      <div class="prep-grid">
+        <div class="prep-group">
+          <h4>📖 مع Akkusativ</h4>
+          <ul class="prep-list">
+            <li onclick="speak('warten auf + Akk - ينتظر')">warten <span class="highlight">auf</span> + Akk → Ich warte auf den Bus.</li>
+            <li onclick="speak('denken an + Akk - يفكر في')">denken <span class="highlight">an</span> + Akk → Ich denke an dich.</li>
+            <li onclick="speak('sich interessieren für + Akk - يهتم بـ')">sich interessieren <span class="highlight">für</span> + Akk → Ich interessiere mich für Sport.</li>
+            <li onclick="speak('sich freuen auf + Akk - يتحمس لـ')">sich freuen <span class="highlight">auf</span> + Akk → Ich freue mich auf das Wochenende.</li>
+          </ul>
+        </div>
+        <div class="prep-group">
+          <h4>💬 مع Dativ</h4>
+          <ul class="prep-list">
+            <li onclick="speak('sprechen mit + Dat - يتحدث مع')">sprechen <span class="highlight">mit</span> + Dat → Ich spreche mit dem Lehrer.</li>
+            <li onclick="speak('helfen bei + Dat - يساعد في')">helfen <span class="highlight">bei</span> + Dat → Ich helfe bei der Arbeit.</li>
+            <li onclick="speak('danken für + Akk - يشكر على')">danken <span class="highlight">für</span> + Akk → Ich danke dir für die Hilfe.</li>
+            <li onclick="speak('sich erinnern an + Akk - يتذكر')">sich erinnern <span class="highlight">an</span> + Akk → Ich erinnere mich an meine Kindheit.</li>
+          </ul>
+        </div>
+        <div class="prep-group">
+          <h4>⭐ أمثلة كاملة</h4>
+          <ul class="prep-list">
+            <li onclick="speak('Ich warte auf den Bus.')">🚌 Ich <span class="highlight">warte auf</span> den Bus.</li>
+            <li onclick="speak('Ich denke an dich.')">💭 Ich <span class="highlight">denke an</span> dich.</li>
+            <li onclick="speak('Ich spreche mit dem Lehrer.')">👨‍🏫 Ich <span class="highlight">spreche mit</span> dem Lehrer.</li>
+            <li onclick="speak('Ich interessiere mich für Sport.')">⚽ Ich <span class="highlight">interessiere mich für</span> Sport.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>📚 موسوعة قواعد B1 - مرجع شامل للتحضير لامتحان اللغة الألمانية</p>
+    </footer>
+  </div>
+
+  <script>
+    function scrollToSection(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const btn = document.querySelector('.dark-mode-toggle');
+      btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // إضافة النطق لجميع الأمثلة
+    document.querySelectorAll('.example-item, .prep-list li').forEach(el => {
+      el.addEventListener('click', function() {
+        const text = this.textContent;
+        speak(text);
+      });
+    });
+  </script>
+</body>
+</html>

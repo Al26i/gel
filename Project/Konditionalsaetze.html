@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konditionalsätze - الجمل الشرطية في الألمانية | wenn - würde</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+      transition: background 0.3s;
+    }
+
+    body.dark-mode {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #eee;
+    }
+
+    body.dark-mode .card,
+    body.dark-mode .rule-box,
+    body.dark-mode .example-card,
+    body.dark-mode .quiz-container,
+    body.dark-mode .table-container {
+      background: #2d2d44;
+      color: #eee;
+    }
+
+    body.dark-mode .sentence,
+    body.dark-mode .quiz-option {
+      background: #3d3d5c;
+    }
+
+    body.dark-mode .explanation {
+      background: #4a3a2a;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      color: white;
+    }
+
+    .tab-btn.active {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+
+    .tab-btn:hover {
+      background: rgba(255,255,255,0.4);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .golden-rule {
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      color: white;
+      border-radius: 25px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .golden-rule h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .golden-rule .formula {
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* الأنواع الثلاثة للجمل الشرطية */
+    .types-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .type-box {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      flex: 1;
+      min-width: 280px;
+      transition: transform 0.3s;
+    }
+
+    .type-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .type-icon {
+      font-size: 50px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .type-title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .type-desc {
+      text-align: center;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .real-bg { background: #e8f5e9; color: #2e7d32; }
+    .unreal-bg { background: #fff3e0; color: #e65100; }
+    .past-bg { background: #ffebee; color: #c62828; }
+
+    .sentence {
+      direction: ltr;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      text-align: center;
+      cursor: pointer;
+      margin: 15px 0;
+    }
+
+    .highlight-wenn {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .highlight-wuerde {
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    .explanation {
+      padding: 15px;
+      background: #fff3e0;
+      border-radius: 15px;
+      font-size: 14px;
+      line-height: 1.8;
+      margin-top: 15px;
+    }
+
+    /* جدول تصريف würde */
+    .table-container {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 40px;
+      overflow-x: auto;
+    }
+
+    .table-container h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th {
+      background: #667eea;
+      color: white;
+      padding: 12px;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    /* الأمثلة */
+    .examples-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      color: white;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .example-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .example-card h4 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .example-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .example-list li {
+      direction: ltr;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1.6;
+    }
+
+    body.dark-mode .example-list li {
+      border-bottom-color: #444;
+    }
+
+    /* الاختبار */
+    .quiz-container {
+      background: white;
+      border-radius: 25px;
+      padding: 30px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .quiz-stats {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: #667eea;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #e0e0e0;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .filter-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    .progress-bar {
+      background: #e0e0e0;
+      height: 10px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: #27ae60;
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .quiz-question {
+      font-size: 18px;
+      text-align: center;
+      margin: 25px 0;
+      direction: ltr;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .quiz-option {
+      background: #f0f0f0;
+      padding: 12px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .quiz-option:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .quiz-option.selected {
+      background: #2563eb;
+      color: white;
+    }
+
+    .quiz-feedback {
+      font-size: 18px;
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .quiz-feedback.correct {
+      background: #27ae60;
+      color: white;
+    }
+
+    .quiz-feedback.wrong {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-success {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-warning {
+      background: #f39c12;
+      color: white;
+    }
+
+    .result-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+    .result-score {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .tips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tip-card:hover {
+      transform: scale(1.03);
+    }
+
+    .tip-emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0f172a;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 24px; }
+      .sentence { font-size: 14px; }
+      .quiz-question { font-size: 16px; }
+      .quiz-option { padding: 10px 15px; font-size: 14px; }
+    }
+    .btn-home {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.btn-home:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(238, 90, 36, 0.5);
+  background: linear-gradient(135deg, #ff8c5a, #ff4757);
+}
+  </style>
+</head>
+
+<body>
+    <a href="../index.html" class="btn-home">🏠 Home 🔙</a>
+
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <div class="container">
+    <div class="hero">
+      <h1>🔮 Konditionalsätze - الجمل الشرطية</h1>
+      <p>تعلم كيفية التعبير عن الشروط والاحتمالات باستخدام wenn و würde</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('explain')">📖 شرح القواعد</button>
+      <button class="tab-btn" onclick="showTab('examples')">📝 أمثلة وتدريبات</button>
+      <button class="tab-btn" onclick="showTab('quiz')">🎯 اختبار 60 سؤال</button>
+    </div>
+
+    <!-- تبويب الشرح -->
+    <div id="explainTab" class="tab-content active">
+
+      <div class="golden-rule">
+        <h3>⚡ القاعدة الذهبية للجمل الشرطية</h3>
+        <div class="formula">
+          <span style="color:#f39c12;">Wenn</span> + فاعل + فعل (في الماضي) + ... , <span style="color:#f39c12;">würde</span> + فاعل + فعل (مصدر)
+        </div>
+        <p style="margin-top: 10px;">في الجملة الشرطية غير الواقعية، نستخدم <strong>الماضي</strong> بعد <strong>wenn</strong> و <strong>würde + مصدر</strong> في الجملة الرئيسية.</p>
+      </div>
+
+      <!-- الأنواع الثلاثة -->
+      <div class="types-grid">
+        <div class="type-box">
+          <div class="type-icon">✅</div>
+          <div class="type-title">النوع 1: واقعي</div>
+          <div class="type-desc real-bg">شرط ممكن التحقق (حاضر/مستقبل)</div>
+          <div class="sentence" onclick="speak('Wenn ich Zeit habe, komme ich zu dir.')">
+            <span class="highlight-wenn">Wenn</span> ich Zeit <span class="highlight-wuerde">habe</span>, <span class="highlight-wuerde">komme</span> ich zu dir.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong> حاضر + حاضر<br>
+            إذا كان لدي وقت، سآتي إليك. (شرط ممكن التحقق)
+          </div>
+        </div>
+
+        <div class="type-box">
+          <div class="type-icon">🤔</div>
+          <div class="type-title">النوع 2: غير واقعي (حاضر)</div>
+          <div class="type-desc unreal-bg">شرط غير ممكن التحقق حالياً</div>
+          <div class="sentence" onclick="speak('Wenn ich Zeit hätte, würde ich reisen.')">
+            <span class="highlight-wenn">Wenn</span> ich Zeit <span class="highlight-wuerde">hätte</span>, <span class="highlight-wuerde">würde</span> ich <span class="highlight-wuerde">reisen</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong> ماضي + würde + مصدر<br>
+            إذا كان لدي وقت (ولكن ليس لدي)، لكنت سأسافر.
+          </div>
+        </div>
+
+        <div class="type-box">
+          <div class="type-icon">😞</div>
+          <div class="type-title">النوع 3: غير واقعي (ماضي)</div>
+          <div class="type-desc past-bg">شرط لم يتحقق في الماضي</div>
+          <div class="sentence" onclick="speak('Wenn ich Zeit gehabt hätte, wäre ich gereist.')">
+            <span class="highlight-wenn">Wenn</span> ich Zeit <span class="highlight-wuerde">gehabt hätte</span>, <span class="highlight-wuerde">wäre</span> ich <span class="highlight-wuerde">gereist</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong> Plusquamperfekt + Konjunktiv II Vergangenheit<br>
+            إذا كان قد كان لدي وقت (ولكن لم يكن)، كنت سأسافر.
+          </div>
+        </div>
+      </div>
+
+      <!-- جدول تصريف würde -->
+      <div class="table-container">
+        <h3>📊 تصريف الفعل المساعد "würde" (Konjunktiv II)</h3>
+        <table>
+          <thead>
+            <tr style="background:#667eea; color:white;">
+              <th>الضمير</th>
+              <th>würde</th>
+              <th>مثال</th>
+            <tr>
+          </thead>
+          <tbody>
+            <tr style="background:#e3f2fd;"><td>ich (أنا)‎</td><td><strong>würde</strong></td><td>Ich würde reisen.</td></tr>
+            <tr style="background:#e8f5e9;"><td>du (أنت)‎</td><td><strong>würdest</strong></td><td>Du würdest reisen.</td></tr>
+            <tr style="background:#fff3e0;"><td>er/sie/es (هو/هي/هو)‎</td><td><strong>würde</strong></td><td>Er würde reisen.</td></tr>
+            <tr style="background:#e3f2fd;"><td>wir (نحن)‎</td><td><strong>würden</strong></td><td>Wir würden reisen.</td></tr>
+            <tr style="background:#e8f5e9;"><td>ihr (أنتم)‎</td><td><strong>würdet</strong></td><td>Ihr würdet reisen.</td></tr>
+            <tr style="background:#fff3e0;"><td>sie/Sie (هم/أنتم)‎</td><td><strong>würden</strong></td><td>Sie würden reisen.</td></tr>
+          </tbody>
+        </table>
+        <div class="explanation" style="margin-top: 15px;">
+          💡 <strong>ملاحظة مهمة:</strong> في النوع 2، الفعل الرئيسي يذهب إلى <strong>نهاية الجملة</strong> في صيغة <strong>المصدر</strong>!
+        </div>
+      </div>
+
+      <!-- نصائح سريعة -->
+      <div class="tips-grid">
+        <div class="tip-card" onclick="showTip('📌 <strong>النوع 1 (واقعي):</strong><br>Wenn + Präsens, Präsens<br>مثال: Wenn du lernst, wirst du bestehen.')">
+          <div class="tip-emoji">✅</div>
+          <h4>النوع 1</h4>
+          <p>حاضر + حاضر</p>
+        </div>
+        <div class="tip-card" onclick="showTip('📌 <strong>النوع 2 (غير واقعي - حاضر):</strong><br>Wenn + Präteritum, würde + Infinitiv<br>مثال: Wenn ich Zeit hätte, würde ich kommen.')">
+          <div class="tip-emoji">🤔</div>
+          <h4>النوع 2</h4>
+          <p>ماضي + würde + مصدر</p>
+        </div>
+        <div class="tip-card" onclick="showTip('📌 <strong>النوع 3 (غير واقعي - ماضي):</strong><br>Wenn + Plusquamperfekt, Konjunktiv II Vergangenheit<br>مثال: Wenn ich gekommen wäre, hätte ich dich gesehen.')">
+          <div class="tip-emoji">😞</div>
+          <h4>النوع 3</h4>
+          <p>ماضي تام + ماضي تام</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- تبويب الأمثلة -->
+    <div id="examplesTab" class="tab-content">
+      <div class="examples-section">
+        
+        <!-- النوع 1 أمثلة -->
+        <div class="example-card">
+          <h4>✅ النوع 1: شرط واقعي (حاضر/مستقبل) - 15 مثال</h4>
+          <ul class="example-list">
+            <li onclick="speak('Wenn ich Zeit habe, komme ich zu dir.')">1. <span class="highlight-wenn">Wenn</span> ich Zeit <strong>habe</strong>, <strong>komme</strong> ich zu dir.</li>
+            <li onclick="speak('Wenn du lernst, wirst du die Prüfung bestehen.')">2. <span class="highlight-wenn">Wenn</span> du <strong>lernst</strong>, <strong>wirst</strong> du die Prüfung bestehen.</li>
+            <li onclick="speak('Wenn es regnet, bleiben wir zu Hause.')">3. <span class="highlight-wenn">Wenn</span> es <strong>regnet</strong>, <strong>bleiben</strong> wir zu Hause.</li>
+            <li onclick="speak('Wenn du mich einlädst, komme ich gerne.')">4. <span class="highlight-wenn">Wenn</span> du mich <strong>einlädst</strong>, <strong>komme</strong> ich gerne.</li>
+            <li onclick="speak('Wenn ich genug Geld habe, kaufe ich ein Auto.')">5. <span class="highlight-wenn">Wenn</span> ich genug Geld <strong>habe</strong>, <strong>kaufe</strong> ich ein Auto.</li>
+            <li onclick="speak('Wenn du krank bist, bleib im Bett.')">6. <span class="highlight-wenn">Wenn</span> du krank <strong>bist</strong>, <strong>bleib</strong> im Bett.</li>
+            <li onclick="speak('Wenn die Sonne scheint, gehe ich spazieren.')">7. <span class="highlight-wenn">Wenn</span> die Sonne <strong>scheint</strong>, <strong>gehe</strong> ich spazieren.</li>
+            <li onclick="speak('Wenn du Hilfe brauchst, sag mir Bescheid.')">8. <span class="highlight-wenn">Wenn</span> du Hilfe <strong>brauchst</strong>, <strong>sag</strong> mir Bescheid.</li>
+            <li onclick="speak('Wenn wir uns beeilen, schaffen wir den Zug.')">9. <span class="highlight-wenn">Wenn</span> wir uns <strong>beeilen</strong>, <strong>schaffen</strong> wir den Zug.</li>
+            <li onclick="speak('Wenn du fleißig arbeitest, wirst du erfolgreich.')">10. <span class="highlight-wenn">Wenn</strong> du fleißig <strong>arbeitest</strong>, <strong>wirst</strong> du erfolgreich.</li>
+            <li onclick="speak('Wenn es zu teuer ist, kaufe ich es nicht.')">11. <span class="highlight-wenn">Wenn</span> es zu teuer <strong>ist</strong>, <strong>kaufe</strong> ich es nicht.</li>
+            <li onclick="speak('Wenn du fragst, werde ich dir helfen.')">12. <span class="highlight-wenn">Wenn</span> du <strong>fragst</strong>, <strong>werde</strong> ich dir helfen.</li>
+            <li onclick="speak('Wenn der Film gut ist, gehe ich ins Kino.')">13. <span class="highlight-wenn">Wenn</span> der Film gut <strong>ist</strong>, <strong>gehe</strong> ich ins Kino.</li>
+            <li onclick="speak('Wenn du pünktlich kommst, warten wir nicht lange.')">14. <span class="highlight-wenn">Wenn</span> du pünktlich <strong>kommst</strong>, <strong>warten</strong> wir nicht lange.</li>
+            <li onclick="speak('Wenn es schneit, bauen wir einen Schneemann.')">15. <span class="highlight-wenn">Wenn</span> es <strong>schneit</strong>, <strong>bauen</strong> wir einen Schneemann.</li>
+          </ul>
+        </div>
+
+        <!-- النوع 2 أمثلة -->
+        <div class="example-card">
+          <h4>🤔 النوع 2: شرط غير واقعي (حاضر) - 20 مثال</h4>
+          <ul class="example-list">
+            <li onclick="speak('Wenn ich Zeit hätte, würde ich reisen.')">1. <span class="highlight-wenn">Wenn</span> ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich <strong>reisen</strong>.</li>
+            <li onclick="speak('Wenn ich Millionär wäre, würde ich um die Welt reisen.')">2. <span class="highlight-wenn">Wenn</span> ich Millionär <strong>wäre</strong>, <strong>würde</strong> ich um die Welt <strong>reisen</strong>.</li>
+            <li onclick="speak('Wenn ich fliegen könnte, würde ich zu den Sternen fliegen.')">3. <span class="highlight-wenn">Wenn</span> ich fliegen <strong>könnte</strong>, <strong>würde</strong> ich zu den Sternen <strong>fliegen</strong>.</li>
+            <li onclick="speak('Wenn du mehr lernen würdest, würdest du bessere Noten bekommen.')">4. <span class="highlight-wenn">Wenn</span> du mehr lernen <strong>würdest</strong>, <strong>würdest</strong> du bessere Noten <strong>bekommen</strong>.</li>
+            <li onclick="speak('Wenn ich du wäre, würde ich mich entschuldigen.')">5. <span class="highlight-wenn">Wenn</span> ich du <strong>wäre</strong>, <strong>würde</strong> ich mich <strong>entschuldigen</strong>.</li>
+            <li onclick="speak('Wenn es nicht so teuer wäre, würde ich es kaufen.')">6. <span class="highlight-wenn">Wenn</span> es nicht so teuer <strong>wäre</strong>, <strong>würde</strong> ich es <strong>kaufen</strong>.</li>
+            <li onclick="speak('Wenn ich mehr Zeit hätte, würde ich Deutsch besser lernen.')">7. <span class="highlight-wenn">Wenn</span> ich mehr Zeit <strong>hätte</strong>, <strong>würde</strong> ich Deutsch besser <strong>lernen</strong>.</li>
+            <li onclick="speak('Wenn das Wetter schön wäre, würden wir spazieren gehen.')">8. <span class="highlight-wenn">Wenn</span> das Wetter schön <strong>wäre</strong>, <strong>würden</strong> wir spazieren <strong>gehen</strong>.</li>
+            <li onclick="speak('Wenn ich jünger wäre, würde ich studieren.')">9. <span class="highlight-wenn">Wenn</span> ich jünger <strong>wäre</strong>, <strong>würde</strong> ich <strong>studieren</strong>.</li>
+            <li onclick="speak('Wenn er hier wäre, würde er uns helfen.')">10. <span class="highlight-wenn">Wenn</span> er hier <strong>wäre</strong>, <strong>würde</strong> er uns <strong>helfen</strong>.</li>
+            <li onclick="speak('Wenn wir früher aufgestanden wären, hätten wir den Zug nicht verpasst.')">11. <span class="highlight-wenn">Wenn</span> wir früher aufgestanden <strong>wären</strong>, <strong>hätten</strong> wir den Zug nicht <strong>verpasst</strong>.</li>
+            <li onclick="speak('Wenn ich die Antwort wüsste, würde ich sie dir sagen.')">12. <span class="highlight-wenn">Wenn</span> ich die Antwort <strong>wüsste</strong>, <strong>würde</strong> ich sie dir <strong>sagen</strong>.</li>
+            <li onclick="speak('Wenn ich im Lotto gewinnen würde, würde ich ein Haus kaufen.')">13. <span class="highlight-wenn">Wenn</span> ich im Lotto gewinnen <strong>würde</strong>, <strong>würde</strong> ich ein Haus <strong>kaufen</strong>.</li>
+            <li onclick="speak('Wenn es nicht regnen würde, würden wir Fußball spielen.')">14. <span class="highlight-wenn">Wenn</span> es nicht <strong>regnen würde</strong>, <strong>würden</strong> wir Fußball <strong>spielen</strong>.</li>
+            <li onclick="speak('Wenn ich deine Adresse hätte, würde ich dir schreiben.')">15. <span class="highlight-wenn">Wenn</span> ich deine Adresse <strong>hätte</strong>, <strong>würde</strong> ich dir <strong>schreiben</strong>.</li>
+            <li onclick="speak('Wenn ich besser singen könnte, würde ich im Chor singen.')">16. <span class="highlight-wenn">Wenn</span> ich besser singen <strong>könnte</strong>, <strong>würde</strong> ich im Chor <strong>singen</strong>.</li>
+            <li onclick="speak('Wenn ich mehr Geld hätte, würde ich mir ein neues Handy kaufen.')">17. <span class="highlight-wenn">Wenn</span> ich mehr Geld <strong>hätte</strong>, <strong>würde</strong> ich mir ein neues Handy <strong>kaufen</strong>.</li>
+            <li onclick="speak('Wenn ich frei wäre, würde ich mit dir kommen.')">18. <span class="highlight-wenn">Wenn</span> ich frei <strong>wäre</strong>, <strong>würde</strong> ich mit dir <strong>kommen</strong>.</li>
+            <li onclick="speak('Wenn es mich interessieren würde, würde ich es lesen.')">19. <span class="highlight-wenn">Wenn</span> es mich <strong>interessieren würde</strong>, <strong>würde</strong> ich es <strong>lesen</strong>.</li>
+            <li onclick="speak('Wenn ich die Wahl hätte, würde ich nach Berlin ziehen.')">20. <span class="highlight-wenn">Wenn</span> ich die Wahl <strong>hätte</strong>, <strong>würde</strong> ich nach Berlin <strong>ziehen</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- النوع 3 أمثلة -->
+        <div class="example-card">
+          <h4>😞 النوع 3: شرط لم يتحقق في الماضي - 10 أمثلة</h4>
+          <ul class="example-list">
+            <li onclick="speak('Wenn ich Zeit gehabt hätte, wäre ich gereist.')">1. <span class="highlight-wenn">Wenn</span> ich Zeit <strong>gehabt hätte</strong>, <strong>wäre</strong> ich <strong>gereist</strong>.</li>
+            <li onclick="speak('Wenn ich dich gesehen hätte, hätte ich dich angerufen.')">2. <span class="highlight-wenn">Wenn</span> ich dich <strong>gesehen hätte</strong>, <strong>hätte</strong> ich dich <strong>angerufen</strong>.</li>
+            <li onclick="speak('Wenn du früher gekommen wärst, hättest du ihn getroffen.')">3. <span class="highlight-wenn">Wenn</span> du früher <strong>gekommen wärst</strong>, <strong>hättest</strong> du ihn <strong>getroffen</strong>.</li>
+            <li onclick="speak('Wenn wir mehr Geld gehabt hätten, hätten wir ein Haus gekauft.')">4. <span class="highlight-wenn">Wenn</span> wir mehr Geld <strong>gehabt hätten</strong>, <strong>hätten</strong> wir ein Haus <strong>gekauft</strong>.</li>
+            <li onclick="speak('Wenn ich gewusst hätte, wäre ich nicht gekommen.')">5. <span class="highlight-wenn">Wenn</span> ich <strong>gewusst hätte</strong>, <strong>wäre</strong> ich nicht <strong>gekommen</strong>.</li>
+            <li onclick="speak('Wenn er mich eingeladen hätte, wäre ich zur Party gegangen.')">6. <span class="highlight-wenn">Wenn</span> er mich <strong>eingeladen hätte</strong>, <strong>wäre</strong> ich zur Party <strong>gegangen</strong>.</li>
+            <li onclick="speak('Wenn wir uns verlaufen hätten, hätten wir nach dem Weg gefragt.')">7. <span class="highlight-wenn">Wenn</span> wir uns <strong>verlaufen hätten</strong>, <strong>hätten</strong> wir nach dem Weg <strong>gefragt</strong>.</li>
+            <li onclick="speak('Wenn sie mich gefragt hätte, hätte ich geholfen.')">8. <span class="highlight-wenn">Wenn</span> sie mich <strong>gefragt hätte</strong>, <strong>hätte</strong> ich <strong>geholfen</strong>.</li>
+            <li onclick="speak('Wenn wir den Zug nicht verpasst hätten, wären wir schon in Berlin.')">9. <span class="highlight-wenn">Wenn</span> wir den Zug nicht <strong>verpasst hätten</strong>, <strong>wären</strong> wir schon in Berlin.</li>
+            <li onclick="speak('Wenn ich mehr geschlafen hätte, wäre ich nicht müde gewesen.')">10. <span class="highlight-wenn">Wenn</span> ich mehr <strong>geschlafen hätte</strong>, <strong>wäre</strong> ich nicht müde <strong>gewesen</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- تبويب الاختبار -->
+    <div id="quizTab" class="tab-content">
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <div class="quiz-stats">
+            <div class="stat-badge">📊 السؤال: <span id="currentNum">1</span> / <span id="totalNum">60</span></div>
+            <div class="stat-badge">✅ تمت الإجابة: <span id="answeredCount">0</span></div>
+            <div class="stat-badge">⭐ النتيجة: <span id="scoreDisplay">0</span></div>
+          </div>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="quiz-question" id="quizQuestion">Loading...</div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="checkAnswer()">✅ تأكيد الإجابة</button>
+          <button class="btn btn-success" onclick="nextQuestion()">➡️ السؤال التالي</button>
+          <button class="btn btn-warning" onclick="resetQuiz()">🔄 إعادة التشغيل</button>
+        </div>
+
+        <div id="resultContainer"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>🔮 Konditionalsätze - الجمل الشرطية | تعلم التعبير عن الشروط باستخدام wenn و würde</p>
+    </footer>
+  </div>
+
+  <script>
+    // أسئلة الاختبار
+    const allQuestions = [];
+
+    // النوع 1 أسئلة
+    for (let i = 0; i < 20; i++) {
+      const verbs = ["habe/komme", "lernst/wirst", "regnet/bleiben", "einlädst/komme", "habe/kaufe"];
+      const parts = verbs[i % verbs.length].split("/");
+      allQuestions.push({
+        text: `أكمل الجملة: Wenn ich Zeit ___, ___ ich zu dir.`,
+        options: ["habe/komme", "hätte/würde kommen", "gehabt hätte/wäre gekommen"],
+        correct: "habe/komme",
+        type: "real",
+        rule: "النوع 1 (واقعي): Wenn + Präsens, Präsens"
+      });
+    }
+
+    // النوع 2 أسئلة
+    for (let i = 0; i < 25; i++) {
+      allQuestions.push({
+        text: `أكمل الجملة: Wenn ich Zeit ___, ___ ich reisen.`,
+        options: ["habe/werde", "hätte/würde", "gehabt hätte/wäre"],
+        correct: "hätte/würde",
+        type: "unreal",
+        rule: "النوع 2 (غير واقعي): Wenn + Präteritum, würde + Infinitiv"
+      });
+    }
+
+    // النوع 3 أسئلة
+    for (let i = 0; i < 15; i++) {
+      allQuestions.push({
+        text: `أكمل الجملة: Wenn ich Zeit gehabt ___, ___ ich gereist.`,
+        options: ["habe/werde", "hätte/würde", "hätte/wäre"],
+        correct: "hätte/wäre",
+        type: "past",
+        rule: "النوع 3 (ماضي غير واقعي): Wenn + Plusquamperfekt, Konjunktiv II Vergangenheit"
+      });
+    }
+
+    let currentQuestions = [...allQuestions];
+    let currentIndex = 0;
+    let userAnswers = new Array(currentQuestions.length).fill(null);
+    let selectedOption = null;
+    let answered = false;
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      if (tabName === 'explain') {
+        document.getElementById('explainTab').classList.add('active');
+        document.querySelector('.tab-btn:first-child').classList.add('active');
+      } else if (tabName === 'examples') {
+        document.getElementById('examplesTab').classList.add('active');
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+      } else {
+        document.getElementById('quizTab').classList.add('active');
+        document.querySelectorAll('.tab-btn')[2].classList.add('active');
+        resetQuiz();
+      }
+    }
+
+    function resetQuiz() {
+      userAnswers = new Array(currentQuestions.length).fill(null);
+      currentIndex = 0;
+      selectedOption = null;
+      answered = false;
+      document.getElementById('resultContainer').innerHTML = '';
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      if (currentQuestions.length === 0) return;
+      const q = currentQuestions[currentIndex];
+      document.getElementById('quizQuestion').innerHTML = q.text;
+      document.getElementById('totalNum').textContent = currentQuestions.length;
+      
+      const optionsDiv = document.getElementById('quizOptions');
+      optionsDiv.innerHTML = '';
+      
+      q.options.forEach(opt => {
+        const btn = document.createElement('div');
+        btn.className = 'quiz-option';
+        btn.textContent = opt;
+        if (userAnswers[currentIndex] === opt) {
+          btn.classList.add('selected');
+          selectedOption = opt;
+          answered = true;
+        } else {
+          btn.onclick = () => selectOption(opt);
+        }
+        optionsDiv.appendChild(btn);
+      });
+      
+      if (userAnswers[currentIndex] === null) {
+        document.getElementById('quizFeedback').innerHTML = '';
+        document.getElementById('quizFeedback').className = 'quiz-feedback';
+        answered = false;
+        selectedOption = null;
+      } else {
+        const isCorrect = userAnswers[currentIndex] === q.correct;
+        document.getElementById('quizFeedback').innerHTML = isCorrect ? '✅ إجابة صحيحة!' : `❌ الإجابة الصحيحة: ${q.correct}<br>📌 ${q.rule}`;
+        document.getElementById('quizFeedback').className = `quiz-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+      }
+      
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      updateStats();
+    }
+
+    function selectOption(opt) {
+      if (answered) return;
+      selectedOption = opt;
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.classList.remove('selected');
+        if (btn.textContent === opt) btn.classList.add('selected');
+      });
+    }
+
+    function checkAnswer() {
+      if (answered) return;
+      if (selectedOption === null) {
+        document.getElementById('quizFeedback').innerHTML = '⚠️ يرجى اختيار إجابة أولاً!';
+        document.getElementById('quizFeedback').className = 'quiz-feedback wrong';
+        return;
+      }
+      
+      const q = currentQuestions[currentIndex];
+      const isCorrect = selectedOption === q.correct;
+      userAnswers[currentIndex] = selectedOption;
+      answered = true;
+      
+      document.getElementById('quizFeedback').innerHTML = isCorrect ? '✅ إجابة صحيحة! أحسنت! 🎉' : `❌ إجابة خاطئة! الإجابة الصحيحة: "${q.correct}"<br>📌 ${q.rule}`;
+      document.getElementById('quizFeedback').className = `quiz-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+      
+      document.querySelectorAll('.quiz-option').forEach(btn => btn.onclick = null);
+      updateStats();
+    }
+
+    function nextQuestion() {
+      if (!answered && userAnswers[currentIndex] === null) {
+        document.getElementById('quizFeedback').innerHTML = '⚠️ يرجى الإجابة على السؤال الحالي أولاً!';
+        document.getElementById('quizFeedback').className = 'quiz-feedback wrong';
+        return;
+      }
+      
+      if (currentIndex + 1 < currentQuestions.length) {
+        currentIndex++;
+        loadQuestion();
+      } else if (currentIndex + 1 === currentQuestions.length) {
+        showFinalResult();
+      }
+    }
+
+    function updateStats() {
+      const answeredCount = userAnswers.filter(a => a !== null).length;
+      const correctCount = userAnswers.filter((a, i) => a === currentQuestions[i].correct).length;
+      document.getElementById('answeredCount').textContent = answeredCount;
+      document.getElementById('scoreDisplay').textContent = correctCount;
+      const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+      document.getElementById('progressFill').style.width = `${progress}%`;
+    }
+
+    function showFinalResult() {
+      const correctCount = userAnswers.filter((a, i) => a === currentQuestions[i].correct).length;
+      const percentage = Math.round((correctCount / currentQuestions.length) * 100);
+      let grade = percentage >= 90 ? 'ممتاز! 🌟' : percentage >= 75 ? 'جيد جداً! 👍' : percentage >= 60 ? 'جيد! 📚' : percentage >= 40 ? 'تحتاج إلى مراجعة 📖' : 'نحتاج إلى مزيد من التمارين 💪';
+      
+      document.getElementById('resultContainer').innerHTML = `
+        <div class="result-card">
+          <h2>🏆 النتيجة النهائية 🏆</h2>
+          <div class="result-score">${correctCount} / ${currentQuestions.length}</div>
+          <div style="font-size: 24px;">${percentage}% - ${grade}</div>
+          <button class="btn btn-primary" onclick="resetQuiz()" style="margin-top: 20px;">🔄 بدء اختبار جديد</button>
+        </div>
+      `;
+    }
+
+    function showTip(message) {
+      const tipDiv = document.createElement('div');
+      tipDiv.style.position = 'fixed';
+      tipDiv.style.bottom = '100px';
+      tipDiv.style.left = '50%';
+      tipDiv.style.transform = 'translateX(-50%)';
+      tipDiv.style.backgroundColor = '#f39c12';
+      tipDiv.style.color = 'white';
+      tipDiv.style.padding = '20px 30px';
+      tipDiv.style.borderRadius = '20px';
+      tipDiv.style.zIndex = '1001';
+      tipDiv.style.fontWeight = 'bold';
+      tipDiv.style.textAlign = 'center';
+      tipDiv.style.direction = 'rtl';
+      tipDiv.innerHTML = message;
+      
+      document.body.appendChild(tipDiv);
+      setTimeout(() => tipDiv.remove(), 4000);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const btn = document.querySelector('.dark-mode-toggle');
+      btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      resetQuiz();
+      document.querySelectorAll('.example-list li, .sentence').forEach(el => {
+        if (el) el.style.cursor = 'pointer';
+      });
+    });
+  </script>
+</body>
+</html>

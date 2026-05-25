@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adjektivdeklination - تصريف الصفات في الألمانية | der - ein - ohne Artikel</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+      transition: background 0.3s;
+    }
+
+    body.dark-mode {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #eee;
+    }
+
+    body.dark-mode .card,
+    body.dark-mode .rule-box,
+    body.dark-mode .example-card,
+    body.dark-mode .quiz-container,
+    body.dark-mode .table-container {
+      background: #2d2d44;
+      color: #eee;
+    }
+
+    body.dark-mode .sentence,
+    body.dark-mode .quiz-option {
+      background: #3d3d5c;
+    }
+
+    body.dark-mode .explanation {
+      background: #4a3a2a;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      color: white;
+    }
+
+    .tab-btn.active {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+
+    .tab-btn:hover {
+      background: rgba(255,255,255,0.4);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .golden-rule {
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      color: white;
+      border-radius: 25px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .golden-rule h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .golden-rule .formula {
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* القاعدة الأساسية */
+    .basic-rule {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .rule-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .rule-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .rule-card .icon {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+
+    .rule-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .rule-card .formula {
+      direction: ltr;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+
+    .der-bg { background: #e3f2fd; color: #1565c0; }
+    .ein-bg { background: #e8f5e9; color: #2e7d32; }
+    .ohne-bg { background: #ffebee; color: #c62828; }
+
+    /* الجداول */
+    .tables-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      flex: 1;
+      min-width: 300px;
+      overflow-x: auto;
+    }
+
+    .table-container h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th {
+      background: #667eea;
+      color: white;
+      padding: 10px;
+    }
+
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      font-size: 15px;
+    }
+
+    body.dark-mode td {
+      border-bottom-color: #444;
+    }
+
+    .highlight {
+      background: #fff3e0;
+      font-weight: bold;
+    }
+
+    body.dark-mode .highlight {
+      background: #4a3a2a;
+    }
+
+    /* الأمثلة */
+    .examples-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      color: white;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .example-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .example-card h4 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .example-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .example-list li {
+      direction: ltr;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    body.dark-mode .example-list li {
+      border-bottom-color: #444;
+    }
+
+    .adj-highlight {
+      color: #e74c3c;
+    }
+
+    /* الاختبار */
+    .quiz-container {
+      background: white;
+      border-radius: 25px;
+      padding: 30px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .quiz-stats {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: #667eea;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #e0e0e0;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .filter-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    .progress-bar {
+      background: #e0e0e0;
+      height: 10px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: #27ae60;
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .quiz-question {
+      font-size: 20px;
+      text-align: center;
+      margin: 25px 0;
+      direction: ltr;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .quiz-option {
+      background: #f0f0f0;
+      padding: 15px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .quiz-option:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .quiz-option.selected {
+      background: #2563eb;
+      color: white;
+    }
+
+    .quiz-feedback {
+      font-size: 18px;
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .quiz-feedback.correct {
+      background: #27ae60;
+      color: white;
+    }
+
+    .quiz-feedback.wrong {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-success {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-warning {
+      background: #f39c12;
+      color: white;
+    }
+
+    .result-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+    .result-score {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .tips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tip-card:hover {
+      transform: scale(1.03);
+    }
+
+    .tip-emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0f172a;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 24px; }
+      .sentence { font-size: 14px; }
+      .rule-card h3 { font-size: 20px; }
+    }
+    .btn-home {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.btn-home:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(238, 90, 36, 0.5);
+  background: linear-gradient(135deg, #ff8c5a, #ff4757);
+}
+  </style>
+</head>
+
+<body>
+<a href="../index.html" class="btn-home">🏠 Home 🔙</a>
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <div class="container">
+    <div class="hero">
+      <h1>📚 Adjektivdeklination - تصريف الصفات</h1>
+      <p>تعلم كيفية تصريف الصفات بعد der • ein • بدون أداة - قاعدة مهمة لمستوى B1</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('explain')">📖 شرح القواعد</button>
+      <button class="tab-btn" onclick="showTab('examples')">📝 أمثلة وتدريبات</button>
+      <button class="tab-btn" onclick="showTab('quiz')">🎯 اختبار 60 سؤال</button>
+    </div>
+
+    <!-- تبويب الشرح -->
+    <div id="explainTab" class="tab-content active">
+
+      <div class="golden-rule">
+        <h3>⚡ القاعدة الذهبية لتصريف الصفات</h3>
+        <div class="formula">
+          الصفة تأخذ نهاية تعتمد على:<br>
+          • نوع الأداة (der, ein, أو بدون أداة)<br>
+          • حالة الاسم (Nominativ, Akkusativ, Dativ)<br>
+          • جنس الاسم (مذكر، مؤنث، محايد، جمع)
+        </div>
+      </div>
+
+      <!-- الأنواع الثلاثة -->
+      <div class="basic-rule">
+        <div class="rule-card">
+          <div class="icon">🔵</div>
+          <h3>بعد <span style="color:#1565c0;">der / die / das</span></h3>
+          <div class="formula der-bg">التصريف الضعيف (Schwache Deklination)</div>
+          <p>تأخذ الصفة نهاية <strong>-e</strong> أو <strong>-en</strong></p>
+          <div class="sentence" style="font-size: 14px; margin-top: 10px;">der <span class="adj-highlight">große</span> Mann</div>
+        </div>
+
+        <div class="rule-card">
+          <div class="icon">🟢</div>
+          <h3>بعد <span style="color:#2e7d32;">ein / eine / ein</span></h3>
+          <div class="formula ein-bg">التصريف المختلط (Gemischte Deklination)</div>
+          <p>تأخذ الصفة نهاية <strong>-er, -e, -es, -en</strong></p>
+          <div class="sentence" style="font-size: 14px; margin-top: 10px;">ein <span class="adj-highlight">großer</span> Mann</div>
+        </div>
+
+        <div class="rule-card">
+          <div class="icon">🔴</div>
+          <h3>بدون أداة</h3>
+          <div class="formula ohne-bg">التصريف القوي (Starke Deklination)</div>
+          <p>تأخذ الصفة نهاية <strong>-er, -e, -es, -en, -em</strong></p>
+          <div class="sentence" style="font-size: 14px; margin-top: 10px;"><span class="adj-highlight">großer</span> Mann</div>
+        </div>
+      </div>
+
+      <!-- الجدول الأول: بعد der / die / das -->
+      <div class="tables-grid">
+        <div class="table-container">
+          <h3>🔵 بعد <span style="color:#1565c0;">der / die / das</span> (التصريف الضعيف)</h3>
+          <table>
+            <thead>
+              <tr style="background:#667eea; color:white;">
+                <th>الحالة</th>
+                <th>مذكر (der)</th>
+                <th>مؤنث (die)</th>
+                <th>محايد (das)</th>
+                <th>جمع (die)</th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight"><td><strong>Nominativ</strong></td><td>der <span class="adj-highlight">große</span> Mann</td><td>die <span class="adj-highlight">große</span> Frau</td><td>das <span class="adj-highlight">große</span> Haus</td><td>die <span class="adj-highlight">großen</span> Männer</td></tr>
+              <tr><td><strong>Akkusativ</strong></td><td>den <span class="adj-highlight">großen</span> Mann</td><td>die <span class="adj-highlight">große</span> Frau</td><td>das <span class="adj-highlight">große</span> Haus</td><td>die <span class="adj-highlight">großen</span> Männer</td></tr>
+              <tr class="highlight"><td><strong>Dativ</strong></td><td>dem <span class="adj-highlight">großen</span> Mann</td><td>der <span class="adj-highlight">großen</span> Frau</td><td>dem <span class="adj-highlight">großen</span> Haus</td><td>den <span class="adj-highlight">großen</span> Männern</td></tr>
+            </tbody>
+          </table>
+          <div class="explanation" style="margin-top: 15px;">
+            💡 <strong>القاعدة:</strong> بعد der/die/das، الصفة تنتهي بـ <strong>-e</strong> في Nominativ (مفرد) و <strong>-en</strong> في باقي الحالات.
+          </div>
+        </div>
+
+        <div class="table-container">
+          <h3>🟢 بعد <span style="color:#2e7d32;">ein / eine / ein</span> (التصريف المختلط)</h3>
+          <table>
+            <thead>
+              <tr style="background:#667eea; color:white;">
+                <th>الحالة</th>
+                <th>مذكر (ein)</th>
+                <th>مؤنث (eine)</th>
+                <th>محايد (ein)</th>
+                <th>جمع (keine)</th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight"><td><strong>Nominativ</strong></td><td>ein <span class="adj-highlight">großer</span> Mann</td><td>eine <span class="adj-highlight">große</span> Frau</td><td>ein <span class="adj-highlight">großes</span> Haus</td><td>keine <span class="adj-highlight">großen</span> Männer</td></tr>
+              <tr><td><strong>Akkusativ</strong></td><td>einen <span class="adj-highlight">großen</span> Mann</td><td>eine <span class="adj-highlight">große</span> Frau</td><td>ein <span class="adj-highlight">großes</span> Haus</td><td>keine <span class="adj-highlight">großen</span> Männer</td></tr>
+              <tr class="highlight"><td><strong>Dativ</strong></td><td>einem <span class="adj-highlight">großen</span> Mann</td><td>einer <span class="adj-highlight">großen</span> Frau</td><td>einem <span class="adj-highlight">großen</span> Haus</td><td>keinen <span class="adj-highlight">großen</span> Männern</td></tr>
+            </tbody>
+          </table>
+          <div class="explanation" style="margin-top: 15px;">
+            💡 <strong>القاعدة:</strong> بعد ein/eine، الصفة تأخذ نهاية الأداة المفقودة (der → er, das → es, die → e).
+          </div>
+        </div>
+
+        <div class="table-container">
+          <h3>🔴 بدون أداة (التصريف القوي)</h3>
+          <table>
+            <thead>
+              <tr style="background:#667eea; color:white;">
+                <th>الحالة</th>
+                <th>مذكر</th>
+                <th>مؤنث</th>
+                <th>محايد</th>
+                <th>جمع</th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight"><td><strong>Nominativ</strong></td><td><span class="adj-highlight">großer</span> Mann</td><td><span class="adj-highlight">große</span> Frau</td><td><span class="adj-highlight">großes</span> Haus</td><td><span class="adj-highlight">große</span> Männer</td></tr>
+              <tr><td><strong>Akkusativ</strong></td><td><span class="adj-highlight">großen</span> Mann</td><td><span class="adj-highlight">große</span> Frau</td><td><span class="adj-highlight">großes</span> Haus</td><td><span class="adj-highlight">große</span> Männer</td></tr>
+              <tr class="highlight"><td><strong>Dativ</strong></td><td><span class="adj-highlight">großem</span> Mann</td><td><span class="adj-highlight">großer</span> Frau</td><td><span class="adj-highlight">großem</span> Haus</td><td><span class="adj-highlight">großen</span> Männern</td></tr>
+            </tbody>
+          </table>
+          <div class="explanation" style="margin-top: 15px;">
+            💡 <strong>القاعدة:</strong> بدون أداة، الصفة تأخذ نهاية الأداة التي تناسب الاسم.
+          </div>
+        </div>
+      </div>
+
+      <!-- جدول ملخص النهايات -->
+      <div class="table-container">
+        <h3>📊 ملخص نهايات الصفات</h3>
+        </table>
+          <thead>
+            <tr style="background:#667eea; color:white;">
+              <th>النوع</th>
+              <th>Nominativ</th>
+              <th>Akkusativ</th>
+              <th>Dativ</th>
+             </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#e3f2fd;"><td><strong>بعد der/die/das</strong></td><td>-e (مفرد) / -en (جمع)</td><td>-en (مذكر) / -e (مؤنث/محايد)</td><td>-en</td></tr>
+            <tr style="background:#e8f5e9;"><td><strong>بعد ein/eine</strong></td><td>-er, -e, -es</td><td>-en (مذكر) / -e, -es (مؤنث/محايد)</td><td>-en</td></tr>
+            <tr style="background:#ffebee;"><td><strong>بدون أداة</strong></td><td>-er, -e, -es, -e (جمع)</td><td>-en (مذكر) / -e, -es (مؤنث/محايد)</td><td>-em, -er, -em, -en</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- نصائح سريعة -->
+      <div class="tips-grid">
+        <div class="tip-card" onclick="showTip('📌 <strong>التصريف الضعيف (بعد der/die/das):</strong><br>• Nominativ: -e<br>• Akkusativ & Dativ: -en<br>مثال: der große Hund, den großen Hund')">
+          <div class="tip-emoji">🔵</div>
+          <h4>التصريف الضعيف</h4>
+          <p>بعد der/die/das</p>
+        </div>
+        <div class="tip-card" onclick="showTip('📌 <strong>التصريف المختلط (بعد ein/eine):</strong><br>• الصفة تأخذ نهاية الأداة المفقودة<br>مثال: ein großer Mann (der → er)')">
+          <div class="tip-emoji">🟢</div>
+          <h4>التصريف المختلط</h4>
+          <p>بعد ein/eine</p>
+        </div>
+        <div class="tip-card" onclick="showTip('📌 <strong>التصريف القوي (بدون أداة):</strong><br>• الصفة تأخذ نهاية الأداة كاملة<br>مثال: großer Mann (der Mann)')">
+          <div class="tip-emoji">🔴</div>
+          <h4>التصريف القوي</h4>
+          <p>بدون أداة</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- تبويب الأمثلة -->
+    <div id="examplesTab" class="tab-content">
+      <div class="examples-section">
+        
+        <!-- أمثلة بعد der/die/das -->
+        <div class="example-card">
+          <h4>🔵 أمثلة بعد <span style="color:#1565c0;">der / die / das</span> (التصريف الضعيف) - 15 مثال</h4>
+          <ul class="example-list">
+            <li onclick="speak('Der große Mann ist mein Vater.')">1. Der <span class="adj-highlight">große</span> Mann ist mein Vater. (Nominativ)</li>
+            <li onclick="speak('Die kleine Katze schläft.')">2. Die <span class="adj-highlight">kleine</span> Katze schläft. (Nominativ)</li>
+            <li onclick="speak('Das neue Auto ist schnell.')">3. Das <span class="adj-highlight">neue</span> Auto ist schnell. (Nominativ)</li>
+            <li onclick="speak('Ich sehe den alten Mann.')">4. Ich sehe den <span class="adj-highlight">alten</span> Mann. (Akkusativ)</li>
+            <li onclick="speak('Sie liebt die schöne Frau.')">5. Sie liebt die <span class="adj-highlight">schöne</span> Frau. (Akkusativ)</li>
+            <li onclick="speak('Er kauft das teure Haus.')">6. Er kauft das <span class="adj-highlight">teure</span> Haus. (Akkusativ)</li>
+            <li onclick="speak('Ich helfe dem kranken Mann.')">7. Ich helfe dem <span class="adj-highlight">kranken</span> Mann. (Dativ)</li>
+            <li onclick="speak('Sie gibt der alten Frau Geld.')">8. Sie gibt der <span class="adj-highlight">alten</span> Frau Geld. (Dativ)</li>
+            <li onclick="speak('Wir wohnen in dem kleinen Haus.')">9. Wir wohnen in dem <span class="adj-highlight">kleinen</span> Haus. (Dativ)</li>
+            <li onclick="speak('Die großen Häuser sind schön.')">10. Die <span class="adj-highlight">großen</span> Häuser sind schön. (Nominativ Plural)</li>
+            <li onclick="speak('Die alten Menschen sind weise.')">11. Die <span class="adj-highlight">alten</span> Menschen sind weise. (Nominativ Plural)</li>
+            <li onclick="speak('Ich sehe die schönen Blumen.')">12. Ich sehe die <span class="adj-highlight">schönen</span> Blumen. (Akkusativ Plural)</li>
+            <li onclick="speak('Er hilft den armen Kindern.')">13. Er hilft den <span class="adj-highlight">armen</span> Kindern. (Dativ Plural)</li>
+            <li onclick="speak('Das weiße Kleid ist teuer.')">14. Das <span class="adj-highlight">weiße</span> Kleid ist teuer. (Nominativ)</li>
+            <li onclick="speak('Der kluge Student besteht die Prüfung.')">15. Der <span class="adj-highlight">kluge</span> Student besteht die Prüfung. (Nominativ)</li>
+          </ul>
+        </div>
+
+        <!-- أمثلة بعد ein/eine -->
+        <div class="example-card">
+          <h4>🟢 أمثلة بعد <span style="color:#2e7d32;">ein / eine / ein</span> (التصريف المختلط) - 15 مثال</h4>
+          <ul class="example-list">
+            <li onclick="speak('Ein großer Mann steht dort.')">1. Ein <span class="adj-highlight">großer</span> Mann steht dort. (Nominativ maskulin)</li>
+            <li onclick="speak('Eine kleine Katze spielt.')">2. Eine <span class="adj-highlight">kleine</span> Katze spielt. (Nominativ feminin)</li>
+            <li onclick="speak('Ein neues Auto ist teuer.')">3. Ein <span class="adj-highlight">neues</span> Auto ist teuer. (Nominativ neutral)</li>
+            <li onclick="speak('Ich habe einen großen Hund.')">4. Ich habe einen <span class="adj-highlight">großen</span> Hund. (Akkusativ maskulin)</li>
+            <li onclick="speak('Sie hat eine schöne Stimme.')">5. Sie hat eine <span class="adj-highlight">schöne</span> Stimme. (Akkusativ feminin)</li>
+            <li onclick="speak('Er kauft ein teures Buch.')">6. Er kauft ein <span class="adj-highlight">teures</span> Buch. (Akkusativ neutral)</li>
+            <li onclick="speak('Ich helfe einem kranken Mann.')">7. Ich helfe einem <span class="adj-highlight">kranken</span> Mann. (Dativ maskulin)</li>
+            <li onclick="speak('Sie gibt einer alten Frau Geld.')">8. Sie gibt einer <span class="adj-highlight">alten</span> Frau Geld. (Dativ feminin)</li>
+            <li onclick="speak('Wir wohnen in einem kleinen Haus.')">9. Wir wohnen in einem <span class="adj-highlight">kleinen</span> Haus. (Dativ neutral)</li>
+            <li onclick="speak('Keine großen Probleme sind gelöst.')">10. Keine <span class="adj-highlight">großen</span> Probleme sind gelöst. (Nominativ Plural mit keine)</li>
+            <li onclick="speak('Ich habe keine alten Freunde.')">11. Ich habe keine <span class="adj-highlight">alten</span> Freunde. (Akkusativ Plural)</li>
+            <li onclick="speak('Ein kluger Student lernt viel.')">12. Ein <span class="adj-highlight">kluger</span> Student lernt viel. (Nominativ maskulin)</li>
+            <li onclick="speak('Eine nette Frau hilft mir.')">13. Eine <span class="adj-highlight">nette</span> Frau hilft mir. (Nominativ feminin)</li>
+            <li onclick="speak('Ein interessantes Buch lese ich.')">14. Ein <span class="adj-highlight">interessantes</span> Buch lese ich. (Nominativ neutral)</li>
+            <li onclick="speak('Ich träume von einem schönen Urlaub.')">15. Ich träume von einem <span class="adj-highlight">schönen</span> Urlaub. (Dativ maskulin)</li>
+          </ul>
+        </div>
+
+        <!-- أمثلة بدون أداة -->
+        <div class="example-card">
+          <h4>🔴 أمثلة بدون أداة (التصريف القوي) - 15 مثال</h4>
+          <ul class="example-list">
+            <li onclick="speak('Großer Mann sucht Wohnung.')">1. <span class="adj-highlight">Großer</span> Mann sucht Wohnung. (Nominativ maskulin)</li>
+            <li onclick="speak('Schöne Frau singt.')">2. <span class="adj-highlight">Schöne</span> Frau singt. (Nominativ feminin)</li>
+            <li onclick="speak('Neues Auto ist schnell.')">3. <span class="adj-highlight">Neues</span> Auto ist schnell. (Nominativ neutral)</li>
+            <li onclick="speak('Ich habe großen Hunger.')">4. Ich habe <span class="adj-highlight">großen</span> Hunger. (Akkusativ maskulin)</li>
+            <li onclick="speak('Sie hat schöne Augen.')">5. Sie hat <span class="adj-highlight">schöne</span> Augen. (Akkusativ Plural)</li>
+            <li onclick="speak('Er trinkt kaltes Wasser.')">6. Er trinkt <span class="adj-highlight">kaltes</span> Wasser. (Akkusativ neutral)</li>
+            <li onclick="speak('Ich helfe altem Mann.')">7. Ich helfe <span class="adj-highlight">altem</span> Mann. (Dativ maskulin)</li>
+            <li onclick="speak('Sie gibt junger Frau Geld.')">8. Sie gibt <span class="adj-highlight">junger</span> Frau Geld. (Dativ feminin)</li>
+            <li onclick="speak('Wir wohnen in kleinem Haus.')">9. Wir wohnen in <span class="adj-highlight">kleinem</span> Haus. (Dativ neutral)</li>
+            <li onclick="speak('Große Häuser sind teuer.')">10. <span class="adj-highlight">Große</span> Häuser sind teuer. (Nominativ Plural)</li>
+            <li onclick="speak('Alte Menschen brauchen Hilfe.')">11. <span class="adj-highlight">Alte</span> Menschen brauchen Hilfe. (Nominativ Plural)</li>
+            <li onclick="speak('Frisches Brot riecht gut.')">12. <span class="adj-highlight">Frisches</span> Brot riecht gut. (Nominativ neutral)</li>
+            <li onclick="speak('Schneller Zug kommt um 10 Uhr.')">13. <span class="adj-highlight">Schneller</span> Zug kommt um 10 Uhr. (Nominativ maskulin)</li>
+            <li onclick="speak('Sie spricht mit altem Freund.')">14. Sie spricht mit <span class="adj-highlight">altem</span> Freund. (Dativ maskulin)</li>
+            <li onclick="speak('Er fährt mit schnellem Auto.')">15. Er fährt mit <span class="adj-highlight">schnellem</span> Auto. (Dativ neutral)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- تبويب الاختبار -->
+    <div id="quizTab" class="tab-content">
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <div class="quiz-stats">
+            <div class="stat-badge">📊 السؤال: <span id="currentNum">1</span> / <span id="totalNum">60</span></div>
+            <div class="stat-badge">✅ تمت الإجابة: <span id="answeredCount">0</span></div>
+            <div class="stat-badge">⭐ النتيجة: <span id="scoreDisplay">0</span></div>
+          </div>
+          <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterQuestions('all')">📋 الكل</button>
+            <button class="filter-btn" onclick="filterQuestions('der')">🔵 بعد der</button>
+            <button class="filter-btn" onclick="filterQuestions('ein')">🟢 بعد ein</button>
+            <button class="filter-btn" onclick="filterQuestions('ohne')">🔴 بدون أداة</button>
+          </div>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="quiz-question" id="quizQuestion">Loading...</div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="checkAnswer()">✅ تأكيد الإجابة</button>
+          <button class="btn btn-success" onclick="nextQuestion()">➡️ السؤال التالي</button>
+          <button class="btn btn-warning" onclick="resetQuiz()">🔄 إعادة التشغيل</button>
+        </div>
+
+        <div id="resultContainer"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>📚 Adjektivdeklination - تصريف الصفات | تعلم التصريف بعد der • ein • بدون أداة - قاعدة مهمة لمستوى B1</p>
+    </footer>
+  </div>
+
+  <script>
+    // أسئلة الاختبار
+    const allQuestions = [];
+
+    // أسئلة بعد der
+    const derQuestions = [
+      { text: "أكمل الجملة: Der ___ Mann ist mein Vater.", options: ["große", "großer", "großen"], correct: "große", type: "der", rule: "بعد der في Nominativ: الصفة + e" },
+      { text: "أكمل الجملة: Ich sehe den ___ Mann.", options: ["große", "großer", "großen"], correct: "großen", type: "der", rule: "بعد den في Akkusativ: الصفة + en" },
+      { text: "أكمل الجملة: Die ___ Katze schläft.", options: ["kleine", "kleiner", "kleinen"], correct: "kleine", type: "der", rule: "بعد die في Nominativ: الصفة + e" },
+      { text: "أكمل الجملة: Das ___ Auto ist schnell.", options: ["neue", "neuer", "neuen"], correct: "neue", type: "der", rule: "بعد das في Nominativ: الصفة + e" },
+      { text: "أكمل الجملة: Ich helfe dem ___ Mann.", options: ["alte", "alter", "alten"], correct: "alten", type: "der", rule: "بعد dem في Dativ: الصفة + en" }
+    ];
+
+    // أسئلة بعد ein
+    const einQuestions = [
+      { text: "أكمل الجملة: Ein ___ Mann steht dort.", options: ["große", "großer", "großen"], correct: "großer", type: "ein", rule: "بعد ein في Nominativ maskulin: الصفة + er" },
+      { text: "أكمل الجملة: Eine ___ Katze spielt.", options: ["kleine", "kleiner", "kleinen"], correct: "kleine", type: "ein", rule: "بعد eine في Nominativ feminin: الصفة + e" },
+      { text: "أكمل الجملة: Ein ___ Auto ist teuer.", options: ["neue", "neuer", "neues"], correct: "neues", type: "ein", rule: "بعد ein في Nominativ neutral: الصفة + es" },
+      { text: "أكمل الجملة: Ich habe einen ___ Hund.", options: ["große", "großer", "großen"], correct: "großen", type: "ein", rule: "بعد einen في Akkusativ: الصفة + en" },
+      { text: "أكمل الجملة: Ich helfe einem ___ Mann.", options: ["alte", "alter", "alten"], correct: "alten", type: "ein", rule: "بعد einem في Dativ: الصفة + en" }
+    ];
+
+    // أسئلة بدون أداة
+    const ohneQuestions = [
+      { text: "أكمل الجملة: ___ Mann sucht Arbeit.", options: ["Großer", "Große", "Großen"], correct: "Großer", type: "ohne", rule: "بدون أداة Nominativ maskulin: الصفة + er" },
+      { text: "أكمل الجملة: ___ Frau singt schön.", options: ["Schöner", "Schöne", "Schönen"], correct: "Schöne", type: "ohne", rule: "بدون أداة Nominativ feminin: الصفة + e" },
+      { text: "أكمل الجملة: ___ Auto ist schnell.", options: ["Neuer", "Neue", "Neues"], correct: "Neues", type: "ohne", rule: "بدون أداة Nominativ neutral: الصفة + es" },
+      { text: "أكمل الجملة: Ich trinke ___ Wasser.", options: ["kaltes", "kalte", "kalten"], correct: "kaltes", type: "ohne", rule: "بدون أداة Akkusativ neutral: الصفة + es" },
+      { text: "أكمل الجملة: Ich helfe ___ Mann.", options: ["altem", "alte", "alten"], correct: "altem", type: "ohne", rule: "بدون أداة Dativ maskulin: الصفة + em" }
+    ];
+
+    // إضافة جميع الأسئلة
+    derQuestions.forEach(q => allQuestions.push(q));
+    einQuestions.forEach(q => allQuestions.push(q));
+    ohneQuestions.forEach(q => allQuestions.push(q));
+
+    // أسئلة إضافية
+    const extraAdjs = ["klug", "schön", "teuer", "billig", "interessant", "wichtig", "schnell", "langsam"];
+    for (let i = 0; i < 45; i++) {
+      const type = i % 3 === 0 ? "der" : (i % 3 === 1 ? "ein" : "ohne");
+      const adj = extraAdjs[i % extraAdjs.length];
+      
+      if (type === "der") {
+        allQuestions.push({
+          text: `أكمل الجملة: Der ___ ${adj}e Mann.`,
+          options: [`${adj}e`, `${adj}er`, `${adj}en`],
+          correct: `${adj}e`,
+          type: "der",
+          rule: "بعد der في Nominativ: الصفة + e"
+        });
+      } else if (type === "ein") {
+        allQuestions.push({
+          text: `أكمل الجملة: Ein ___ ${adj}er Mann.`,
+          options: [`${adj}e`, `${adj}er`, `${adj}es`],
+          correct: `${adj}er`,
+          type: "ein",
+          rule: "بعد ein في Nominativ maskulin: الصفة + er"
+        });
+      } else {
+        allQuestions.push({
+          text: `أكمل الجملة: ___ ${adj}er Mann.`,
+          options: [`${adj}er`, `${adj}e`, `${adj}en`],
+          correct: `${adj}er`,
+          type: "ohne",
+          rule: "بدون أداة Nominativ maskulin: الصفة + er"
+        });
+      }
+    }
+
+    let currentQuestions = [...allQuestions];
+    let currentIndex = 0;
+    let userAnswers = new Array(currentQuestions.length).fill(null);
+    let selectedOption = null;
+    let answered = false;
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      if (tabName === 'explain') {
+        document.getElementById('explainTab').classList.add('active');
+        document.querySelector('.tab-btn:first-child').classList.add('active');
+      } else if (tabName === 'examples') {
+        document.getElementById('examplesTab').classList.add('active');
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+      } else {
+        document.getElementById('quizTab').classList.add('active');
+        document.querySelectorAll('.tab-btn')[2].classList.add('active');
+        resetQuiz();
+      }
+    }
+
+    function filterQuestions(type) {
+      if (type === 'all') {
+        currentQuestions = [...allQuestions];
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector('.filter-btn:first-child').classList.add('active');
+      } else {
+        currentQuestions = allQuestions.filter(q => q.type === type);
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.textContent.includes(type === 'der' ? 'der' : (type === 'ein' ? 'ein' : 'بدون'))) btn.classList.add('active');
+        });
+      }
+      resetQuiz();
+    }
+
+    function resetQuiz() {
+      userAnswers = new Array(currentQuestions.length).fill(null);
+      currentIndex = 0;
+      selectedOption = null;
+      answered = false;
+      document.getElementById('resultContainer').innerHTML = '';
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      if (currentQuestions.length === 0) return;
+      const q = currentQuestions[currentIndex];
+      document.getElementById('quizQuestion').innerHTML = q.text;
+      document.getElementById('totalNum').textContent = currentQuestions.length;
+      
+      const optionsDiv = document.getElementById('quizOptions');
+      optionsDiv.innerHTML = '';
+      
+      q.options.forEach(opt => {
+        const btn = document.createElement('div');
+        btn.className = 'quiz-option';
+        btn.textContent = opt;
+        if (userAnswers[currentIndex] === opt) {
+          btn.classList.add('selected');
+          selectedOption = opt;
+          answered = true;
+        } else {
+          btn.onclick = () => selectOption(opt);
+        }
+        optionsDiv.appendChild(btn);
+      });
+      
+      if (userAnswers[currentIndex] === null) {
+        document.getElementById('quizFeedback').innerHTML = '';
+        document.getElementById('quizFeedback').className = 'quiz-feedback';
+        answered = false;
+        selectedOption = null;
+      } else {
+        const isCorrect = userAnswers[currentIndex] === q.correct;
+        document.getElementById('quizFeedback').innerHTML = isCorrect ? '✅ إجابة صحيحة!' : `❌ الإجابة الصحيحة: ${q.correct}<br>📌 ${q.rule}`;
+        document.getElementById('quizFeedback').className = `quiz-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+      }
+      
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      updateStats();
+    }
+
+    function selectOption(opt) {
+      if (answered) return;
+      selectedOption = opt;
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.classList.remove('selected');
+        if (btn.textContent === opt) btn.classList.add('selected');
+      });
+    }
+
+    function checkAnswer() {
+      if (answered) return;
+      if (selectedOption === null) {
+        document.getElementById('quizFeedback').innerHTML = '⚠️ يرجى اختيار إجابة أولاً!';
+        document.getElementById('quizFeedback').className = 'quiz-feedback wrong';
+        return;
+      }
+      
+      const q = currentQuestions[currentIndex];
+      const isCorrect = selectedOption === q.correct;
+      userAnswers[currentIndex] = selectedOption;
+      answered = true;
+      
+      document.getElementById('quizFeedback').innerHTML = isCorrect ? '✅ إجابة صحيحة! أحسنت! 🎉' : `❌ إجابة خاطئة! الإجابة الصحيحة: "${q.correct}"<br>📌 ${q.rule}`;
+      document.getElementById('quizFeedback').className = `quiz-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+      
+      document.querySelectorAll('.quiz-option').forEach(btn => btn.onclick = null);
+      updateStats();
+    }
+
+    function nextQuestion() {
+      if (!answered && userAnswers[currentIndex] === null) {
+        document.getElementById('quizFeedback').innerHTML = '⚠️ يرجى الإجابة على السؤال الحالي أولاً!';
+        document.getElementById('quizFeedback').className = 'quiz-feedback wrong';
+        return;
+      }
+      
+      if (currentIndex + 1 < currentQuestions.length) {
+        currentIndex++;
+        loadQuestion();
+      } else if (currentIndex + 1 === currentQuestions.length) {
+        showFinalResult();
+      }
+    }
+
+    function updateStats() {
+      const answeredCount = userAnswers.filter(a => a !== null).length;
+      const correctCount = userAnswers.filter((a, i) => a === currentQuestions[i].correct).length;
+      document.getElementById('answeredCount').textContent = answeredCount;
+      document.getElementById('scoreDisplay').textContent = correctCount;
+      const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+      document.getElementById('progressFill').style.width = `${progress}%`;
+    }
+
+    function showFinalResult() {
+      const correctCount = userAnswers.filter((a, i) => a === currentQuestions[i].correct).length;
+      const percentage = Math.round((correctCount / currentQuestions.length) * 100);
+      let grade = percentage >= 90 ? 'ممتاز! 🌟' : percentage >= 75 ? 'جيد جداً! 👍' : percentage >= 60 ? 'جيد! 📚' : percentage >= 40 ? 'تحتاج إلى مراجعة 📖' : 'نحتاج إلى مزيد من التمارين 💪';
+      
+      document.getElementById('resultContainer').innerHTML = `
+        <div class="result-card">
+          <h2>🏆 النتيجة النهائية 🏆</h2>
+          <div class="result-score">${correctCount} / ${currentQuestions.length}</div>
+          <div style="font-size: 24px;">${percentage}% - ${grade}</div>
+          <button class="btn btn-primary" onclick="resetQuiz()" style="margin-top: 20px;">🔄 بدء اختبار جديد</button>
+        </div>
+      `;
+    }
+
+    function showTip(message) {
+      const tipDiv = document.createElement('div');
+      tipDiv.style.position = 'fixed';
+      tipDiv.style.bottom = '100px';
+      tipDiv.style.left = '50%';
+      tipDiv.style.transform = 'translateX(-50%)';
+      tipDiv.style.backgroundColor = '#f39c12';
+      tipDiv.style.color = 'white';
+      tipDiv.style.padding = '20px 30px';
+      tipDiv.style.borderRadius = '20px';
+      tipDiv.style.zIndex = '1001';
+      tipDiv.style.fontWeight = 'bold';
+      tipDiv.style.textAlign = 'center';
+      tipDiv.style.direction = 'rtl';
+      tipDiv.innerHTML = message;
+      
+      document.body.appendChild(tipDiv);
+      setTimeout(() => tipDiv.remove(), 4000);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const btn = document.querySelector('.dark-mode-toggle');
+      btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      resetQuiz();
+      document.querySelectorAll('.example-list li, .sentence').forEach(el => {
+        if (el) el.style.cursor = 'pointer';
+      });
+    });
+  </script>
+</body>
+</html>

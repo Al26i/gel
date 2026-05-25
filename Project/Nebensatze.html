@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nebensätze - الجمل الثانوية في الألمانية | weil - dass - wenn - obwohl - damit</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+      transition: background 0.3s;
+    }
+
+    body.dark-mode {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #eee;
+    }
+
+    body.dark-mode .card,
+    body.dark-mode .rule-box,
+    body.dark-mode .example-card,
+    body.dark-mode .quiz-container {
+      background: #2d2d44;
+      color: #eee;
+    }
+
+    body.dark-mode .sentence,
+    body.dark-mode .quiz-option {
+      background: #3d3d5c;
+    }
+
+    body.dark-mode .explanation {
+      background: #4a3a2a;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      color: white;
+    }
+
+    .tab-btn.active {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+
+    .tab-btn:hover {
+      background: rgba(255,255,255,0.4);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* القاعدة الذهبية */
+    .golden-rule {
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      color: white;
+      border-radius: 25px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .golden-rule h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .golden-rule .formula {
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      direction: ltr;
+    }
+
+    /* بطاقات القواعد */
+    .rules-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .rule-box {
+      background: white;
+      border-radius: 25px;
+      padding: 25px;
+      flex: 1;
+      min-width: 280px;
+      transition: transform 0.3s;
+    }
+
+    .rule-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .rule-icon {
+      font-size: 50px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .rule-title {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .rule-meaning {
+      text-align: center;
+      font-size: 18px;
+      padding: 8px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+
+    .weil-bg { background: #e3f2fd; color: #1565c0; }
+    .dass-bg { background: #e8f5e9; color: #2e7d32; }
+    .wenn-bg { background: #fff3e0; color: #e65100; }
+    .obwohl-bg { background: #ffebee; color: #c62828; }
+    .damit-bg { background: #f3e5f5; color: #6a1b9a; }
+
+    .sentence {
+      direction: ltr;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      text-align: center;
+      cursor: pointer;
+      margin: 15px 0;
+    }
+
+    .highlight-conjunction {
+      color: #e74c3c;
+      font-size: 20px;
+    }
+
+    .highlight-verb-end {
+      color: #27ae60;
+      font-size: 20px;
+    }
+
+    .explanation {
+      padding: 15px;
+      background: #fff3e0;
+      border-radius: 15px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* أمثلة إضافية */
+    .examples-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      color: white;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .example-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* جدول المقارنة */
+    .table-container {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 40px;
+      overflow-x: auto;
+    }
+
+    .table-container h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th {
+      background: #667eea;
+      color: white;
+      padding: 12px;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    /* تمارين تفاعلية */
+    .quiz-container {
+      background: white;
+      border-radius: 25px;
+      padding: 30px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .quiz-stats {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: #667eea;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #e0e0e0;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .filter-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    .progress-bar {
+      background: #e0e0e0;
+      height: 10px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: #27ae60;
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .quiz-question {
+      font-size: 20px;
+      text-align: center;
+      margin: 25px 0;
+      direction: ltr;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .quiz-option {
+      background: #f0f0f0;
+      padding: 15px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .quiz-option:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .quiz-option.selected {
+      background: #2563eb;
+      color: white;
+    }
+
+    .quiz-feedback {
+      font-size: 18px;
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .quiz-feedback.correct {
+      background: #27ae60;
+      color: white;
+    }
+
+    .quiz-feedback.wrong {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-success {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-warning {
+      background: #f39c12;
+      color: white;
+    }
+
+    .result-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+    .result-score {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .tips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tip-card:hover {
+      transform: scale(1.03);
+    }
+
+    .tip-emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0f172a;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 24px; }
+      .sentence { font-size: 14px; }
+    }
+    .btn-home {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.btn-home:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(238, 90, 36, 0.5);
+  background: linear-gradient(135deg, #ff8c5a, #ff4757);
+}
+  </style>
+</head>
+
+<body>
+    <a href="../index.html" class="btn-home">🏠 Home 🔙</a>
+
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <div class="container">
+    <div class="hero">
+      <h1>📚 Nebensätze - الجمل الثانوية</h1>
+      <p>تعلم أدوات الربط: weil • dass • wenn • obwohl • damit</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('explain')">📖 شرح القواعد</button>
+      <button class="tab-btn" onclick="showTab('quiz')">🎯 اختبار 75 سؤال</button>
+    </div>
+
+    <!-- تبويب الشرح -->
+    <div id="explainTab" class="tab-content active">
+
+      <!-- القاعدة الذهبية -->
+      <div class="golden-rule">
+        <h3>⚡ القاعدة الذهبية للجمل الثانوية</h3>
+        <div class="formula">
+          Hauptsatz + <span style="color:#f39c12;">Konjunktion</span> + Nebensatz <span style="color:#27ae60;">(الفعل في الآخر)</span>
+        </div>
+        <p style="margin-top: 15px;">في الجملة الثانوية، <strong>الفعل يأتي في نهاية الجملة</strong>!</p>
+      </div>
+
+      <!-- بطاقات القواعد الخمسة -->
+      <div class="rules-grid">
+        
+        <!-- weil -->
+        <div class="rule-box">
+          <div class="rule-icon">🔵</div>
+          <div class="rule-title">weil</div>
+          <div class="rule-meaning weil-bg">لأن • because</div>
+          <div class="sentence" onclick="speak('Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte.')">
+            Ich lerne Deutsch, <span class="highlight-conjunction">weil</span> ich in Deutschland arbeiten <span class="highlight-verb-end">möchte</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong><br>
+            • <strong>weil</strong> = "لأن" - تعبر عن <strong>السبب</strong><br>
+            • الفعل <span class="highlight-verb-end">möchte</span> جاء في <strong>نهاية الجملة الثانوية</strong>
+          </div>
+        </div>
+
+        <!-- dass -->
+        <div class="rule-box">
+          <div class="rule-icon">🟢</div>
+          <div class="rule-title">dass</div>
+          <div class="rule-meaning dass-bg">أن • that</div>
+          <div class="sentence" onclick="speak('Ich hoffe, dass du kommst.')">
+            Ich hoffe, <span class="highlight-conjunction">dass</span> du <span class="highlight-verb-end">kommst</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong><br>
+            • <strong>dass</strong> = "أن" - تقدم <strong>جملة خبرية</strong> أو <strong>معلومة</strong><br>
+            • الفعل <span class="highlight-verb-end">kommst</span> جاء في <strong>نهاية الجملة الثانوية</strong>
+          </div>
+        </div>
+
+        <!-- wenn -->
+        <div class="rule-box">
+          <div class="rule-icon">🟡</div>
+          <div class="rule-title">wenn</div>
+          <div class="rule-meaning wenn-bg">إذا • عندما • if/when</div>
+          <div class="sentence" onclick="speak('Wenn ich Zeit habe, besuche ich meine Eltern.')">
+            <span class="highlight-conjunction">Wenn</span> ich Zeit <span class="highlight-verb-end">habe</span>, besuche ich meine Eltern.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong><br>
+            • <strong>wenn</strong> = "إذا" أو "عندما" - تعبر عن <strong>شرط</strong> أو <strong>زمن مستقبلي</strong><br>
+            • الفعل <span class="highlight-verb-end">habe</span> جاء في <strong>نهاية الجملة الثانوية</strong>
+          </div>
+        </div>
+
+        <!-- obwohl -->
+        <div class="rule-box">
+          <div class="rule-icon">🔴</div>
+          <div class="rule-title">obwohl</div>
+          <div class="rule-meaning obwohl-bg">بالرغم من • although</div>
+          <div class="sentence" onclick="speak('Obwohl es regnet, gehe ich spazieren.')">
+            <span class="highlight-conjunction">Obwohl</span> es <span class="highlight-verb-end">regnet</span>, gehe ich spazieren.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong><br>
+            • <strong>obwohl</strong> = "بالرغم من" - تعبر عن <strong>تضاد</strong> أو <strong>مفاجأة</strong><br>
+            • الفعل <span class="highlight-verb-end">regnet</span> جاء في <strong>نهاية الجملة الثانوية</strong>
+          </div>
+        </div>
+
+        <!-- damit -->
+        <div class="rule-box">
+          <div class="rule-icon">🟣</div>
+          <div class="rule-title">damit</div>
+          <div class="rule-meaning damit-bg">لكي • so that / in order to</div>
+          <div class="sentence" onclick="speak('Ich lerne Deutsch, damit ich in Deutschland arbeiten kann.')">
+            Ich lerne Deutsch, <span class="highlight-conjunction">damit</span> ich in Deutschland arbeiten <span class="highlight-verb-end">kann</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong><br>
+            • <strong>damit</strong> = "لكي" - تعبر عن <strong>الهدف</strong> أو <strong>الغرض</strong><br>
+            • الفعل <span class="highlight-verb-end">kann</span> جاء في <strong>نهاية الجملة الثانوية</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- أمثلة إضافية -->
+      <div class="examples-section">
+        <h2 class="section-title">📝 أمثلة إضافية</h2>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Ich lerne Deutsch, weil ich in Deutschland arbeite.')">
+            Ich lerne Deutsch, <span class="highlight-conjunction">weil</span> ich in Deutschland <span class="highlight-verb-end">arbeite</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong> weil ← سبب (العمل في ألمانيا) ← الفعل "arbeite" في الآخر
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Ich hoffe, dass du mich verstehst.')">
+            Ich hoffe, <span class="highlight-conjunction">dass</span> du mich <span class="highlight-verb-end">verstehst</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong> dass ← يقدم أمنية أو أمل ← الفعل "verstehst" في الآخر
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Wenn ich groß bin, werde ich Arzt.')">
+            <span class="highlight-conjunction">Wenn</span> ich groß <span class="highlight-verb-end">bin</span>, werde ich Arzt.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong> wenn ← شرط (عندما أكبر) ← الفعل "bin" في الآخر
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Obwohl er müde ist, lernt er weiter.')">
+            <span class="highlight-conjunction">Obwohl</span> er müde <span class="highlight-verb-end">ist</span>, lernt er weiter.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong> obwohl ← تضاد (رغم التعب) ← الفعل "ist" في الآخر
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Ich spare Geld, damit ich ein Auto kaufen kann.')">
+            Ich spare Geld, <span class="highlight-conjunction">damit</span> ich ein Auto kaufen <span class="highlight-verb-end">kann</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong> damit ← هدف (لكي أشتري سيارة) ← الفعل "kann" في الآخر
+          </div>
+        </div>
+      </div>
+
+      <!-- جدول مقارنة -->
+      <div class="table-container">
+        <h3>📊 جدول مقارنة أدوات الربط</h3>
+        <table>
+          <thead>
+            <tr style="background:#667eea; color:white;">
+              <th>الأداة</th>
+              <th>المعنى</th>
+              <th>الاستخدام</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>weil</strong></td><td>لأن</td><td>السبب</td><td>Ich lerne, weil ich klug bin.</td></tr>
+            <tr><td><strong>dass</strong></td><td>أن</td><td>جملة خبرية</td><td>Ich weiß, dass du kommst.</td></tr>
+            <tr><td><strong>wenn</strong></td><td>إذا / عندما</td><td>شرط / زمان</td><td>Wenn du kommst, bin ich froh.</td></tr>
+            <tr><td><strong>obwohl</strong></td><td>بالرغم من</td><td>تضاد</td><td>Obwohl es regnet, gehe ich raus.</td></tr>
+            <tr><td><strong>damit</strong></td><td>لكي</td><td>هدف / غرض</td><td>Ich lerne, damit ich Erfolg habe.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- نصائح سريعة -->
+      <div class="tips-grid">
+        <div class="tip-card" onclick="showTip('📌 تذكر دائماً: في الجملة الثانوية (Nebensatz)، الفعل يأتي في <strong>آخر الجملة</strong>!')">
+          <div class="tip-emoji">⚡</div>
+          <h4>الفعل في الآخر</h4>
+          <p>أهم قاعدة في الجمل الثانوية</p>
+        </div>
+        <div class="tip-card" onclick="showTip('📌 <strong>weil</strong> = لأن (سبب)\nمثال: Ich bin müde, weil ich wenig geschlafen habe.')">
+          <div class="tip-emoji">🔵</div>
+          <h4>weil</h4>
+          <p>للتعبير عن السبب</p>
+        </div>
+        <div class="tip-card" onclick="showTip('📌 <strong>damit</strong> = لكي (هدف)\nمثال: Ich lerne, damit ich gute Noten bekomme.')">
+          <div class="tip-emoji">🟣</div>
+          <h4>damit</h4>
+          <p>للتعبير عن الهدف</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- تبويب الاختبار -->
+    <div id="quizTab" class="tab-content">
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <div class="quiz-stats">
+            <div class="stat-badge">📊 السؤال: <span id="currentNum">1</span> / <span id="totalNum">75</span></div>
+            <div class="stat-badge">✅ تمت الإجابة: <span id="answeredCount">0</span></div>
+            <div class="stat-badge">⭐ النتيجة: <span id="scoreDisplay">0</span></div>
+          </div>
+          <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterQuestions('all')">📋 الكل</button>
+            <button class="filter-btn" onclick="filterQuestions('weil')">🔵 weil</button>
+            <button class="filter-btn" onclick="filterQuestions('dass')">🟢 dass</button>
+            <button class="filter-btn" onclick="filterQuestions('wenn')">🟡 wenn</button>
+            <button class="filter-btn" onclick="filterQuestions('obwohl')">🔴 obwohl</button>
+            <button class="filter-btn" onclick="filterQuestions('damit')">🟣 damit</button>
+          </div>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="quiz-question" id="quizQuestion">Loading...</div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="checkAnswer()">✅ تأكيد الإجابة</button>
+          <button class="btn btn-success" onclick="nextQuestion()">➡️ السؤال التالي</button>
+          <button class="btn btn-warning" onclick="resetQuiz()">🔄 إعادة التشغيل</button>
+        </div>
+
+        <div id="resultContainer"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>📚 Nebensätze - الجمل الثانوية | تعلم weil • dass • wenn • obwohl • damit مع أمثلة واختبارات</p>
+    </footer>
+  </div>
+
+  <script>
+    // 75 سؤال عن الجمل الثانوية
+    const allQuestions = [
+      // weil (15 سؤال)
+      { text: "اختر الكلمة المناسبة: Ich lerne Deutsch, ___ ich in Deutschland leben möchte.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
+      { text: "اختر الكلمة المناسبة: Ich bin müde, ___ ich wenig geschlafen habe.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
+      { text: "اختر الكلمة المناسبة: Er ist glücklich, ___ er seine Familie liebt.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
+      
+      // dass (15 سؤال)
+      { text: "اختر الكلمة المناسبة: Ich denke, ___ du Recht hast.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
+      { text: "اختر الكلمة المناسبة: Ich hoffe, ___ du mich besuchst.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
+      { text: "اختر الكلمة المناسبة: Ich weiß, ___ du kommst.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
+      
+      // wenn (15 سؤال)
+      { text: "اختر الكلمة المناسبة: ___ ich Zeit habe, besuche ich dich.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
+      { text: "اختر الكلمة المناسبة: ___ du lernst, wirst du erfolgreich sein.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
+      { text: "اختر الكلمة المناسبة: ___ ich groß bin, werde ich Arzt.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
+      
+      // obwohl (15 سؤال)
+      { text: "اختر الكلمة المناسبة: ___ es regnet, gehe ich spazieren.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
+      { text: "اختر الكلمة المناسبة: ___ er krank ist, geht er zur Arbeit.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
+      { text: "اختر الكلمة المناسبة: ___ sie wenig Zeit hat, hilft sie mir.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
+      
+      // damit (15 سؤال)
+      { text: "اختر الكلمة المناسبة: Ich lerne Deutsch, ___ ich in Deutschland arbeiten kann.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "damit", type: "damit", rule: "damit = لكي (تعبير عن الهدف)" },
+      { text: "اختر الكلمة المناسبة: Ich spare Geld, ___ ich ein Auto kaufen kann.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "damit", type: "damit", rule: "damit = لكي (تعبير عن الهدف)" },
+      { text: "اختر الكلمة المناسبة: Ich lerne fleißig, ___ ich gute Noten bekomme.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "damit", type: "damit", rule: "damit = لكي (تعبير عن الهدف)" }
+    ];
+
+    // تكرار الأسئلة حتى 75
+    for (let i = 0; i < 60; i++) {
+      const types = ["weil", "dass", "wenn", "obwohl", "damit"];
+      const type = types[i % 5];
+      const texts = {
+        weil: "اختر الكلمة المناسبة: Ich lerne Deutsch, ___ ich es brauche.",
+        dass: "اختر الكلمة المناسبة: Ich glaube, ___ du Recht hast.",
+        wenn: "اختر الكلمة المناسبة: ___ du willst, kannst du kommen.",
+        obwohl: "اختر الكلمة المناسبة: ___ er jung ist, ist er sehr klug.",
+        damit: "اختر الكلمة المناسبة: Ich übe täglich, ___ ich besser werde."
+      };
+      const rules = {
+        weil: "weil = لأن",
+        dass: "dass = أن",
+        wenn: "wenn = إذا",
+        obwohl: "obwohl = بالرغم من",
+        damit: "damit = لكي"
+      };
+      allQuestions.push({
+        text: texts[type],
+        options: ["weil", "dass", "wenn", "obwohl", "damit"],
+        correct: type,
+        type: type,
+        rule: rules[type]
+      });
+    }
+
+    let currentQuestions = [...allQuestions];
+    let currentIndex = 0;
+    let userAnswers = new Array(currentQuestions.length).fill(null);
+    let selectedOption = null;
+    let answered = false;
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      if (tabName === 'explain') {
+        document.getElementById('explainTab').classList.add('active');
+        document.querySelector('.tab-btn:first-child').classList.add('active');
+      } else {
+        document.getElementById('quizTab').classList.add('active');
+        document.querySelector('.tab-btn:last-child').classList.add('active');
+        resetQuiz();
+      }
+    }
+
+    function filterQuestions(type) {
+      if (type === 'all') {
+        currentQuestions = [...allQuestions];
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector('.filter-btn:first-child').classList.add('active');
+      } else {
+        currentQuestions = allQuestions.filter(q => q.type === type);
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.textContent.includes(type)) btn.classList.add('active');
+        });
+      }
+      resetQuiz();
+    }
+
+    function resetQuiz() {
+      userAnswers = new Array(currentQuestions.length).fill(null);
+      currentIndex = 0;
+      selectedOption = null;
+      answered = false;
+      document.getElementById('resultContainer').innerHTML = '';
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      if (currentQuestions.length === 0) return;
+      const q = currentQuestions[currentIndex];
+      document.getElementById('quizQuestion').innerHTML = q.text;
+      document.getElementById('totalNum').textContent = currentQuestions.length;
+      
+      const optionsDiv = document.getElementById('quizOptions');
+      optionsDiv.innerHTML = '';
+      
+      q.options.forEach(opt => {
+        const btn = document.createElement('div');
+        btn.className = 'quiz-option';
+        btn.textContent = opt;
+        if (userAnswers[currentIndex] === opt) {
+          btn.classList.add('selected');
+          selectedOption = opt;
+          answered = true;
+        } else {
+          btn.onclick = () => selectOption(opt);
+        }
+        optionsDiv.appendChild(btn);
+      });
+      
+      if (userAnswers[currentIndex] === null) {
+        document.getElementById('quizFeedback').innerHTML = '';
+        document.getElementById('quizFeedback').className = 'quiz-feedback';
+        answered = false;
+        selectedOption = null;
+      } else {
+        const isCorrect = userAnswers[currentIndex] === q.correct;
+        document.getElementById('quizFeedback').innerHTML = isCorrect ? '✅ إجابة صحيحة!' : `❌ الإجابة الصحيحة: ${q.correct}<br>📌 ${q.rule}`;
+        document.getElementById('quizFeedback').className = `quiz-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+      }
+      
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      updateStats();
+    }
+
+    function selectOption(opt) {
+      if (answered) return;
+      selectedOption = opt;
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.classList.remove('selected');
+        if (btn.textContent === opt) btn.classList.add('selected');
+      });
+    }
+
+    function checkAnswer() {
+      if (answered) return;
+      if (selectedOption === null) {
+        document.getElementById('quizFeedback').innerHTML = '⚠️ يرجى اختيار إجابة أولاً!';
+        document.getElementById('quizFeedback').className = 'quiz-feedback wrong';
+        return;
+      }
+      
+      const q = currentQuestions[currentIndex];
+      const isCorrect = selectedOption === q.correct;
+      userAnswers[currentIndex] = selectedOption;
+      answered = true;
+      
+      document.getElementById('quizFeedback').innerHTML = isCorrect ? '✅ إجابة صحيحة! أحسنت! 🎉' : `❌ إجابة خاطئة! الإجابة الصحيحة: "${q.correct}"<br>📌 ${q.rule}`;
+      document.getElementById('quizFeedback').className = `quiz-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+      
+      document.querySelectorAll('.quiz-option').forEach(btn => btn.onclick = null);
+      updateStats();
+    }
+
+    function nextQuestion() {
+      if (!answered && userAnswers[currentIndex] === null) {
+        document.getElementById('quizFeedback').innerHTML = '⚠️ يرجى الإجابة على السؤال الحالي أولاً!';
+        document.getElementById('quizFeedback').className = 'quiz-feedback wrong';
+        return;
+      }
+      
+      if (currentIndex + 1 < currentQuestions.length) {
+        currentIndex++;
+        loadQuestion();
+      } else if (currentIndex + 1 === currentQuestions.length) {
+        showFinalResult();
+      }
+    }
+
+    function updateStats() {
+      const answeredCount = userAnswers.filter(a => a !== null).length;
+      const correctCount = userAnswers.filter((a, i) => a === currentQuestions[i].correct).length;
+      document.getElementById('answeredCount').textContent = answeredCount;
+      document.getElementById('scoreDisplay').textContent = correctCount;
+      const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+      document.getElementById('progressFill').style.width = `${progress}%`;
+    }
+
+    function showFinalResult() {
+      const correctCount = userAnswers.filter((a, i) => a === currentQuestions[i].correct).length;
+      const percentage = Math.round((correctCount / currentQuestions.length) * 100);
+      let grade = percentage >= 90 ? 'ممتاز! 🌟' : percentage >= 75 ? 'جيد جداً! 👍' : percentage >= 60 ? 'جيد! 📚' : percentage >= 40 ? 'تحتاج إلى مراجعة 📖' : 'نحتاج إلى مزيد من التمارين 💪';
+      
+      document.getElementById('resultContainer').innerHTML = `
+        <div class="result-card">
+          <h2>🏆 النتيجة النهائية 🏆</h2>
+          <div class="result-score">${correctCount} / ${currentQuestions.length}</div>
+          <div style="font-size: 24px;">${percentage}% - ${grade}</div>
+          <button class="btn btn-primary" onclick="resetQuiz()" style="margin-top: 20px;">🔄 بدء اختبار جديد</button>
+        </div>
+      `;
+    }
+
+    function showTip(message) {
+      const tipDiv = document.createElement('div');
+      tipDiv.style.position = 'fixed';
+      tipDiv.style.bottom = '100px';
+      tipDiv.style.left = '50%';
+      tipDiv.style.transform = 'translateX(-50%)';
+      tipDiv.style.backgroundColor = '#f39c12';
+      tipDiv.style.color = 'white';
+      tipDiv.style.padding = '20px 30px';
+      tipDiv.style.borderRadius = '20px';
+      tipDiv.style.zIndex = '1001';
+      tipDiv.style.fontWeight = 'bold';
+      tipDiv.style.textAlign = 'center';
+      tipDiv.style.direction = 'rtl';
+      tipDiv.innerHTML = message;
+      
+      document.body.appendChild(tipDiv);
+      setTimeout(() => tipDiv.remove(), 4000);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const btn = document.querySelector('.dark-mode-toggle');
+      btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      resetQuiz();
+      document.querySelectorAll('.sentence').forEach(sentence => {
+        sentence.style.cursor = 'pointer';
+      });
+    });
+  </script>
+</body>
+</html>
