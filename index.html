@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>B1 - منصة تعلم الألمانية التفاعلية</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg">
-<
+
   <style>
     * {
       margin: 0;
@@ -265,6 +264,7 @@
     .phase2 { background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%); }
     .phase3 { background: linear-gradient(135deg, #78281f 0%, #e74c3c 100%); }
     .phase4 { background: linear-gradient(135deg, #6c3483 0%, #9b59b6 100%); }
+    .phase-ref { background: linear-gradient(135deg, #d35400 0%, #e67e22 100%); }
 
     .card-content {
       padding: 20px;
@@ -504,17 +504,18 @@
       </div>
     </div>
 
- <footer>
-  <p>
-    <a href="./Project/privacy.html" style="color: white; text-decoration: underline;">🔒 سياسة الخصوصية</a> |
-    <a href="Project/terms.html" style="color: white; text-decoration: underline;">📜 شروط الاستخدام</a>
-  </p>
-  <p>للإبلاغ عن أخطاء: sport.all.apps@gmail.com</p>
-  <p>© 2026 أبو نزار
+    <footer>
+      <p>
+        <a href="./Project/privacy.html" style="color: white; text-decoration: underline;">🔒 سياسة الخصوصية</a> |
+        <a href="Project/terms.html" style="color: white; text-decoration: underline;">📜 شروط الاستخدام</a>
+      </p>
+      <p>للإبلاغ عن أخطاء: sport.all.apps@gmail.com</p>
+      <p>© 2026 أبو نزار</p>
+    </footer>
   </div>
 
   <script>
-    // بيانات المشاريع (كما هي مع إضافة link صحيح)
+    // بيانات المشاريع
     const projectsData = [
       { phase: "phase1", title: "📖 Präsens", badge: "زمن المضارع", week: "الأسبوع 1", desc: "تصريف الأفعال الألمانية في زمن المضارع - أفعال عادية، شاذة، و Modalverben.", features: ["أفعال عادية (machen, lernen, arbeiten)", "أفعال شاذة (fahren, lesen, sprechen)", "Modalverben (können, müssen, wollen)", "🎧 نطق صوتي لجميع الكلمات", "🔍 بحث سريع وتصفية"], link: "Project/الأفعال Präsens .html" },
       { phase: "phase1", title: "⏰ Perfekt", badge: "الماضي التام", week: "الأسبوع 1", desc: "تكوين الماضي التام باستخدام haben/sein و Partizip II.", features: ["100 فعل مع تصريفات كاملة", "أفعال haben + sein + Modalverben", "جمل كاملة لكل الضمائر", "🎧 النطق الصوتي"], link: "Project/Perfekt.html" },
@@ -531,7 +532,9 @@
       { phase: "phase4", title: "📚 Adjektivdeklination", badge: "تصريف الصفات", week: "الأسبوع 7", desc: "تصريف الصفات بعد der • ein • بدون أداة - قاعدة مهمة جداً في B1.", features: ["بعد der/die/das (تصريف ضعيف)", "بعد ein/eine (تصريف مختلط)", "بدون أداة (تصريف قوي)", "جداول كاملة لجميع الحالات", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Adjektivdeklination.html" },
       { phase: "phase4", title: "🔮 Konditionalsätze", badge: "الجمل الشرطية", week: "الأسبوع 7", desc: "Wenn ich Zeit hätte, würde ich reisen - ثلاثة أنواع من الجمل الشرطية.", features: ["النوع 1 (واقعي): Wenn + Präsens, Präsens", "النوع 2 (غير واقعي): Wenn + Präteritum, würde + Infinitiv", "النوع 3 (ماضي غير واقعي): Wenn + Plusquamperfekt, Konjunktiv II", "تصريف würde لجميع الضمائر", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Konditionalsaetze.html" },
       { phase: "phase4", title: "✨ Konjunktiv II", badge: "صيغة التمني والتهذيب", week: "الأسبوع 8", desc: "للتمني: Ich würde gern... • للطلبات المهذبة: Könnten Sie... • للشروط غير الواقعية.", features: ["للتمني (würde gern / hätte gern)", "للطلبات المهذبة (Könnten Sie / Würden Sie)", "للشروط غير الواقعية (Wenn + Konjunktiv II, würde + Infinitiv)", "جداول تصريف sein, haben, werden, können, müssen", "55 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Konjunktiv-II.html" },
-      { phase: "phase4", title: "🔗 Doppelkonnektoren", badge: "أدوات الربط المزدوجة", week: "الأسبوع 8", desc: "entweder...oder • nicht nur...sondern auch • zwar...aber - ربط الجمل بشكل متقدم.", features: ["entweder...oder (إما...أو) - اختيار", "nicht nur...sondern auch (ليس فقط...بل أيضاً) - إضافة", "zwar...aber (صحيح أن...لكن) - تضاد", "جداول مقارنة لجميع الأدوات", "60 جملة تدريبية (20 لكل أداة)", "اختبار 60 سؤال"], link: "Project/Doppelkonnektoren.html" }
+      { phase: "phase4", title: "🔗 Doppelkonnektoren", badge: "أدوات الربط المزدوجة", week: "الأسبوع 8", desc: "entweder...oder • nicht nur...sondern auch • zwar...aber - ربط الجمل بشكل متقدم.", features: ["entweder...oder (إما...أو) - اختيار", "nicht nur...sondern auch (ليس فقط...بل أيضاً) - إضافة", "zwar...aber (صحيح أن...لكن) - تضاد", "جداول مقارنة لجميع الأدوات", "60 جملة تدريبية (20 لكل أداة)", "اختبار 60 سؤال"], link: "Project/Doppelkonnektoren.html" },
+      // الكرت الجديد: Grammatik-Referenz-B1
+      { phase: "phase-ref", title: "📚 Grammatik-Referenz B1", badge: "مرجع شامل للقواعد", week: "مرجع دائم", desc: "موسوعة متكاملة تضم شرح جميع قواعد B1 مع جداول مقارنة وحروف الجر ونماذج الإعراب.", features: ["📖 شرح 8 قواعد أساسية مع أمثلة", "📊 مقارنة بين الأزمنة (Präsens, Perfekt, Präteritum, Plusquamperfekt, Futur)", "🔤 مرجع كامل لحروف الجر (Akkusativ, Dativ, Wechselpräpositionen)", "🗂️ جداول تصريف الأفعال المساعدة", "🎧 نطق صوتي لجميع الأمثلة", "📱 تصميم متجاوب مع الوضع الليلي"], link: "Project/Grammatik-Referenz-B1.html" }
     ];
 
     // دوال التخزين والتحديث
@@ -565,16 +568,27 @@
     function toggleComplete(projectId, btnElement) {
       const status = loadCompletionStatus();
       const newStatus = !status[projectId];
-      status[projectId] = newStatus;
-      saveCompletionStatus(status);
       
-      if (newStatus) {
+      if (!status[projectId] && newStatus === true) {
+        // تم التحديد كمكتمل
+        status[projectId] = newStatus;
+        saveCompletionStatus(status);
         btnElement.innerHTML = "✅ مكتمل";
         btnElement.classList.add("completed");
-      } else {
-        btnElement.innerHTML = "🔘 غير مكتمل";
-        btnElement.classList.remove("completed");
+      } else if (status[projectId] === true && newStatus === false) {
+        // محاولة إلغاء الإكمال - طلب تأكيد
+        const confirmReset = confirm('⚠️ هل تريد تصنيف هذا المشروع كـ "غير مكتمل"؟\nسيتم خفض نسبة التقدم.');
+        if (confirmReset) {
+          status[projectId] = false;
+          saveCompletionStatus(status);
+          btnElement.innerHTML = "🔘 غير مكتمل";
+          btnElement.classList.remove("completed");
+        }
+      } else if (!status[projectId] && newStatus === false) {
+        // لم يتم تغيير شيء
+        return;
       }
+      
       updateProgress();
     }
 
