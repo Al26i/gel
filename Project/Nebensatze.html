@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nebensätze - الجمل الثانوية في الألمانية | weil - dass - wenn - obwohl</title>
+  <title>Nebensätze - الجمل الثانوية في الألمانية | weil - dass - wenn - obwohl - damit</title>
 
   <style>
     * {
@@ -44,7 +44,7 @@
     }
 
     .container {
-      max-width: 1300px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
@@ -179,6 +179,7 @@
     .dass-bg { background: #e8f5e9; color: #2e7d32; }
     .wenn-bg { background: #fff3e0; color: #e65100; }
     .obwohl-bg { background: #ffebee; color: #c62828; }
+    .damit-bg { background: #f3e5f5; color: #6a1b9a; }
 
     .sentence {
       direction: ltr;
@@ -493,12 +494,12 @@
   <div class="container">
     <div class="hero">
       <h1>📚 Nebensätze - الجمل الثانوية</h1>
-      <p>تعلم أدوات الربط: weil • dass • wenn • obwohl</p>
+      <p>تعلم أدوات الربط: weil • dass • wenn • obwohl • damit</p>
     </div>
 
     <div class="tabs">
       <button class="tab-btn active" onclick="showTab('explain')">📖 شرح القواعد</button>
-      <button class="tab-btn" onclick="showTab('quiz')">🎯 اختبار 60 سؤال</button>
+      <button class="tab-btn" onclick="showTab('quiz')">🎯 اختبار 75 سؤال</button>
     </div>
 
     <!-- تبويب الشرح -->
@@ -513,22 +514,21 @@
         <p style="margin-top: 15px;">في الجملة الثانوية، <strong>الفعل يأتي في نهاية الجملة</strong>!</p>
       </div>
 
-      <!-- بطاقات القواعد الأربعة -->
+      <!-- بطاقات القواعد الخمسة -->
       <div class="rules-grid">
         
         <!-- weil -->
         <div class="rule-box">
           <div class="rule-icon">🔵</div>
           <div class="rule-title">weil</div>
-          <div class="rule-meaning weil-bg"> • لأن • because</div>
+          <div class="rule-meaning weil-bg">لأن • because</div>
           <div class="sentence" onclick="speak('Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte.')">
             Ich lerne Deutsch, <span class="highlight-conjunction">weil</span> ich in Deutschland arbeiten <span class="highlight-verb-end">möchte</span>.
           </div>
           <div class="explanation">
             <strong>🔍 الشرح:</strong><br>
             • <strong>weil</strong> = "لأن" - تعبر عن <strong>السبب</strong><br>
-            • الفعل <span class="highlight-verb-end">möchte</span> جاء في <strong>نهاية الجملة الثانوية</strong><br>
-            • 📌 مثال آخر: Ich bin müde, <strong>weil</strong> ich heute lange gearbeitet <strong>habe</strong>.
+            • الفعل <span class="highlight-verb-end">möchte</span> جاء في <strong>نهاية الجملة الثانوية</strong>
           </div>
         </div>
 
@@ -537,14 +537,13 @@
           <div class="rule-icon">🟢</div>
           <div class="rule-title">dass</div>
           <div class="rule-meaning dass-bg">أن • that</div>
-          <div class="sentence" onclick="speak('Ich weiß, dass du recht hast.')">
-            Ich weiß, <span class="highlight-conjunction">dass</span> du recht <span class="highlight-verb-end">hast</span>.
+          <div class="sentence" onclick="speak('Ich hoffe, dass du kommst.')">
+            Ich hoffe, <span class="highlight-conjunction">dass</span> du <span class="highlight-verb-end">kommst</span>.
           </div>
           <div class="explanation">
             <strong>🔍 الشرح:</strong><br>
             • <strong>dass</strong> = "أن" - تقدم <strong>جملة خبرية</strong> أو <strong>معلومة</strong><br>
-            • الفعل <span class="highlight-verb-end">hast</span> جاء في <strong>نهاية الجملة الثانوية</strong><br>
-            • 📌 مثال آخر: Ich denke, <strong>dass</strong> das Wetter morgen schön <strong>wird</strong>.
+            • الفعل <span class="highlight-verb-end">kommst</span> جاء في <strong>نهاية الجملة الثانوية</strong>
           </div>
         </div>
 
@@ -559,8 +558,7 @@
           <div class="explanation">
             <strong>🔍 الشرح:</strong><br>
             • <strong>wenn</strong> = "إذا" أو "عندما" - تعبر عن <strong>شرط</strong> أو <strong>زمن مستقبلي</strong><br>
-            • الفعل <span class="highlight-verb-end">habe</span> جاء في <strong>نهاية الجملة الثانوية</strong><br>
-            • 📌 عندما تبدأ الجملة بـ <strong>wenn</strong>، يأتي الفعل الرئيسي في بداية الجملة الرئيسية!
+            • الفعل <span class="highlight-verb-end">habe</span> جاء في <strong>نهاية الجملة الثانوية</strong>
           </div>
         </div>
 
@@ -568,15 +566,29 @@
         <div class="rule-box">
           <div class="rule-icon">🔴</div>
           <div class="rule-title">obwohl</div>
-          <div class="rule-meaning obwohl-bg">بالرغم من • على الرغم من • although</div>
+          <div class="rule-meaning obwohl-bg">بالرغم من • although</div>
           <div class="sentence" onclick="speak('Obwohl es regnet, gehe ich spazieren.')">
             <span class="highlight-conjunction">Obwohl</span> es <span class="highlight-verb-end">regnet</span>, gehe ich spazieren.
           </div>
           <div class="explanation">
             <strong>🔍 الشرح:</strong><br>
             • <strong>obwohl</strong> = "بالرغم من" - تعبر عن <strong>تضاد</strong> أو <strong>مفاجأة</strong><br>
-            • الفعل <span class="highlight-verb-end">regnet</span> جاء في <strong>نهاية الجملة الثانوية</strong><br>
-            • 📌 مثال آخر: <strong>Obwohl</strong> er krank ist, geht er zur Arbeit <strong>ist</strong>.
+            • الفعل <span class="highlight-verb-end">regnet</span> جاء في <strong>نهاية الجملة الثانوية</strong>
+          </div>
+        </div>
+
+        <!-- damit -->
+        <div class="rule-box">
+          <div class="rule-icon">🟣</div>
+          <div class="rule-title">damit</div>
+          <div class="rule-meaning damit-bg">لكي • so that / in order to</div>
+          <div class="sentence" onclick="speak('Ich lerne Deutsch, damit ich in Deutschland arbeiten kann.')">
+            Ich lerne Deutsch, <span class="highlight-conjunction">damit</span> ich in Deutschland arbeiten <span class="highlight-verb-end">kann</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 الشرح:</strong><br>
+            • <strong>damit</strong> = "لكي" - تعبر عن <strong>الهدف</strong> أو <strong>الغرض</strong><br>
+            • الفعل <span class="highlight-verb-end">kann</span> جاء في <strong>نهاية الجملة الثانوية</strong>
           </div>
         </div>
       </div>
@@ -586,11 +598,11 @@
         <h2 class="section-title">📝 أمثلة إضافية</h2>
 
         <div class="example-card">
-          <div class="sentence" onclick="speak('Ich bleibe zu Hause, weil es kalt ist.')">
-            Ich bleibe zu Hause, <span class="highlight-conjunction">weil</span> es kalt <span class="highlight-verb-end">ist</span>.
+          <div class="sentence" onclick="speak('Ich lerne Deutsch, weil ich in Deutschland arbeite.')">
+            Ich lerne Deutsch, <span class="highlight-conjunction">weil</span> ich in Deutschland <span class="highlight-verb-end">arbeite</span>.
           </div>
           <div class="explanation">
-            <strong>🔍 التحليل:</strong> weil ← يسبب (الطقس البارد) ← الفعل "ist" في الآخر
+            <strong>🔍 التحليل:</strong> weil ← سبب (العمل في ألمانيا) ← الفعل "arbeite" في الآخر
           </div>
         </div>
 
@@ -613,11 +625,20 @@
         </div>
 
         <div class="example-card">
-          <div class="sentence" onclick="speak('Obwohl er wenig Zeit hat, hilft er mir.')">
-            <span class="highlight-conjunction">Obwohl</span> er wenig Zeit <span class="highlight-verb-end">hat</span>, hilft er mir.
+          <div class="sentence" onclick="speak('Obwohl er müde ist, lernt er weiter.')">
+            <span class="highlight-conjunction">Obwohl</span> er müde <span class="highlight-verb-end">ist</span>, lernt er weiter.
           </div>
           <div class="explanation">
-            <strong>🔍 التحليل:</strong> obwohl ← تضاد (رغم ضيق الوقت) ← الفعل "hat" في الآخر
+            <strong>🔍 التحليل:</strong> obwohl ← تضاد (رغم التعب) ← الفعل "ist" في الآخر
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="sentence" onclick="speak('Ich spare Geld, damit ich ein Auto kaufen kann.')">
+            Ich spare Geld, <span class="highlight-conjunction">damit</span> ich ein Auto kaufen <span class="highlight-verb-end">kann</span>.
+          </div>
+          <div class="explanation">
+            <strong>🔍 التحليل:</strong> damit ← هدف (لكي أشتري سيارة) ← الفعل "kann" في الآخر
           </div>
         </div>
       </div>
@@ -639,13 +660,14 @@
             <tr><td><strong>dass</strong></td><td>أن</td><td>جملة خبرية</td><td>Ich weiß, dass du kommst.</td></tr>
             <tr><td><strong>wenn</strong></td><td>إذا / عندما</td><td>شرط / زمان</td><td>Wenn du kommst, bin ich froh.</td></tr>
             <tr><td><strong>obwohl</strong></td><td>بالرغم من</td><td>تضاد</td><td>Obwohl es regnet, gehe ich raus.</td></tr>
+            <tr><td><strong>damit</strong></td><td>لكي</td><td>هدف / غرض</td><td>Ich lerne, damit ich Erfolg habe.</td></tr>
           </tbody>
         </table>
       </div>
 
       <!-- نصائح سريعة -->
       <div class="tips-grid">
-        <div class="tip-card" onclick="showTip('📌 تذكر دائماً: في الجملة الثانوية (Nebensatz)، الفعل يأتي في <strong>آخر الجملة</strong>!\nمثال: Ich bin glücklich, weil ich Urlaub <strong>habe</strong>.')">
+        <div class="tip-card" onclick="showTip('📌 تذكر دائماً: في الجملة الثانوية (Nebensatz)، الفعل يأتي في <strong>آخر الجملة</strong>!')">
           <div class="tip-emoji">⚡</div>
           <h4>الفعل في الآخر</h4>
           <p>أهم قاعدة في الجمل الثانوية</p>
@@ -655,10 +677,10 @@
           <h4>weil</h4>
           <p>للتعبير عن السبب</p>
         </div>
-        <div class="tip-card" onclick="showTip('📌 <strong>wenn</strong> تبدأ بها جملة الشرط، ثم الفعل الرئيسي في بداية الجملة الرئيسية!\nمثال: Wenn du lernst, wirst du erfolgreich.')">
-          <div class="tip-emoji">🟡</div>
-          <h4>wenn</h4>
-          <p>إذا بدأت بها، الفاعل بعد الفعل</p>
+        <div class="tip-card" onclick="showTip('📌 <strong>damit</strong> = لكي (هدف)\nمثال: Ich lerne, damit ich gute Noten bekomme.')">
+          <div class="tip-emoji">🟣</div>
+          <h4>damit</h4>
+          <p>للتعبير عن الهدف</p>
         </div>
       </div>
     </div>
@@ -668,7 +690,7 @@
       <div class="quiz-container">
         <div class="quiz-header">
           <div class="quiz-stats">
-            <div class="stat-badge">📊 السؤال: <span id="currentNum">1</span> / <span id="totalNum">60</span></div>
+            <div class="stat-badge">📊 السؤال: <span id="currentNum">1</span> / <span id="totalNum">75</span></div>
             <div class="stat-badge">✅ تمت الإجابة: <span id="answeredCount">0</span></div>
             <div class="stat-badge">⭐ النتيجة: <span id="scoreDisplay">0</span></div>
           </div>
@@ -678,6 +700,7 @@
             <button class="filter-btn" onclick="filterQuestions('dass')">🟢 dass</button>
             <button class="filter-btn" onclick="filterQuestions('wenn')">🟡 wenn</button>
             <button class="filter-btn" onclick="filterQuestions('obwohl')">🔴 obwohl</button>
+            <button class="filter-btn" onclick="filterQuestions('damit')">🟣 damit</button>
           </div>
         </div>
 
@@ -700,61 +723,60 @@
     </div>
 
     <footer>
-      <p>📚 Nebensätze - الجمل الثانوية | تعلم weil • dass • wenn • obwohl مع أمثلة واختبارات</p>
+      <p>📚 Nebensätze - الجمل الثانوية | تعلم weil • dass • wenn • obwohl • damit مع أمثلة واختبارات</p>
     </footer>
   </div>
 
   <script>
-    // 60 سؤال عن الجمل الثانوية
+    // 75 سؤال عن الجمل الثانوية
     const allQuestions = [
       // weil (15 سؤال)
-      { text: "اختر الكلمة المناسبة: Ich lerne Deutsch, ___ ich in Deutschland leben möchte.", options: ["weil", "dass", "wenn", "obwohl"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
-      { text: "اختر الكلمة المناسبة: Ich bin müde, ___ ich wenig geschlafen habe.", options: ["weil", "dass", "wenn", "obwohl"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
-      { text: "اختر الكلمة المناسبة: Er ist glücklich, ___ er seine Familie liebt.", options: ["weil", "dass", "wenn", "obwohl"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
-      { text: "اختر الكلمة المناسبة: Wir bleiben zu Hause, ___ es regnet.", options: ["weil", "dass", "wenn", "obwohl"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
-      { text: "اختر الكلمة المناسبة: Sie geht zum Arzt, ___ sie krank ist.", options: ["weil", "dass", "wenn", "obwohl"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
+      { text: "اختر الكلمة المناسبة: Ich lerne Deutsch, ___ ich in Deutschland leben möchte.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
+      { text: "اختر الكلمة المناسبة: Ich bin müde, ___ ich wenig geschlafen habe.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
+      { text: "اختر الكلمة المناسبة: Er ist glücklich, ___ er seine Familie liebt.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "weil", type: "weil", rule: "weil = لأن (تعبير عن السبب)" },
       
       // dass (15 سؤال)
-      { text: "اختر الكلمة المناسبة: Ich denke, ___ du Recht hast.", options: ["weil", "dass", "wenn", "obwohl"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
-      { text: "اختر الكلمة المناسبة: Ich hoffe, ___ du mich besuchst.", options: ["weil", "dass", "wenn", "obwohl"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
-      { text: "اختر الكلمة المناسبة: Er sagt, ___ er Zeit hat.", options: ["weil", "dass", "wenn", "obwohl"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
-      { text: "اختر الكلمة المناسبة: Ich weiß, ___ du kommst.", options: ["weil", "dass", "wenn", "obwohl"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
-      { text: "اختر الكلمة المناسبة: Sie glaubt, ___ es wahr ist.", options: ["weil", "dass", "wenn", "obwohl"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
+      { text: "اختر الكلمة المناسبة: Ich denke, ___ du Recht hast.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
+      { text: "اختر الكلمة المناسبة: Ich hoffe, ___ du mich besuchst.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
+      { text: "اختر الكلمة المناسبة: Ich weiß, ___ du kommst.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "dass", type: "dass", rule: "dass = أن (تقديم جملة خبرية)" },
       
       // wenn (15 سؤال)
-      { text: "اختر الكلمة المناسبة: ___ ich Zeit habe, besuche ich dich.", options: ["weil", "dass", "wenn", "obwohl"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
-      { text: "اختر الكلمة المناسبة: ___ du lernst, wirst du erfolgreich sein.", options: ["weil", "dass", "wenn", "obwohl"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
-      { text: "اختر الكلمة المناسبة: ___ das Wetter schön ist, gehe ich spazieren.", options: ["weil", "dass", "wenn", "obwohl"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
-      { text: "اختر الكلمة المناسبة: ___ ich groß bin, werde ich Arzt.", options: ["weil", "dass", "wenn", "obwohl"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
-      { text: "اختر الكلمة المناسبة: ___ du kommst, bin ich glücklich.", options: ["weil", "dass", "wenn", "obwohl"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
+      { text: "اختر الكلمة المناسبة: ___ ich Zeit habe, besuche ich dich.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
+      { text: "اختر الكلمة المناسبة: ___ du lernst, wirst du erfolgreich sein.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
+      { text: "اختر الكلمة المناسبة: ___ ich groß bin, werde ich Arzt.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "wenn", type: "wenn", rule: "wenn = إذا / عندما (تعبير عن شرط أو زمان)" },
       
       // obwohl (15 سؤال)
-      { text: "اختر الكلمة المناسبة: ___ es regnet, gehe ich spazieren.", options: ["weil", "dass", "wenn", "obwohl"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
-      { text: "اختر الكلمة المناسبة: ___ er krank ist, geht er zur Arbeit.", options: ["weil", "dass", "wenn", "obwohl"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
-      { text: "اختر الكلمة المناسبة: ___ sie wenig Zeit hat, hilft sie mir.", options: ["weil", "dass", "wenn", "obwohl"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
-      { text: "اختر الكلمة المناسبة: ___ das Essen teuer ist, schmeckt es gut.", options: ["weil", "dass", "wenn", "obwohl"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
-      { text: "اختر الكلمة المناسبة: ___ er müde ist, lernt er weiter.", options: ["weil", "dass", "wenn", "obwohl"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" }
+      { text: "اختر الكلمة المناسبة: ___ es regnet, gehe ich spazieren.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
+      { text: "اختر الكلمة المناسبة: ___ er krank ist, geht er zur Arbeit.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
+      { text: "اختر الكلمة المناسبة: ___ sie wenig Zeit hat, hilft sie mir.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "obwohl", type: "obwohl", rule: "obwohl = بالرغم من (تعبير عن تضاد)" },
+      
+      // damit (15 سؤال)
+      { text: "اختر الكلمة المناسبة: Ich lerne Deutsch, ___ ich in Deutschland arbeiten kann.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "damit", type: "damit", rule: "damit = لكي (تعبير عن الهدف)" },
+      { text: "اختر الكلمة المناسبة: Ich spare Geld, ___ ich ein Auto kaufen kann.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "damit", type: "damit", rule: "damit = لكي (تعبير عن الهدف)" },
+      { text: "اختر الكلمة المناسبة: Ich lerne fleißig, ___ ich gute Noten bekomme.", options: ["weil", "dass", "wenn", "obwohl", "damit"], correct: "damit", type: "damit", rule: "damit = لكي (تعبير عن الهدف)" }
     ];
 
-    // تكرار الأسئلة حتى 60
-    for (let i = 0; i < 40; i++) {
-      const types = ["weil", "dass", "wenn", "obwohl"];
-      const type = types[i % 4];
+    // تكرار الأسئلة حتى 75
+    for (let i = 0; i < 60; i++) {
+      const types = ["weil", "dass", "wenn", "obwohl", "damit"];
+      const type = types[i % 5];
       const texts = {
         weil: "اختر الكلمة المناسبة: Ich lerne Deutsch, ___ ich es brauche.",
         dass: "اختر الكلمة المناسبة: Ich glaube, ___ du Recht hast.",
         wenn: "اختر الكلمة المناسبة: ___ du willst, kannst du kommen.",
-        obwohl: "اختر الكلمة المناسبة: ___ er jung ist, ist er sehr klug."
+        obwohl: "اختر الكلمة المناسبة: ___ er jung ist, ist er sehr klug.",
+        damit: "اختر الكلمة المناسبة: Ich übe täglich, ___ ich besser werde."
       };
       const rules = {
         weil: "weil = لأن",
         dass: "dass = أن",
         wenn: "wenn = إذا",
-        obwohl: "obwohl = بالرغم من"
+        obwohl: "obwohl = بالرغم من",
+        damit: "damit = لكي"
       };
       allQuestions.push({
         text: texts[type],
-        options: ["weil", "dass", "wenn", "obwohl"],
+        options: ["weil", "dass", "wenn", "obwohl", "damit"],
         correct: type,
         type: type,
         rule: rules[type]
