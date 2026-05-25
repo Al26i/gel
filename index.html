@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>B1 - مشاريع تعلم اللغة الألمانية</title>
+  <title>B1 - منصة تعلم الألمانية التفاعلية</title>
 
   <style>
     * {
@@ -37,10 +37,6 @@
       color: #ddd;
     }
 
-    body.dark-mode .control-bar {
-      background: #2d2d44;
-    }
-
     body.dark-mode .stat-card {
       background: #2d2d44;
     }
@@ -49,8 +45,12 @@
       color: #bbb;
     }
 
+    body.dark-mode .study-plan {
+      background: #2d2d44;
+    }
+
     .container {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
     }
 
@@ -75,111 +75,206 @@
       opacity: 0.9;
     }
 
-    .control-bar {
+    .study-plan {
       background: white;
-      border-radius: 20px;
-      padding: 15px 20px;
+      border-radius: 25px;
+      padding: 25px;
       margin-bottom: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
-    .btn {
-      padding: 10px 25px;
-      border: none;
-      border-radius: 40px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      transition: 0.3s;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #2563eb;
+    .study-plan h2 {
+      text-align: center;
+      margin-bottom: 20px;
       color: #2563eb;
     }
 
-    .btn-outline:hover {
-      background: #2563eb;
+    .plan-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .phase {
+      flex: 1;
+      min-width: 250px;
+      background: #f8f9fa;
+      border-radius: 20px;
+      padding: 15px;
+    }
+
+    body.dark-mode .phase {
+      background: #3d3d5c;
+    }
+
+    .phase h3 {
+      text-align: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #2563eb;
+    }
+
+    .phase ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .phase li {
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    body.dark-mode .phase li {
+      border-bottom-color: #444;
+    }
+
+    .phase li .check {
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    .phase li .pending {
+      color: #f39c12;
+      font-weight: bold;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 15px 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .stat-label {
+      color: #666;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .progress-section {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    body.dark-mode .progress-section {
+      background: #2d2d44;
+    }
+
+    .progress-title {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .progress-bar-container {
+      background: #e0e0e0;
+      border-radius: 15px;
+      height: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: #27ae60;
+      height: 100%;
+      width: 0%;
+      border-radius: 15px;
+      transition: width 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
+      font-size: 12px;
+      font-weight: bold;
     }
 
     .projects {
       display: flex;
       flex-wrap: wrap;
-      gap: 30px;
+      gap: 25px;
       justify-content: center;
     }
 
     .card {
       background: white;
-      border-radius: 25px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
       transition: 0.4s ease;
-      width: 450px;
+      width: 380px;
       display: flex;
       flex-direction: column;
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
 
     .card-header {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       color: white;
-      padding: 25px;
+      padding: 20px;
       text-align: center;
     }
 
     .card-header h2 {
-      font-size: 32px;
-      margin-bottom: 8px;
+      font-size: 24px;
+      margin-bottom: 5px;
     }
 
     .badge {
       display: inline-block;
-      background: #2563eb;
-      padding: 5px 18px;
-      border-radius: 30px;
-      font-size: 14px;
-      margin-top: 10px;
+      background: rgba(255,255,255,0.25);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-top: 8px;
     }
 
-    /* ألوان مميزة لكل مشروع */
-    .card:first-child .card-header {
-      background: linear-gradient(135deg, #1a5276 0%, #2980b9 100%);
+    .week-badge {
+      font-size: 11px;
+      background: rgba(0,0,0,0.3);
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 15px;
+      margin-top: 8px;
     }
-    .card:nth-child(2) .card-header {
-      background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%);
-    }
-    .card:last-child .card-header {
-      background: linear-gradient(135deg, #78281f 0%, #e74c3c 100%);
-    }
+
+    .phase1 { background: linear-gradient(135deg, #1a5276 0%, #2980b9 100%); }
+    .phase2 { background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%); }
+    .phase3 { background: linear-gradient(135deg, #78281f 0%, #e74c3c 100%); }
+    .phase4 { background: linear-gradient(135deg, #6c3483 0%, #9b59b6 100%); }
 
     .card-content {
-      padding: 25px;
+      padding: 20px;
       flex-grow: 1;
     }
 
     .card-content p {
-      line-height: 1.8;
-      margin-bottom: 18px;
+      line-height: 1.6;
+      margin-bottom: 15px;
       color: #555;
+      font-size: 14px;
     }
 
     body.dark-mode .card-content p {
@@ -188,57 +283,60 @@
 
     .features {
       list-style: none;
-      margin: 15px 0 20px;
+      margin: 10px 0 15px;
     }
 
     .features li {
-      padding: 8px 0;
+      padding: 6px 0;
       border-bottom: 1px solid #eee;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 14px;
+      gap: 8px;
+      font-size: 13px;
     }
 
     .features li::before {
       content: "✓";
       color: #27ae60;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .btn-group {
       display: flex;
       gap: 12px;
-      margin-top: 20px;
+      margin-top: 15px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .stat-card {
-      background: white;
-      padding: 18px 30px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .stat-number {
-      font-size: 36px;
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 13px;
       font-weight: bold;
-      color: #2563eb;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #2563eb;
+      color: white;
     }
 
-    .stat-label {
-      color: #666;
-      margin-top: 5px;
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn-complete {
+      background: #2c3e50;
+    }
+
+    .btn-complete.completed {
+      background: #27ae60;
     }
 
     .dark-mode-toggle {
@@ -268,14 +366,22 @@
       margin-top: 40px;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1200px) {
       .projects {
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
       }
       .card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .card {
         width: 100%;
-        max-width: 500px;
+        max-width: 400px;
+      }
+      .plan-grid {
+        flex-direction: column;
       }
     }
   </style>
@@ -287,184 +393,236 @@
 
   <div class="container">
     <header>
-      <h1>🇩🇪 B1 - مشاريع تعلم اللغة الألمانية</h1>
-      <p>تعلم قواعد اللغة الألمانية بطريقة تفاعلية وممتعة</p>
+      <h1>🇩🇪 B1.2 - منصة تعلم الألمانية</h1>
+      <p>خطة 8 أسابيع لاجتياز B1 | مشاريع تفاعلية مع تتبع التقدم</p>
     </header>
 
+    <!-- إحصائيات سريعة -->
     <div class="stats">
       <div class="stat-card">
-        <div class="stat-number">200+</div>
-        <div class="stat-label">فعل ألماني</div>
+        <div class="stat-number" id="totalProjectsCount">0</div>
+        <div class="stat-label">المشاريع</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">3</div>
-        <div class="stat-label">حالات Nom/Dat/Akk</div>
+        <div class="stat-number" id="completedCount">0</div>
+        <div class="stat-label">تمت دراستها</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">🎧</div>
-        <div class="stat-label">نطق صوتي</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">📱</div>
-        <div class="stat-label">تصميم متجاوب</div>
+        <div class="stat-number" id="completionPercent">0%</div>
+        <div class="stat-label">الإنجاز</div>
       </div>
     </div>
 
-    <div class="projects">
+    <!-- شريط التقدم -->
+    <div class="progress-section">
+      <div class="progress-title">📊 التقدم في دراسة المشاريع</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressFill">0%</div>
+      </div>
+      <p style="text-align: center; margin-top: 10px;" id="progressDetails">0 قاعدة من 0 قاعدة مكتملة ✓</p>
+    </div>
 
-      <!-- المشروع الأول: Präsens -->
-      <div class="card">
-        <div class="card-header">
-          <h2>📖 Präsens</h2>
-          <div class="badge">زمن المضارع</div>
-        </div>
-        <div class="card-content">
-          <p>تعلم تصريف الأفعال الألمانية في زمن المضارع مع النطق الصحيح والترجمة العربية.</p>
-          <ul class="features">
-            <li><strong>100 فعل</strong> مع التصريفات الكاملة</li>
-            <li>🎧 النطق الصوتي لجميع الكلمات</li>
-            <li>🔍 بحث سريع وتصفية حسب الأقسام</li>
-            <li>🎯 وضع التحدي والاختبارات</li>
-            <li>📊 تتبع التقدم وحفظ النتائج</li>
-            <li>🌙 الوضع الليلي للراحة</li>
+    <div class="projects" id="projectsContainer"></div>
+
+    <!-- خطة 8 أسابيع -->
+    <div class="study-plan">
+      <h2>📅 خطة 8 أسابيع لاجتياز B1</h2>
+      <div class="plan-grid">
+        <div class="phase">
+          <h3>📖 المرحلة 1<br><small>الأسبوع 1</small></h3>
+          <ul>
+            <li><span class="check">✓</span> Präsens</li>
+            <li><span class="check">✓</span> Perfekt</li>
+            <li><span class="check">✓</span> Fälle (Nom/Akk/Dat)</li>
+            <li><span class="check">✓</span> Satzstellung</li>
           </ul>
-          <div class="btn-group">
-            <a href="Project/الأفعال Präsens .html" class="btn">▶️ عرض المشروع</a>
-        
-          </div>
         </div>
-      </div>
-
-      <!-- المشروع الثاني: Perfekt -->
-      <div class="card">
-        <div class="card-header">
-          <h2>⏰ Perfekt</h2>
-          <div class="badge">الماضي التام</div>
-        </div>
-        <div class="card-content">
-          <p>تعلم تكوين الماضي التام في اللغة الألمانية باستخدام <strong>haben</strong> و <strong>sein</strong>.</p>
-          <ul class="features">
-            <li><strong>100 فعل</strong> مع تصريفات كاملة</li>
-            <li>✅ أفعال تأخذ <strong>haben</strong> (أفعال عادية)</li>
-            <li>🚀 أفعال تأخذ <strong>sein</strong> (حركة وتغيير حالة)</li>
-            <li>⚡ أفعال الكيف المساعدة <strong>Modalverben</strong></li>
-            <li>🎧 النطق الصوتي لجميع الجمل</li>
-            <li>📝 جمل كاملة لكل الضمائر</li>
+        <div class="phase">
+          <h3>📚 المرحلة 2<br><small>الأسبوع 2-3</small></h3>
+          <ul>
+            <li><span class="check">✓</span> Nebensätze</li>
+            <li><span class="check">✓</span> Konnektoren</li>
+            <li><span class="check">✓</span> Verben mit Präp.</li>
+            <li><span class="check">✓</span> Trennbare Verben</li>
           </ul>
-          <div class="btn-group">
-            <a href="Project/Perfekt.html" class="btn">▶️ عرض المشروع</a>
-    
-          </div>
         </div>
-      </div>
-
-      <!-- المشروع الثالث: حالات الأسماء (Nominativ - Akkusativ - Dativ) -->
-      <div class="card">
-        <div class="card-header">
-          <h2>📚 Fälle</h2>
-          <div class="badge">حالات الأسماء</div>
-        </div>
-        <div class="card-content">
-          <p>تعلم حالات الأسماء الثلاث في اللغة الألمانية: <strong>Nominativ</strong> - <strong>Akkusativ</strong> - <strong>Dativ</strong> مع شرح مبسط وأمثلة.</p>
-          <ul class="features">
-            <li>📖 <strong>Nominativ</strong> (حالة الفاعل) - Wer? / Was?</li>
-            <li>🎯 <strong>Akkusativ</strong> (حالة المفعول به) - Wen? / Was?</li>
-            <li>🎁 <strong>Dativ</strong> (حالة المفعول إليه) - Wem?</li>
-            <li>📌 جداول <strong>أدوات التعريف والتنكير</strong> (der/die/das - ein/eine)</li>
-            <li>🔤 <strong>حروف الجر</strong> وتأثيرها على الحالات</li>
-            <li>🔄 <strong>Wechselpräpositionen</strong> (حروف الجر المزدوجة)</li>
-            <li>🎯 <strong>اختبار تفاعلي</strong> مع 100 سؤال</li>
-            <li>🎧 النطق الصوتي لجميع الأمثلة</li>
+        <div class="phase">
+          <h3>⚡ المرحلة 3<br><small>الأسبوع 4-5</small></h3>
+          <ul>
+            <li><span class="pending">⏳</span> Relativsätze</li>
+            <li><span class="pending">⏳</span> Infinitiv mit zu</li>
+            <li><span class="check">✓</span> Passiv</li>
+            <li><span class="check">✓</span> Komparativ & Superlativ</li>
           </ul>
-          <div class="btn-group">
-            <a href="Project/Faelle.html" class="btn">▶️ عرض المشروع</a>
-          </div>
+        </div>
+        <div class="phase">
+          <h3>🎯 المرحلة 4<br><small>الأسبوع 6-8</small></h3>
+          <ul>
+            <li><span class="check">✓</span> Reflexive Verben</li>
+            <li><span class="check">✓</span> Präteritum</li>
+            <li><span class="check">✓</span> Adjektivdeklination</li>
+            <li><span class="check">✓</span> Konditionalsätze</li>
+            <li><span class="check">✓</span> Konjunktiv II</li>
+            <li><span class="check">✓</span> Doppelkonnektoren</li>
+          </ul>
         </div>
       </div>
-<div class="card">
-  <div class="card-header">
-    <h2>📝 Satzstellung</h2>
-    <div class="badge">ترتيب الجملة</div>
-  </div>
-  <div class="card-content">
-    <p>تعلم ترتيب الجملة في اللغة الألمانية: <strong>الفعل في المرتبة الثانية</strong> - <strong>الزمان قبل المكان</strong> - <strong>TeKaMoLo</strong>.</p>
-    <ul class="features">
-      <li>🎯 <strong>الفعل في المرتبة الثانية</strong> - أهم قاعدة في الألمانية</li>
-      <li>⏰ <strong>الزمان قبل المكان</strong> (Zeit vor Ort) - Te يأتي قبل Lo</li>
-      <li>📊 <strong>TeKaMoLo</strong> - ترتيب المعلومات: زمان ← سبب ← كيفية ← مكان</li>
-      <li>📝 <strong>50 سؤال</strong> متنوع عن ترتيب الجملة</li>
-      <li>✅ تغطية جميع القواعد (الفعل في المرتبة 2، الزمان قبل المكان، TeKaMoLo)</li>
-      <li>🎯 <strong>تصحيح آلي</strong> مع شرح القاعدة لكل سؤال</li>
-      <li>📊 <strong>شريط تقدم</strong> وإحصائيات مباشرة</li>
-      <li>🎧 النطق الصوتي لجميع الأمثلة</li>
-      <li>🌙 الوضع الليلي للراحة</li>
-    </ul>
-    <div class="btn-group">
-      <a href="Project/Satzstellung.html" class="btn">▶️ عرض المشروع</a>
-
-    </div>
-  </div>
-</div>
-  <div class="card">
-  <div class="card-header">
-    <h2>📚 Nebensätze</h2>
-    <div class="badge">الجمل الثانوية</div>
-  </div>
-  <div class="card-content">
-    <p>تعلم الجمل الثانوية في اللغة الألمانية: <strong>weil</strong> - <strong>dass</strong> - <strong>wenn</strong> - <strong>obwohl</strong> - <strong>damit</strong>.</p>
-    <ul class="features">
-      <li>🔵 <strong>weil</strong> - لأن (تعبير عن السبب)</li>
-      <li>🟢 <strong>dass</strong> - أن (تقديم جملة خبرية)</li>
-      <li>🟡 <strong>wenn</strong> - إذا / عندما (شرط أو زمان)</li>
-      <li>🔴 <strong>obwohl</strong> - بالرغم من (تعبير عن تضاد)</li>
-      <li>🟣 <strong>damit</strong> - لكي (تعبير عن الهدف)</li>
-      <li>⚡ <strong>القاعدة الذهبية</strong>: الفعل في آخر الجملة الثانوية</li>
-      <li>🎯 <strong>اختبار 75 سؤال</strong> مع تصفية حسب كل أداة</li>
-      <li>🎧 النطق الصوتي لجميع الأمثلة</li>
-      <li>🌙 الوضع الليلي للراحة</li>
-    </ul>
-    <div class="btn-group">
-      <a href="Project/Nebensatze.html" class="btn">▶️ عرض المشروع</a>
-    </div>
-  </div>
-</div>
-
-      <div class="card">
-  <div class="card-header">
-    <h2>🔗 Konnektoren</h2>
-    <div class="badge">أدوات الربط</div>
-  </div>
-  <div class="card-content">
-    <p>تعلم ربط الجمل بشكل احترافي في اللغة الألمانية: <strong>deshalb</strong> - <strong>deswegen</strong> - <strong>trotzdem</strong> - <strong>außerdem</strong>.</p>
-    <ul class="features">
-      <li>🔵 <strong>deshalb</strong> - لذلك (تعبير عن النتيجة)</li>
-      <li>🟢 <strong>deswegen</strong> - لذلك (تعبير عن النتيجة)</li>
-      <li>🟡 <strong>trotzdem</strong> - بالرغم من ذلك (تعبير عن تضاد)</li>
-      <li>🟣 <strong>außerdem</strong> - بالإضافة إلى ذلك (إضافة معلومة)</li>
-      <li>⚡ <strong>القاعدة الذهبية</strong>: بعد أداة الربط، الفعل في المرتبة الثانية</li>
-      <li>🎯 <strong>اختبار 60 سؤال</strong> مع تصفية حسب كل أداة</li>
-      <li>🎧 النطق الصوتي لجميع الأمثلة</li>
-      <li>🌙 الوضع الليلي للراحة</li>
-    </ul>
-    <div class="btn-group">
-      <a href="Project/Konnektoren.html" class="btn">▶️ عرض المشروع</a>
-    </div>
-  </div>
-</div>
-
     </div>
 
-    <footer>
-      <p>جميع الحقوق محفوظة © 2026 | تم التطوير لتعليم اللغة الألمانية بطريقة مبتكرة</p>
-    </footer>
+    <!-- نصائح الدراسة -->
+    <div class="study-plan" style="margin-top: 20px;">
+      <h2>📖 نصائح لاجتياز B1 بنجاح</h2>
+      <div class="plan-grid">
+        <div class="phase">
+          <h3>⏰ يومياً</h3>
+          <ul>
+            <li>30 دقيقة دراسة قاعدة</li>
+            <li>اكتب 10 جمل</li>
+            <li>20 دقيقة استماع</li>
+            <li>15 دقيقة محادثة</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <h3>📚 أسبوعياً</h3>
+          <ul>
+            <li>راجع جميع القواعد</li>
+            <li>اكتب فقرة قصيرة</li>
+            <li>تحدث 5 دقائق</li>
+            <li>حل تمارين</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <h3>🎯 بعد الخطة</h3>
+          <ul>
+            <li>ستجتاز B1 بنجاح</li>
+            <li>ستكتب رسائل رسمية</li>
+            <li>ستفهم المحادثات اليومية</li>
+            <li>ستنتقل إلى B2 بسهولة</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+ <footer>
+  <p>
+    <a href="./Project/privacy.html" style="color: white; text-decoration: underline;">🔒 سياسة الخصوصية</a> |
+    <a href="Project/terms.html" style="color: white; text-decoration: underline;">📜 شروط الاستخدام</a>
+  </p>
+  <p>للإبلاغ عن أخطاء: sport.all.apps@gmail.com</p>
+  <p>© 2026 أبو نزار
   </div>
 
   <script>
+    // بيانات المشاريع (كما هي مع إضافة link صحيح)
+    const projectsData = [
+      { phase: "phase1", title: "📖 Präsens", badge: "زمن المضارع", week: "الأسبوع 1", desc: "تصريف الأفعال الألمانية في زمن المضارع - أفعال عادية، شاذة، و Modalverben.", features: ["أفعال عادية (machen, lernen, arbeiten)", "أفعال شاذة (fahren, lesen, sprechen)", "Modalverben (können, müssen, wollen)", "🎧 نطق صوتي لجميع الكلمات", "🔍 بحث سريع وتصفية"], link: "Project/الأفعال Präsens .html" },
+      { phase: "phase1", title: "⏰ Perfekt", badge: "الماضي التام", week: "الأسبوع 1", desc: "تكوين الماضي التام باستخدام haben/sein و Partizip II.", features: ["100 فعل مع تصريفات كاملة", "أفعال haben + sein + Modalverben", "جمل كاملة لكل الضمائر", "🎧 النطق الصوتي"], link: "Project/Perfekt.html" },
+      { phase: "phase1", title: "📚 Fälle", badge: "حالات الأسماء", week: "الأسبوع 1", desc: "Nominativ • Akkusativ • Dativ - شرح مبسط وأمثلة.", features: ["Nominativ (الفاعل) - Wer?/Was?", "Akkusativ (المفعول به) - Wen?/Was?", "Dativ (المفعول إليه) - Wem?", "جداول أدوات التعريف والتنكير", "اختبار 200 سؤال تفاعلي"], link: "Project/Faelle.html" },
+      { phase: "phase1", title: "📝 Satzstellung", badge: "ترتيب الجملة", week: "الأسبوع 1", desc: "الفعل في المرتبة الثانية • الزمان قبل المكان • TeKaMoLo.", features: ["الفعل في المرتبة الثانية (أهم قاعدة)", "الزمان قبل المكان (Zeit vor Ort)", "TeKaMoLo (ترتيب المعلومات)", "اختبار 50 سؤال مع تصحيح آلي"], link: "Project/Satzstellung.html" },
+      { phase: "phase2", title: "📚 Nebensätze", badge: "الجمل الثانوية", week: "الأسبوع 2", desc: "weil • dass • wenn • obwohl • damit - الفعل في نهاية الجملة.", features: ["weil (لأن) - تعبير عن السبب", "dass (أن) - جملة خبرية", "wenn (إذا/عندما) - شرط أو زمان", "obwohl (بالرغم من) - تضاد", "damit (لكي) - هدف", "اختبار 75 سؤال"], link: "Project/Nebensatze.html" },
+      { phase: "phase2", title: "🔗 Konnektoren", badge: "أدوات الربط", week: "الأسبوع 2", desc: "deshalb • trotzdem • deswegen • außerdem - ربط الجمل بشكل احترافي.", features: ["deshalb / deswegen (لذلك) - نتيجة", "trotzdem (بالرغم من ذلك) - تضاد", "außerdem (بالإضافة إلى ذلك) - إضافة", "القاعدة: الفعل بعد الأداة في المرتبة الثانية", "اختبار 60 سؤال"], link: "Project/Konnektoren.html" },
+      { phase: "phase2", title: "📚 Verben mit Präpositionen", badge: "الأفعال مع حروف الجر", week: "الأسبوع 3", desc: "warten auf • denken an • sprechen mit • sich interessieren für.", features: ["warten auf + Akkusativ (ينتظر)", "denken an + Akkusativ (يفكر في)", "sprechen mit + Dativ (يتحدث مع)", "sich interessieren für + Akkusativ (يهتم بـ)", "40 جملة تدريبية (10 لكل فعل)", "اختبار 60 سؤال"], link: "Project/Verben-mit-Praepositionen.html" },
+      { phase: "phase2", title: "🔀 Trennbare Verben", badge: "الأفعال المنفصلة", week: "الأسبوع 3", desc: "aufstehen • anrufen • einkaufen + أهم 30 فعل منفصل.", features: ["قاعدة المضارع: البادئة في نهاية الجملة", "قاعدة الماضي: البادئة تتصل + ge-", "أهم 30 فعل منفصل مع تصريفات", "اختبار 90 سؤال"], link: "Project/Trennbare-Verben.html" },
+      { phase: "phase3", title: "📖 Passiv", badge: "المبني للمجهول", week: "الأسبوع 5", desc: "Präsens Passiv • Präteritum Passiv - Das Auto wird/wurde repariert.", features: ["Präsens Passiv: werden + Partizip II", "Präteritum Passiv: wurden + Partizip II", "تصريف werden في الحاضر والماضي", "مقارنة بين Aktiv و Passiv", "40 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Passiv.html" },
+      { phase: "phase3", title: "📊 Komparativ & Superlativ", badge: "المقارنة والتفضيل", week: "الأسبوع 5", desc: "schnell → schneller → am schnellsten • gut → besser → am besten.", features: ["Komparativ: صفة + er + als", "Superlativ: am + صفة + sten / der/die/das + صفة + ste", "الصفات الشاذة (gut, gern, viel, hoch)", "قاعدة Umlaut (a,o,u → ä,ö,ü)", "40 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Komparativ-Superlativ.html" },
+      { phase: "phase4", title: "🔄 Reflexive Verben", badge: "الأفعال الانعكاسية", week: "الأسبوع 6", desc: "sich freuen • sich erinnern • sich treffen - الأفعال التي تعود على الفاعل.", features: ["sich freuen auf/über (يفرح بـ)", "sich erinnern an (يتذكر)", "sich treffen mit (يلتقي بـ)", "جدول الضمائر الانعكاسية", "أمثلة وتمارين متنوعة"], link: "Project/Reflexive-Verben.html" },
+      { phase: "phase4", title: "📖 Präteritum", badge: "الماضي البسيط", week: "الأسبوع 6", desc: "war • hatte • konnte • musste • wollte - الماضي البسيط للأفعال المساعدة.", features: ["sein → war (كان)", "haben → hatte (كان لدي)", "können → konnte (استطاع)", "müssen → musste (اضطر)", "wollen → wollte (أراد)", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Praeteritum.html" },
+      { phase: "phase4", title: "📚 Adjektivdeklination", badge: "تصريف الصفات", week: "الأسبوع 7", desc: "تصريف الصفات بعد der • ein • بدون أداة - قاعدة مهمة جداً في B1.", features: ["بعد der/die/das (تصريف ضعيف)", "بعد ein/eine (تصريف مختلط)", "بدون أداة (تصريف قوي)", "جداول كاملة لجميع الحالات", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Adjektivdeklination.html" },
+      { phase: "phase4", title: "🔮 Konditionalsätze", badge: "الجمل الشرطية", week: "الأسبوع 7", desc: "Wenn ich Zeit hätte, würde ich reisen - ثلاثة أنواع من الجمل الشرطية.", features: ["النوع 1 (واقعي): Wenn + Präsens, Präsens", "النوع 2 (غير واقعي): Wenn + Präteritum, würde + Infinitiv", "النوع 3 (ماضي غير واقعي): Wenn + Plusquamperfekt, Konjunktiv II", "تصريف würde لجميع الضمائر", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Konditionalsaetze.html" },
+      { phase: "phase4", title: "✨ Konjunktiv II", badge: "صيغة التمني والتهذيب", week: "الأسبوع 8", desc: "للتمني: Ich würde gern... • للطلبات المهذبة: Könnten Sie... • للشروط غير الواقعية.", features: ["للتمني (würde gern / hätte gern)", "للطلبات المهذبة (Könnten Sie / Würden Sie)", "للشروط غير الواقعية (Wenn + Konjunktiv II, würde + Infinitiv)", "جداول تصريف sein, haben, werden, können, müssen", "55 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Konjunktiv-II.html" },
+      { phase: "phase4", title: "🔗 Doppelkonnektoren", badge: "أدوات الربط المزدوجة", week: "الأسبوع 8", desc: "entweder...oder • nicht nur...sondern auch • zwar...aber - ربط الجمل بشكل متقدم.", features: ["entweder...oder (إما...أو) - اختيار", "nicht nur...sondern auch (ليس فقط...بل أيضاً) - إضافة", "zwar...aber (صحيح أن...لكن) - تضاد", "جداول مقارنة لجميع الأدوات", "60 جملة تدريبية (20 لكل أداة)", "اختبار 60 سؤال"], link: "Project/Doppelkonnektoren.html" }
+    ];
+
+    // دوال التخزين والتحديث
+    function loadCompletionStatus() {
+      const saved = localStorage.getItem('projectCompletionV3');
+      if (saved) return JSON.parse(saved);
+      return {};
+    }
+
+    function saveCompletionStatus(status) {
+      localStorage.setItem('projectCompletionV3', JSON.stringify(status));
+    }
+
+    function updateProgress() {
+      const status = loadCompletionStatus();
+      const total = projectsData.length;
+      const completedCount = Object.values(status).filter(v => v === true).length;
+      const percent = Math.round((completedCount / total) * 100);
+
+      document.getElementById('totalProjectsCount').innerText = total;
+      document.getElementById('completedCount').innerText = completedCount;
+      document.getElementById('completionPercent').innerText = `${percent}%`;
+      
+      const progressFill = document.getElementById('progressFill');
+      progressFill.style.width = `${percent}%`;
+      progressFill.innerText = `${percent}%`;
+      
+      document.getElementById('progressDetails').innerHTML = `${completedCount} قاعدة من ${total} قاعدة مكتملة ✓`;
+    }
+
+    function toggleComplete(projectId, btnElement) {
+      const status = loadCompletionStatus();
+      const newStatus = !status[projectId];
+      status[projectId] = newStatus;
+      saveCompletionStatus(status);
+      
+      if (newStatus) {
+        btnElement.innerHTML = "✅ مكتمل";
+        btnElement.classList.add("completed");
+      } else {
+        btnElement.innerHTML = "🔘 غير مكتمل";
+        btnElement.classList.remove("completed");
+      }
+      updateProgress();
+    }
+
+    function renderProjects() {
+      const container = document.getElementById('projectsContainer');
+      container.innerHTML = '';
+      const completionStatus = loadCompletionStatus();
+
+      projectsData.forEach((project, idx) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const isCompleted = completionStatus[idx] === true;
+
+        card.innerHTML = `
+          <div class="card-header ${project.phase}">
+            <h2>${project.title}</h2>
+            <div class="badge">${project.badge}</div>
+            <div class="week-badge">${project.week}</div>
+          </div>
+          <div class="card-content">
+            <p>${project.desc}</p>
+            <ul class="features">
+              ${project.features.map(f => `<li>${f}</li>`).join('')}
+            </ul>
+            <div class="btn-group">
+              <a href="${project.link}" class="btn">📘 ادرس الآن</a>
+              <button class="btn btn-complete ${isCompleted ? 'completed' : ''}" data-id="${idx}">${isCompleted ? '✅ مكتمل' : '🔘 غير مكتمل'}</button>
+            </div>
+          </div>
+        `;
+
+        const completeBtn = card.querySelector('.btn-complete');
+        completeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleComplete(idx, completeBtn);
+        });
+
+        container.appendChild(card);
+      });
+    }
+
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
       const btn = document.querySelector('.dark-mode-toggle');
       btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
     }
+
+    renderProjects();
+    updateProgress();
   </script>
 
 </body>
