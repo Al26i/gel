@@ -2,9 +2,23 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>B1 - منصة تعلم الألمانية التفاعلية</title>
   <link rel="icon" href="imges/logo.svg">
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#667eea">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="تعلم B1">
+  <link rel="apple-touch-icon" href="imges/logo-192.png">
+  
+  <!-- Meta Tags for Social Media -->
+  <meta name="description" content="منصة تفاعلية لتعلم قواعد اللغة الألمانية للمستوى B1 مع خطة 8 أسابيع ومشاريع تفاعلية">
+  <meta name="keywords" content="تعلم الألمانية, B1, قواعد ألمانية, German grammar">
+  <meta name="author" content="أبو نزار">
+
   <style>
     * {
       margin: 0;
@@ -367,6 +381,37 @@
       margin-top: 40px;
     }
 
+    /* زر تثبيت التطبيق */
+    .install-btn {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.3s;
+    }
+
+    .install-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+      50% { box-shadow: 0 4px 25px rgba(39,174,96,0.5); }
+      100% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    }
+
     @media (max-width: 1200px) {
       .projects {
         justify-content: center;
@@ -383,6 +428,32 @@
       }
       .plan-grid {
         flex-direction: column;
+      }
+      .install-btn {
+        bottom: 80px;
+        right: 10px;
+        padding: 10px 16px;
+        font-size: 12px;
+      }
+      .dark-mode-toggle {
+        bottom: 20px;
+        left: 10px;
+      }
+    }
+
+    /* تحسين للشاشات الصغيرة جداً */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      header h1 {
+        font-size: 28px;
+      }
+      .stat-card {
+        padding: 10px 15px;
+      }
+      .stat-number {
+        font-size: 24px;
       }
     }
   </style>
@@ -533,7 +604,6 @@
       { phase: "phase4", title: "🔮 Konditionalsätze", badge: "الجمل الشرطية", week: "الأسبوع 7", desc: "Wenn ich Zeit hätte, würde ich reisen - ثلاثة أنواع من الجمل الشرطية.", features: ["النوع 1 (واقعي): Wenn + Präsens, Präsens", "النوع 2 (غير واقعي): Wenn + Präteritum, würde + Infinitiv", "النوع 3 (ماضي غير واقعي): Wenn + Plusquamperfekt, Konjunktiv II", "تصريف würde لجميع الضمائر", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Konditionalsaetze.html" },
       { phase: "phase4", title: "✨ Konjunktiv II", badge: "صيغة التمني والتهذيب", week: "الأسبوع 8", desc: "للتمني: Ich würde gern... • للطلبات المهذبة: Könnten Sie... • للشروط غير الواقعية.", features: ["للتمني (würde gern / hätte gern)", "للطلبات المهذبة (Könnten Sie / Würden Sie)", "للشروط غير الواقعية (Wenn + Konjunktiv II, würde + Infinitiv)", "جداول تصريف sein, haben, werden, können, müssen", "55 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Konjunktiv-II.html" },
       { phase: "phase4", title: "🔗 Doppelkonnektoren", badge: "أدوات الربط المزدوجة", week: "الأسبوع 8", desc: "entweder...oder • nicht nur...sondern auch • zwar...aber - ربط الجمل بشكل متقدم.", features: ["entweder...oder (إما...أو) - اختيار", "nicht nur...sondern auch (ليس فقط...بل أيضاً) - إضافة", "zwar...aber (صحيح أن...لكن) - تضاد", "جداول مقارنة لجميع الأدوات", "60 جملة تدريبية (20 لكل أداة)", "اختبار 60 سؤال"], link: "Project/Doppelkonnektoren.html" },
-      // الكرت الجديد: Grammatik-Referenz-B1
       { phase: "phase-ref", title: "📚 Grammatik-Referenz B1", badge: "مرجع شامل للقواعد", week: "مرجع دائم", desc: "موسوعة متكاملة تضم شرح جميع قواعد B1 مع جداول مقارنة وحروف الجر ونماذج الإعراب.", features: ["📖 شرح 8 قواعد أساسية مع أمثلة", "📊 مقارنة بين الأزمنة (Präsens, Perfekt, Präteritum, Plusquamperfekt, Futur)", "🔤 مرجع كامل لحروف الجر (Akkusativ, Dativ, Wechselpräpositionen)", "🗂️ جداول تصريف الأفعال المساعدة", "🎧 نطق صوتي لجميع الأمثلة", "📱 تصميم متجاوب مع الوضع الليلي"], link: "Project/Grammatik-Referenz-B1.html" }
     ];
 
@@ -570,13 +640,11 @@
       const newStatus = !status[projectId];
       
       if (!status[projectId] && newStatus === true) {
-        // تم التحديد كمكتمل
         status[projectId] = newStatus;
         saveCompletionStatus(status);
         btnElement.innerHTML = "✅ مكتمل";
         btnElement.classList.add("completed");
       } else if (status[projectId] === true && newStatus === false) {
-        // محاولة إلغاء الإكمال - طلب تأكيد
         const confirmReset = confirm('⚠️ هل تريد تصنيف هذا المشروع كـ "غير مكتمل"؟\nسيتم خفض نسبة التقدم.');
         if (confirmReset) {
           status[projectId] = false;
@@ -584,9 +652,6 @@
           btnElement.innerHTML = "🔘 غير مكتمل";
           btnElement.classList.remove("completed");
         }
-      } else if (!status[projectId] && newStatus === false) {
-        // لم يتم تغيير شيء
-        return;
       }
       
       updateProgress();
@@ -634,6 +699,45 @@
       document.body.classList.toggle('dark-mode');
       const btn = document.querySelector('.dark-mode-toggle');
       btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+
+    // PWA Installation
+    let deferredPrompt;
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      const installBtn = document.createElement('button');
+      installBtn.innerHTML = '📱 تثبيت التطبيق';
+      installBtn.className = 'install-btn';
+      installBtn.style.animation = 'pulse 2s infinite';
+      
+      installBtn.onclick = async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+          }
+          deferredPrompt = null;
+        }
+      };
+      
+      document.body.appendChild(installBtn);
+    });
+
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('Service Worker registered successfully:', registration);
+          })
+          .catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
     }
 
     renderProjects();
