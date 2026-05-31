@@ -719,7 +719,7 @@
         card.innerHTML = `
           <div class="title" onclick="markAsStudied(${verb.id});">
             <span class="infinitiv" onclick="speak('${verb.infinitiv}'); event.stopPropagation();">📖 ${verb.id}. ${verb.infinitiv} ${isStudied ? '<span class="studied-badge">✓ تمت</span>' : ''}</span>
-            <button class="play-all-btn" onclick="playAllExamples(${JSON.stringify(verb).replace(/"/g, '&quot;')}); event.stopPropagation();">🔊 تشغيل الكل</button>
+   
             <span class="arabic">${verb.arabic}</span>
           </div>
           <table>
