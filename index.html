@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>B1 - منصة تعلم الألمانية التفاعلية</title>
   <link rel="icon" href="imges/logo.svg">
-  
-  <!-- PWA Meta Tags -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#667eea">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="تعلم B1">
   <link rel="apple-touch-icon" href="imges/logo-192.png">
-  
-  <!-- Meta Tags for Social Media -->
   <meta name="description" content="منصة تفاعلية لتعلم قواعد اللغة الألمانية للمستوى B1 مع خطة 8 أسابيع ومشاريع تفاعلية">
   <meta name="keywords" content="تعلم الألمانية, B1, قواعد ألمانية, German grammar">
   <meta name="author" content="أبو نزار">
@@ -61,6 +57,11 @@
 
     body.dark-mode .study-plan {
       background: #2d2d44;
+    }
+
+    body.dark-mode .card-details {
+      background: #3d3d5c;
+      border-top: 1px solid #555;
     }
 
     .container {
@@ -238,6 +239,7 @@
       width: 380px;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
     }
 
     .card:hover {
@@ -280,28 +282,47 @@
     .phase4 { background: linear-gradient(135deg, #6c3483 0%, #9b59b6 100%); }
     .phase-ref { background: linear-gradient(135deg, #d35400 0%, #e67e22 100%); }
 
-    .card-content {
-      padding: 20px;
-      flex-grow: 1;
+    /* المنطقة المخفية التي تظهر عند الضغط */
+    .card-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      background: #f9f9f9;
+      padding: 0 20px;
+      border-top: none;
     }
 
-    .card-content p {
-      line-height: 1.6;
-      margin-bottom: 15px;
-      color: #555;
+    body.dark-mode .card-details {
+      background: #353555;
+    }
+
+    .card-details.open {
+      max-height: 800px;
+      padding: 15px 20px;
+      border-top: 1px solid #eee;
+    }
+
+    body.dark-mode .card-details.open {
+      border-top-color: #555;
+    }
+
+    .card-details p {
       font-size: 14px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 12px;
     }
 
-    body.dark-mode .card-content p {
+    body.dark-mode .card-details p {
       color: #ccc;
     }
 
-    .features {
+    .features-list {
       list-style: none;
       margin: 10px 0 15px;
     }
 
-    .features li {
+    .features-list li {
       padding: 6px 0;
       border-bottom: 1px solid #eee;
       display: flex;
@@ -310,17 +331,52 @@
       font-size: 13px;
     }
 
-    .features li::before {
+    body.dark-mode .features-list li {
+      border-bottom-color: #444;
+    }
+
+    .features-list li::before {
       content: "✓";
       color: #27ae60;
       font-weight: bold;
       font-size: 14px;
     }
 
+    .details-title {
+      font-weight: bold;
+      color: #2563eb;
+      margin: 12px 0 8px;
+    }
+
+    .details-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .details-example {
+      background: #eef2ff;
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin: 8px 0;
+      direction: ltr;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 14px;
+    }
+
+    body.dark-mode .details-example {
+      background: #4a3a6a;
+    }
+
+    .details-example:hover {
+      background: #e0e7ff;
+      transform: translateX(-5px);
+    }
+
     .btn-group {
       display: flex;
       gap: 12px;
-      margin-top: 15px;
+      margin-top: 10px;
       flex-wrap: wrap;
       align-items: center;
     }
@@ -381,7 +437,6 @@
       margin-top: 40px;
     }
 
-    /* زر تثبيت التطبيق */
     .install-btn {
       position: fixed;
       bottom: 90px;
@@ -441,7 +496,6 @@
       }
     }
 
-    /* تحسين للشاشات الصغيرة جداً */
     @media (max-width: 480px) {
       body {
         padding: 10px;
@@ -469,7 +523,6 @@
       <p>خطة 8 أسابيع لاجتياز B1 | مشاريع تفاعلية مع تتبع التقدم</p>
     </header>
 
-    <!-- إحصائيات سريعة -->
     <div class="stats">
       <div class="stat-card">
         <div class="stat-number" id="totalProjectsCount">0</div>
@@ -485,7 +538,6 @@
       </div>
     </div>
 
-    <!-- شريط التقدم -->
     <div class="progress-section">
       <div class="progress-title">📊 التقدم في دراسة المشاريع</div>
       <div class="progress-bar-container">
@@ -496,7 +548,6 @@
 
     <div class="projects" id="projectsContainer"></div>
 
-    <!-- خطة 8 أسابيع -->
     <div class="study-plan">
       <h2>📅 خطة 8 أسابيع لاجتياز B1</h2>
       <div class="plan-grid">
@@ -541,7 +592,6 @@
       </div>
     </div>
 
-    <!-- نصائح الدراسة -->
     <div class="study-plan" style="margin-top: 20px;">
       <h2>📖 نصائح لاجتياز B1 بنجاح</h2>
       <div class="plan-grid">
@@ -586,28 +636,26 @@
   </div>
 
   <script>
-    // بيانات المشاريع
     const projectsData = [
-      { phase: "phase1", title: "📖 Präsens", badge: "زمن المضارع", week: "الأسبوع 1", desc: "تصريف الأفعال الألمانية في زمن المضارع - أفعال عادية، شاذة، و Modalverben.", features: ["أفعال عادية (machen, lernen, arbeiten)", "أفعال شاذة (fahren, lesen, sprechen)", "Modalverben (können, müssen, wollen)", "🎧 نطق صوتي لجميع الكلمات", "🔍 بحث سريع وتصفية"], link: "Project/الأفعال Präsens .html" },
-      { phase: "phase1", title: "⏰ Perfekt", badge: "الماضي التام", week: "الأسبوع 1", desc: "تكوين الماضي التام باستخدام haben/sein و Partizip II.", features: ["100 فعل مع تصريفات كاملة", "أفعال haben + sein + Modalverben", "جمل كاملة لكل الضمائر", "🎧 النطق الصوتي"], link: "Project/Perfekt.html" },
-      { phase: "phase1", title: "📚 Fälle", badge: "حالات الأسماء", week: "الأسبوع 1", desc: "Nominativ • Akkusativ • Dativ - شرح مبسط وأمثلة.", features: ["Nominativ (الفاعل) - Wer?/Was?", "Akkusativ (المفعول به) - Wen?/Was?", "Dativ (المفعول إليه) - Wem?", "جداول أدوات التعريف والتنكير", "اختبار 200 سؤال تفاعلي"], link: "Project/Faelle.html" },
-      { phase: "phase1", title: "📝 Satzstellung", badge: "ترتيب الجملة", week: "الأسبوع 1", desc: "الفعل في المرتبة الثانية • الزمان قبل المكان • TeKaMoLo.", features: ["الفعل في المرتبة الثانية (أهم قاعدة)", "الزمان قبل المكان (Zeit vor Ort)", "TeKaMoLo (ترتيب المعلومات)", "اختبار 50 سؤال مع تصحيح آلي"], link: "Project/Satzstellung.html" },
-      { phase: "phase2", title: "📚 Nebensätze", badge: "الجمل الثانوية", week: "الأسبوع 2", desc: "weil • dass • wenn • obwohl • damit - الفعل في نهاية الجملة.", features: ["weil (لأن) - تعبير عن السبب", "dass (أن) - جملة خبرية", "wenn (إذا/عندما) - شرط أو زمان", "obwohl (بالرغم من) - تضاد", "damit (لكي) - هدف", "اختبار 75 سؤال"], link: "Project/Nebensatze.html" },
-      { phase: "phase2", title: "🔗 Konnektoren", badge: "أدوات الربط", week: "الأسبوع 2", desc: "deshalb • trotzdem • deswegen • außerdem - ربط الجمل بشكل احترافي.", features: ["deshalb / deswegen (لذلك) - نتيجة", "trotzdem (بالرغم من ذلك) - تضاد", "außerdem (بالإضافة إلى ذلك) - إضافة", "القاعدة: الفعل بعد الأداة في المرتبة الثانية", "اختبار 60 سؤال"], link: "Project/Konnektoren.html" },
-      { phase: "phase2", title: "📚 Verben mit Präpositionen", badge: "الأفعال مع حروف الجر", week: "الأسبوع 3", desc: "warten auf • denken an • sprechen mit • sich interessieren für.", features: ["warten auf + Akkusativ (ينتظر)", "denken an + Akkusativ (يفكر في)", "sprechen mit + Dativ (يتحدث مع)", "sich interessieren für + Akkusativ (يهتم بـ)", "40 جملة تدريبية (10 لكل فعل)", "اختبار 60 سؤال"], link: "Project/Verben-mit-Praepositionen.html" },
-      { phase: "phase2", title: "🔀 Trennbare Verben", badge: "الأفعال المنفصلة", week: "الأسبوع 3", desc: "aufstehen • anrufen • einkaufen + أهم 30 فعل منفصل.", features: ["قاعدة المضارع: البادئة في نهاية الجملة", "قاعدة الماضي: البادئة تتصل + ge-", "أهم 30 فعل منفصل مع تصريفات", "اختبار 90 سؤال"], link: "Project/Trennbare-Verben.html" },
-      { phase: "phase3", title: "📖 Passiv", badge: "المبني للمجهول", week: "الأسبوع 5", desc: "Präsens Passiv • Präteritum Passiv - Das Auto wird/wurde repariert.", features: ["Präsens Passiv: werden + Partizip II", "Präteritum Passiv: wurden + Partizip II", "تصريف werden في الحاضر والماضي", "مقارنة بين Aktiv و Passiv", "40 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Passiv.html" },
-      { phase: "phase3", title: "📊 Komparativ & Superlativ", badge: "المقارنة والتفضيل", week: "الأسبوع 5", desc: "schnell → schneller → am schnellsten • gut → besser → am besten.", features: ["Komparativ: صفة + er + als", "Superlativ: am + صفة + sten / der/die/das + صفة + ste", "الصفات الشاذة (gut, gern, viel, hoch)", "قاعدة Umlaut (a,o,u → ä,ö,ü)", "40 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Komparativ-Superlativ.html" },
-      { phase: "phase4", title: "🔄 Reflexive Verben", badge: "الأفعال الانعكاسية", week: "الأسبوع 6", desc: "sich freuen • sich erinnern • sich treffen - الأفعال التي تعود على الفاعل.", features: ["sich freuen auf/über (يفرح بـ)", "sich erinnern an (يتذكر)", "sich treffen mit (يلتقي بـ)", "جدول الضمائر الانعكاسية", "أمثلة وتمارين متنوعة"], link: "Project/Reflexive-Verben.html" },
-      { phase: "phase4", title: "📖 Präteritum", badge: "الماضي البسيط", week: "الأسبوع 6", desc: "war • hatte • konnte • musste • wollte - الماضي البسيط للأفعال المساعدة.", features: ["sein → war (كان)", "haben → hatte (كان لدي)", "können → konnte (استطاع)", "müssen → musste (اضطر)", "wollen → wollte (أراد)", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Praeteritum.html" },
-      { phase: "phase4", title: "📚 Adjektivdeklination", badge: "تصريف الصفات", week: "الأسبوع 7", desc: "تصريف الصفات بعد der • ein • بدون أداة - قاعدة مهمة جداً في B1.", features: ["بعد der/die/das (تصريف ضعيف)", "بعد ein/eine (تصريف مختلط)", "بدون أداة (تصريف قوي)", "جداول كاملة لجميع الحالات", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Adjektivdeklination.html" },
-      { phase: "phase4", title: "🔮 Konditionalsätze", badge: "الجمل الشرطية", week: "الأسبوع 7", desc: "Wenn ich Zeit hätte, würde ich reisen - ثلاثة أنواع من الجمل الشرطية.", features: ["النوع 1 (واقعي): Wenn + Präsens, Präsens", "النوع 2 (غير واقعي): Wenn + Präteritum, würde + Infinitiv", "النوع 3 (ماضي غير واقعي): Wenn + Plusquamperfekt, Konjunktiv II", "تصريف würde لجميع الضمائر", "45 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Konditionalsaetze.html" },
-      { phase: "phase4", title: "✨ Konjunktiv II", badge: "صيغة التمني والتهذيب", week: "الأسبوع 8", desc: "للتمني: Ich würde gern... • للطلبات المهذبة: Könnten Sie... • للشروط غير الواقعية.", features: ["للتمني (würde gern / hätte gern)", "للطلبات المهذبة (Könnten Sie / Würden Sie)", "للشروط غير الواقعية (Wenn + Konjunktiv II, würde + Infinitiv)", "جداول تصريف sein, haben, werden, können, müssen", "55 جملة تدريبية", "اختبار 60 سؤال"], link: "Project/Konjunktiv-II.html" },
-      { phase: "phase4", title: "🔗 Doppelkonnektoren", badge: "أدوات الربط المزدوجة", week: "الأسبوع 8", desc: "entweder...oder • nicht nur...sondern auch • zwar...aber - ربط الجمل بشكل متقدم.", features: ["entweder...oder (إما...أو) - اختيار", "nicht nur...sondern auch (ليس فقط...بل أيضاً) - إضافة", "zwar...aber (صحيح أن...لكن) - تضاد", "جداول مقارنة لجميع الأدوات", "60 جملة تدريبية (20 لكل أداة)", "اختبار 60 سؤال"], link: "Project/Doppelkonnektoren.html" },
-      { phase: "phase-ref", title: "📚 Grammatik-Referenz B1", badge: "مرجع شامل للقواعد", week: "مرجع دائم", desc: "موسوعة متكاملة تضم شرح جميع قواعد B1 مع جداول مقارنة وحروف الجر ونماذج الإعراب.", features: ["📖 شرح 8 قواعد أساسية مع أمثلة", "📊 مقارنة بين الأزمنة (Präsens, Perfekt, Präteritum, Plusquamperfekt, Futur)", "🔤 مرجع كامل لحروف الجر (Akkusativ, Dativ, Wechselpräpositionen)", "🗂️ جداول تصريف الأفعال المساعدة", "🎧 نطق صوتي لجميع الأمثلة", "📱 تصميم متجاوب مع الوضع الليلي"], link: "Project/Grammatik-Referenz-B1.html" }
+      { phase: "phase1", title: "📖 Präsens", badge: "زمن المضارع", week: "الأسبوع 1", features: ["أفعال عادية (machen, lernen, arbeiten)", "أفعال شاذة (fahren, lesen, sprechen)", "Modalverben (können, müssen, wollen)", "🎧 نطق صوتي", "🔍 بحث سريع"], link: "Project/الأفعال Präsens .html", details: { rule: "الفعل يتصرف حسب الفاعل: ich -e, du -st, er/sie/es -t, wir -en, ihr -t, sie -en", examples: ["Ich lerne Deutsch.", "Du arbeitest viel.", "Er spricht gut."] } },
+      { phase: "phase1", title: "⏰ Perfekt", badge: "الماضي التام", week: "الأسبوع 1", features: ["100 فعل مع تصريفات", "haben + sein", "جمل كاملة", "🎧 نطق صوتي"], link: "Project/Perfekt.html", details: { rule: "haben/sein + Partizip II (التصريف الثالث). الفعل المساعد في المرتبة الثانية", examples: ["Ich habe Deutsch gelernt.", "Er ist nach Hause gegangen.", "Wir haben Fußball gespielt."] } },
+      { phase: "phase1", title: "📚 Fälle", badge: "حالات الأسماء", week: "الأسبوع 1", features: ["Nominativ (الفاعل)", "Akkusativ (المفعول به)", "Dativ (المفعول إليه)", "جداول أدوات التعريف", "اختبار 200 سؤال"], link: "Project/Faelle.html", details: { rule: "Nominativ: der/die/das. Akkusativ: den/die/das. Dativ: dem/der/dem", examples: ["Der Mann liest. (Nom)", "Ich sehe den Mann. (Akk)", "Ich gebe dem Mann ein Buch. (Dat)"] } },
+      { phase: "phase1", title: "📝 Satzstellung", badge: "ترتيب الجملة", week: "الأسبوع 1", features: ["الفعل في المرتبة الثانية", "الزمان قبل المكان", "TeKaMoLo", "اختبار 50 سؤال"], link: "Project/Satzstellung.html", details: { rule: "الفعل دائماً في المرتبة الثانية. TeKaMoLo: زمان ← سبب ← كيفية ← مكان", examples: ["Ich lerne Deutsch.", "Heute lerne ich Deutsch.", "Ich fahre morgen mit dem Zug nach Berlin."] } },
+      { phase: "phase2", title: "📚 Nebensätze", badge: "الجمل الثانوية", week: "الأسبوع 2", features: ["weil", "dass", "wenn", "obwohl", "damit", "اختبار 75 سؤال"], link: "Project/Nebensatze.html", details: { rule: "أداة الربط + الفاعل + ... + الفعل في الآخر", examples: ["Ich lerne, weil ich will.", "Ich hoffe, dass du kommst.", "Wenn ich Zeit habe, komme ich."] } },
+      { phase: "phase2", title: "🔗 Konnektoren", badge: "أدوات الربط", week: "الأسبوع 2", features: ["deshalb", "trotzdem", "deswegen", "außerdem", "اختبار 60 سؤال"], link: "Project/Konnektoren.html", details: { rule: "Satz + Konnektor + فعل + فاعل", examples: ["Ich bin müde, deshalb gehe ich schlafen.", "Es regnet, trotzdem gehe ich raus.", "Ich lerne Deutsch, außerdem lerne ich Englisch."] } },
+      { phase: "phase2", title: "📚 Verben mit Präpositionen", badge: "الأفعال مع حروف الجر", week: "الأسبوع 3", features: ["warten auf", "denken an", "sprechen mit", "sich interessieren für", "اختبار 60 سؤال"], link: "Project/Verben-mit-Praepositionen.html", details: { rule: "كل فعل له حرف جر ثابت وحالة معينة", examples: ["Ich warte auf den Bus.", "Ich denke an dich.", "Ich spreche mit dem Lehrer.", "Ich interessiere mich für Sport."] } },
+      { phase: "phase2", title: "🔀 Trennbare Verben", badge: "الأفعال المنفصلة", week: "الأسبوع 3", features: ["aufstehen", "anrufen", "einkaufen", "أهم 30 فعل", "اختبار 90 سؤال"], link: "Project/Trennbare-Verben.html", details: { rule: "المضارع: البادئة في نهاية الجملة. الماضي: البادئة تتصل + ge-", examples: ["Ich stehe um 6 Uhr auf.", "Ich rufe meine Mutter an.", "Ich bin aufgestanden.", "Ich habe angerufen."] } },
+      { phase: "phase3", title: "📖 Passiv", badge: "المبني للمجهول", week: "الأسبوع 5", features: ["Präsens Passiv", "Präteritum Passiv", "تصريف werden", "اختبار 60 سؤال"], link: "Project/Passiv.html", details: { rule: "werden/wurden + Partizip II", examples: ["Das Auto wird repariert.", "Das Auto wurde repariert.", "Die Pizza wird gebacken."] } },
+      { phase: "phase3", title: "📊 Komparativ & Superlativ", badge: "المقارنة والتفضيل", week: "الأسبوع 5", features: ["Komparativ", "Superlativ", "صفات شاذة", "قاعدة Umlaut", "اختبار 60 سؤال"], link: "Project/Komparativ-Superlativ.html", details: { rule: "Komparativ: صفة + er + als. Superlativ: am + صفة + sten", examples: ["Ich bin größer als du.", "Dieses Auto ist am schnellsten.", "gut → besser → am besten"] } },
+      { phase: "phase4", title: "🔄 Reflexive Verben", badge: "الأفعال الانعكاسية", week: "الأسبوع 6", features: ["sich freuen", "sich erinnern", "sich treffen", "جدول الضمائر"], link: "Project/Reflexive-Verben.html", details: { rule: "فعل + sich (تعود على الفاعل)", examples: ["Ich freue mich auf das Wochenende.", "Ich erinnere mich an meine Kindheit.", "Wir treffen uns um 8 Uhr."] } },
+      { phase: "phase4", title: "📖 Präteritum", badge: "الماضي البسيط", week: "الأسبوع 6", features: ["war", "hatte", "konnte", "musste", "wollte", "اختبار 60 سؤال"], link: "Project/Praeteritum.html", details: { rule: "تصريف الماضي البسيط (يستخدم مع الأفعال المساعدة)", examples: ["Ich war gestern im Kino.", "Ich hatte einen Hund.", "Ich konnte Deutsch sprechen.", "Ich musste arbeiten.", "Ich wollte reisen."] } },
+      { phase: "phase4", title: "📚 Adjektivdeklination", badge: "تصريف الصفات", week: "الأسبوع 7", features: ["بعد der/die/das", "بعد ein/eine", "بدون أداة", "جداول كاملة", "اختبار 60 سؤال"], link: "Project/Adjektivdeklination.html", details: { rule: "حسب الأداة: der → -e, ein → -er, بدون أداة → -er/-e/-es", examples: ["der große Mann", "ein großer Mann", "großer Mann"] } },
+      { phase: "phase4", title: "🔮 Konditionalsätze", badge: "الجمل الشرطية", week: "الأسبوع 7", features: ["النوع 1 (واقعي)", "النوع 2 (غير واقعي)", "النوع 3 (ماضي)", "تصريف würde"], link: "Project/Konditionalsaetze.html", details: { rule: "3 أنواع حسب واقعية الشرط", examples: ["Wenn du lernst, wirst du bestehen. (نوع 1)", "Wenn ich Zeit hätte, würde ich reisen. (نوع 2)", "Wenn ich gekommen wäre, hätte ich dich gesehen. (نوع 3)"] } },
+      { phase: "phase4", title: "✨ Konjunktiv II", badge: "صيغة التمني والتهذيب", week: "الأسبوع 8", features: ["للتمني (würde gern)", "للطلبات (Könnten Sie)", "جداول تصريف"], link: "Project/Konjunktiv-II.html", details: { rule: "التعبير عن الأمنيات والطلبات المهذبة", examples: ["Ich würde gern nach Deutschland reisen.", "Könnten Sie mir helfen?", "Ich hätte gern einen Kaffee."] } },
+      { phase: "phase4", title: "🔗 Doppelkonnektoren", badge: "أدوات الربط المزدوجة", week: "الأسبوع 8", features: ["entweder...oder", "nicht nur...sondern auch", "zwar...aber", "اختبار 60 سؤال"], link: "Project/Doppelkonnektoren.html", details: { rule: "أدوات ربط من جزأين", examples: ["Entweder du kommst, oder du bleibst.", "Er spricht nicht nur Deutsch, sondern auch Englisch.", "Das Auto ist zwar teuer, aber gut."] } },
+      { phase: "phase-ref", title: "📚 Grammatik-Referenz B1", badge: "مرجع شامل للقواعد", week: "مرجع دائم", features: ["شرح 8 قواعد أساسية", "مقارنة بين الأزمنة", "مرجع حروف الجر", "جداول تصريف", "🎧 نطق صوتي"], link: "Project/Grammatik-Referenz-B1.html", details: { rule: "مرجع سريع لجميع قواعد B1", examples: ["جدول الأزمنة: Präsens, Perfekt, Präteritum", "حروف الجر: Akkusativ, Dativ, Wechselpräpositionen"] } }
     ];
 
-    // دوال التخزين والتحديث
     function loadCompletionStatus() {
       const saved = localStorage.getItem('projectCompletionV3');
       if (saved) return JSON.parse(saved);
@@ -632,7 +680,7 @@
       progressFill.style.width = `${percent}%`;
       progressFill.innerText = `${percent}%`;
       
-      document.getElementById('progressDetails').innerHTML = `${completedCount} قاعدة من ${total} قاعدة مكتملة ✓`;
+      document.getElementById('progressDetails').innerHTML = `${completedCount} مشروع من ${total} مشروع مكتمل ✓`;
     }
 
     function toggleComplete(projectId, btnElement) {
@@ -645,7 +693,7 @@
         btnElement.innerHTML = "✅ مكتمل";
         btnElement.classList.add("completed");
       } else if (status[projectId] === true && newStatus === false) {
-        const confirmReset = confirm('⚠️ هل تريد تصنيف هذا المشروع كـ "غير مكتمل"؟\nسيتم خفض نسبة التقدم.');
+        const confirmReset = confirm('⚠️ هل تريد تصنيف هذا المشروع كـ "غير مكتمل"؟');
         if (confirmReset) {
           status[projectId] = false;
           saveCompletionStatus(status);
@@ -653,8 +701,24 @@
           btnElement.classList.remove("completed");
         }
       }
-      
       updateProgress();
+    }
+
+    function toggleCardDetails(cardElement) {
+      const detailsDiv = cardElement.querySelector('.card-details');
+      if (detailsDiv) {
+        detailsDiv.classList.toggle('open');
+      }
+    }
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
     }
 
     function renderProjects() {
@@ -667,28 +731,41 @@
         card.className = 'card';
         const isCompleted = completionStatus[idx] === true;
 
+        // بناء قائمة الميزات
+        const featuresHtml = project.features.map(f => `<li>${f}</li>`).join('');
+
+        // بناء الأمثلة
+        const examplesHtml = project.details.examples.map(ex => 
+          `<div class="details-example" onclick="event.stopPropagation(); speak('${ex.replace(/'/g, "\\'")}');">🔊 ${ex}</div>`
+        ).join('');
+
         card.innerHTML = `
           <div class="card-header ${project.phase}">
             <h2>${project.title}</h2>
             <div class="badge">${project.badge}</div>
             <div class="week-badge">${project.week}</div>
           </div>
-          <div class="card-content">
-            <p>${project.desc}</p>
-            <ul class="features">
-              ${project.features.map(f => `<li>${f}</li>`).join('')}
+          <div class="btn-group" style="padding: 0 20px 15px 20px; margin-top: 0;">
+            <a href="${project.link}" class="btn" onclick="event.stopPropagation();">📘 ادرس الآن</a>
+            <button class="btn btn-complete ${isCompleted ? 'completed' : ''}" data-id="${idx}" onclick="event.stopPropagation(); toggleComplete(${idx}, this);">${isCompleted ? '✅ مكتمل' : '🔘 غير مكتمل'}</button>
+          </div>
+          <div class="card-details">
+            <div class="details-title">📌 القاعدة:</div>
+            <p>${project.details.rule}</p>
+            <div class="details-title">✨ ميزات المشروع:</div>
+            <ul class="features-list">
+              ${featuresHtml}
             </ul>
-            <div class="btn-group">
-              <a href="${project.link}" class="btn">📘 ادرس الآن</a>
-              <button class="btn btn-complete ${isCompleted ? 'completed' : ''}" data-id="${idx}">${isCompleted ? '✅ مكتمل' : '🔘 غير مكتمل'}</button>
-            </div>
+            <div class="details-title">📝 أمثلة:</div>
+            ${examplesHtml}
           </div>
         `;
 
-        const completeBtn = card.querySelector('.btn-complete');
-        completeBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggleComplete(idx, completeBtn);
+        card.addEventListener('click', (e) => {
+          if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('.btn')) {
+            return;
+          }
+          toggleCardDetails(card);
         });
 
         container.appendChild(card);
@@ -701,42 +778,28 @@
       btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
     }
 
-    // PWA Installation
     let deferredPrompt;
-    
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      
       const installBtn = document.createElement('button');
       installBtn.innerHTML = '📱 تثبيت التطبيق';
       installBtn.className = 'install-btn';
       installBtn.style.animation = 'pulse 2s infinite';
-      
       installBtn.onclick = async () => {
         if (deferredPrompt) {
           deferredPrompt.prompt();
           const { outcome } = await deferredPrompt.userChoice;
-          if (outcome === 'accepted') {
-            installBtn.style.display = 'none';
-          }
+          if (outcome === 'accepted') installBtn.style.display = 'none';
           deferredPrompt = null;
         }
       };
-      
       document.body.appendChild(installBtn);
     });
 
-    // Service Worker Registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log('Service Worker registered successfully:', registration);
-          })
-          .catch(error => {
-            console.log('Service Worker registration failed:', error);
-          });
+        navigator.serviceWorker.register('/sw.js').catch(error => console.log('SW failed:', error));
       });
     }
 
